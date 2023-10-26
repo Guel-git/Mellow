@@ -28,6 +28,15 @@ enum QuestionNum: Int {
         }
     }
     
+    var progressRadius: CACornerMask {
+        switch self {
+        case .first, .second, .third:
+            return [.layerMinXMinYCorner, .layerMinXMaxYCorner]
+        case .fourth:
+            return [.layerMinXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMinYCorner, .layerMaxXMaxYCorner]
+        }
+    }
+    
     var numImage: UIImage {
         switch self {
         case .first:
@@ -44,26 +53,35 @@ enum QuestionNum: Int {
     var questionText: String {
         switch self {
         case .first:
-            return "자기 전에 배고픈 당신은?"
+            return TextLiteral.questionOne
         case .second:
-            return "자기 전, 핸드폰을 두는 장소는?"
+            return TextLiteral.questionTwo
         case .third:
-            return "배가 고프면 제일 먼저 먹는 음식은?"
+            return TextLiteral.questionThree
         case .fourth:
-            return "나는 누구인가?"
+            return TextLiteral.questionFour
         }
     }
     
     var answerList: [String] {
         switch self {
         case .first:
-            return TextLiteral.answerList
+            return TextLiteral.firstAnswerList
         case .second:
-            return TextLiteral.answerList
+            return TextLiteral.secondAnswerList
         case .third:
-            return TextLiteral.answerList
+            return TextLiteral.thirdAnswerList
         case .fourth:
-            return TextLiteral.answerList
+            return TextLiteral.fourthAnswerList
+        }
+    }
+    
+    var mainButtonTitle: String {
+        switch self {
+        case .first, .second, .third:
+            return TextLiteral.nextButtonTitle
+        case .fourth:
+            return TextLiteral.endTestButtonTitle
         }
     }
 }
@@ -76,7 +94,7 @@ final class QuestionViewController: BaseViewController {
 
     private let navTitleLabel: UILabel = {
         let label = UILabel()
-        label.text = "수면 요정 찾기 테스트"
+        label.text = TextLiteral.questionViewControllerTitle
         label.textColor = .fontBlack
         label.font = .sb16
         return label
@@ -90,7 +108,6 @@ final class QuestionViewController: BaseViewController {
     private let progressBar: UIView = {
         let view = UIView()
         view.backgroundColor = .systemMain
-        view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
         view.layer.cornerRadius = 2
         return view
     }()
@@ -109,7 +126,6 @@ final class QuestionViewController: BaseViewController {
     private let mainButton: MainButton = {
         let button = MainButton()
         button.isDisabled = true
-        button.title = "다음"
         return button
     }()
 
@@ -162,16 +178,16 @@ final class QuestionViewController: BaseViewController {
             $0.centerX.equalToSuperview()
         }
         
-        answerTableView.snp.makeConstraints {
-            $0.top.equalTo(questionLabel.snp.bottom).offset(32)
-            $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(200)
-        }
-        
         mainButton.snp.makeConstraints {
             $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(8)
             $0.leading.trailing.equalToSuperview().inset(16)
             $0.height.equalTo(52)
+        }
+
+        answerTableView.snp.makeConstraints {
+            $0.top.equalTo(questionLabel.snp.bottom).offset(32)
+            $0.leading.trailing.equalToSuperview()
+            $0.bottom.equalTo(mainButton.snp.top).inset(-8)
         }
     }
     
@@ -185,6 +201,8 @@ final class QuestionViewController: BaseViewController {
     private func setupAttribute() {
         questionNumImage.image = questionNum.numImage
         questionLabel.text = questionNum.questionText
+        progressBar.layer.maskedCorners = questionNum.progressRadius
+        mainButton.title = questionNum.mainButtonTitle
         
         answerTableView.register(AnswerTableViewCell.self, forCellReuseIdentifier: AnswerTableViewCell.cellId)
         answerTableView.rowHeight = 60
@@ -201,6 +219,7 @@ final class QuestionViewController: BaseViewController {
     
     private func navigateToNextQuestion() {
         if questionNum.rawValue == 4 {
+            // FIXME: - 결과 화면으로 이동
             print("마지막 페이지!")
         } else {
             let nextNum = questionNum.rawValue + 1
