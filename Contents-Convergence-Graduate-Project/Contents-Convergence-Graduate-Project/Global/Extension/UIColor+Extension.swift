@@ -8,9 +8,25 @@
 import UIKit
 
 extension UIColor {
-//    static var blueLight: UIColor {
-//        return UIColor(hex: "#00ECFF")
-//    }
+    
+    // MARK: - system
+    
+    static var systemSub: UIColor {
+        return UIColor(hex: "#F5F6FA")
+    }
+    static var systemMain: UIColor {
+        return UIColor(hex: "B0B1B4")
+    }
+    
+    // MARK: - font
+    
+    static var fontBlack: UIColor {
+        return UIColor(hex: "333333")
+    }
+    static var fontWhite: UIColor {
+        return UIColor(hex: "FFFFFF")
+    }
+    
 }
 
 extension UIColor {
