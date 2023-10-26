@@ -14,6 +14,15 @@ enum QuestionNum: Int {
     case second = 2
     case third = 3
     case fourth = 4
+    
+    var hasBackButton: Bool {
+        switch self {
+        case .first:
+            return false
+        case .second, .third, .fourth:
+            return true
+        }
+    }
         
     var progressRatio: Double {
         switch self {
@@ -92,13 +101,7 @@ final class QuestionViewController: BaseViewController {
     
     // MARK: - property
 
-    private let navTitleLabel: UILabel = {
-        let label = UILabel()
-        label.text = TextLiteral.questionViewControllerTitle
-        label.textColor = .fontBlack
-        label.font = .sb16
-        return label
-    }()
+    private let backButton = BackButton()
     private let progressBackground: UIView = {
         let view = UIView()
         view.backgroundColor = .systemSub
@@ -146,18 +149,13 @@ final class QuestionViewController: BaseViewController {
     }
     
     override func render() {
-        [navTitleLabel, progressBackground, questionNumImage, questionLabel, answerTableView, mainButton].forEach {
+        [progressBackground, questionNumImage, questionLabel, answerTableView, mainButton].forEach {
             view.addSubview($0)
         }
         progressBackground.addSubview(progressBar)
         
-        navTitleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(64)
-            $0.centerX.equalToSuperview()
-        }
-        
         progressBackground.snp.makeConstraints {
-            $0.top.equalTo(navTitleLabel.snp.bottom).offset(16)
+            $0.top.equalTo(view.safeAreaLayoutGuide).offset(14)
             $0.leading.trailing.equalToSuperview().inset(18)
             $0.height.equalTo(4)
         }
@@ -192,6 +190,23 @@ final class QuestionViewController: BaseViewController {
     }
     
     // MARK: - func
+    
+    override func setupNavigationBar() {
+        super.setupNavigationBar()
+        
+        let backButton = makeBarButtonItem(with: backButton)
+        navigationController?.navigationBar.prefersLargeTitles = false
+        navigationItem.largeTitleDisplayMode = .never
+        navigationItem.leftBarButtonItem = questionNum.hasBackButton ? backButton : nil
+        navigationItem.title = TextLiteral.questionViewControllerTitle
+        navigationController?.navigationBar.tintColor = .fontBlack
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.fontBlack, NSAttributedString.Key.font: UIFont.m16]
+        
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithTransparentBackground()
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+    }
     
     private func setupDelegate() {
         answerTableView.delegate = self

@@ -29,6 +29,7 @@ class BaseViewController: UIViewController {
         super.viewDidLoad()
         render()
         configUI()
+        setupNavigationBar()
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -46,5 +47,22 @@ class BaseViewController: UIViewController {
 
     func configUI() {
         view.backgroundColor = .white
+    }
+    
+    func setupNavigationBar() {
+        guard let navigationBar = navigationController?.navigationBar else { return }
+        let appearance = UINavigationBarAppearance()
+        appearance.shadowColor = .clear
+        appearance.backgroundColor = .white
+
+        navigationBar.standardAppearance = appearance
+        navigationBar.compactAppearance = appearance
+        navigationBar.scrollEdgeAppearance = appearance
+    }
+    
+    // MARK: - helper func
+
+    func makeBarButtonItem<T: UIView>(with view: T) -> UIBarButtonItem {
+        return UIBarButtonItem(customView: view)
     }
 }

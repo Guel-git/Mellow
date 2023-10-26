@@ -17,6 +17,7 @@ enum ImageLiteral {
     static var questionFourImage: UIImage { .load(systemName: "4.circle.fill") }
     static var answerCheckImage: UIImage { .load(systemName: "checkmark.circle.fill") }
     static var mainButtonChevronImage: UIImage { .load(systemName: "chevron.right") }
+    static var navigationBarBackButton: UIImage { .load(systemName: "chevron.left") }
 }
 
 extension UIImage {
