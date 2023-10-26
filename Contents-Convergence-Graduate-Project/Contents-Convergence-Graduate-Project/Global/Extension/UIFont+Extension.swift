@@ -36,7 +36,7 @@ extension UIFont {
     
     // MARK: - body
     static var m16: UIFont {
-        return font(.medium, ofSize: 20)
+        return font(.medium, ofSize: 16)
     }
     
     // MARK: - caption
