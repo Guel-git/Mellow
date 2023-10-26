@@ -23,6 +23,11 @@
 		525600C82AE6787E00E122A5 /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		525600CD2AE679EE00E122A5 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		525600CF2AE67A0600E122A5 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
+		525600D22AEA7A7800E122A5 /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
+		525600D32AEA7A7800E122A5 /* Pretendard-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Light.otf"; sourceTree = "<group>"; };
+		525600D42AEA7A7800E122A5 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
+		525600D52AEA7A7800E122A5 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
+		525600D62AEA7A7800E122A5 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
 		52E873BA2AE025E100662723 /* Contents-Convergence-Graduate-Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Contents-Convergence-Graduate-Project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52E873BD2AE025E100662723 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		52E873BF2AE025E100662723 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -55,6 +60,11 @@
 		525600D12AE67AC000E122A5 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				525600D52AEA7A7800E122A5 /* Pretendard-Bold.otf */,
+				525600D32AEA7A7800E122A5 /* Pretendard-Light.otf */,
+				525600D62AEA7A7800E122A5 /* Pretendard-Medium.otf */,
+				525600D22AEA7A7800E122A5 /* Pretendard-Regular.otf */,
+				525600D42AEA7A7800E122A5 /* Pretendard-SemiBold.otf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
