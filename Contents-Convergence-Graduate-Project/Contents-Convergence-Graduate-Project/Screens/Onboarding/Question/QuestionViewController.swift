@@ -14,12 +14,13 @@ enum QuestionNum: Int {
     case second = 2
     case third = 3
     case fourth = 4
+    case fifth = 5
     
     var hasBackButton: Bool {
         switch self {
         case .first:
             return false
-        case .second, .third, .fourth:
+        case .second, .third, .fourth, .fifth:
             return true
         }
     }
@@ -27,21 +28,23 @@ enum QuestionNum: Int {
     var progressRatio: Double {
         switch self {
         case .first:
-            return 0.25
+            return 0.2
         case .second:
-            return 0.5
+            return 0.4
         case .third:
-            return 0.75
+            return 0.6
         case .fourth:
+            return 0.8
+        case .fifth:
             return 1.0
         }
     }
     
     var progressRadius: CACornerMask {
         switch self {
-        case .first, .second, .third:
+        case .first, .second, .third, .fourth:
             return [.layerMinXMinYCorner, .layerMinXMaxYCorner]
-        case .fourth:
+        case .fifth:
             return [.layerMinXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMinYCorner, .layerMaxXMaxYCorner]
         }
     }
@@ -56,6 +59,8 @@ enum QuestionNum: Int {
             return ImageLiteral.questionThreeImage
         case .fourth:
             return ImageLiteral.questionFourImage
+        case .fifth:
+            return ImageLiteral.questionFiveImage
         }
     }
     
@@ -69,6 +74,8 @@ enum QuestionNum: Int {
             return TextLiteral.questionThree
         case .fourth:
             return TextLiteral.questionFour
+        case .fifth:
+            return TextLiteral.questionFive
         }
     }
     
@@ -82,14 +89,16 @@ enum QuestionNum: Int {
             return TextLiteral.thirdAnswerList
         case .fourth:
             return TextLiteral.fourthAnswerList
+        case .fifth:
+            return TextLiteral.firstAnswerList
         }
     }
     
     var mainButtonTitle: String {
         switch self {
-        case .first, .second, .third:
+        case .first, .second, .third, .fourth:
             return TextLiteral.nextButtonTitle
-        case .fourth:
+        case .fifth:
             return TextLiteral.endTestButtonTitle
         }
     }
@@ -233,7 +242,7 @@ final class QuestionViewController: BaseViewController {
     }
     
     private func navigateToNextQuestion() {
-        if questionNum.rawValue == 4 {
+        if questionNum.rawValue == 5 {
             // FIXME: - 결과 화면으로 이동
             print("마지막 페이지!")
         } else {
