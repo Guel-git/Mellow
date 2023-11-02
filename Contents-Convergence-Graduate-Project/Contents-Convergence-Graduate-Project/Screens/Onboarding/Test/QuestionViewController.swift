@@ -1,5 +1,5 @@
 //
-//  QuestionViewController.swift
+//  TestViewController.swift
 //  Contents-Convergence-Graduate-Project
 //
 //  Created by 김유나 on 2023/10/18.
@@ -104,7 +104,7 @@ enum QuestionNum: Int {
     }
 }
 
-final class QuestionViewController: BaseViewController {
+final class TestViewController: BaseViewController {
     
     var questionNum: QuestionNum
     
@@ -249,16 +249,16 @@ final class QuestionViewController: BaseViewController {
             self.navigationController?.pushViewController(reportViewController, animated: true)
         } else {
             let nextNum = questionNum.rawValue + 1
-            let questionViewController = QuestionViewController(questionNum: QuestionNum(rawValue: nextNum)!)
-            questionViewController.navigationItem.hidesBackButton = true
-            self.navigationController?.pushViewController(questionViewController, animated: true)
+            let testViewController = TestViewController(questionNum: QuestionNum(rawValue: nextNum)!)
+            testViewController.navigationItem.hidesBackButton = true
+            self.navigationController?.pushViewController(testViewController, animated: true)
         }
     }
 }
 
 // MARK: - extension
 
-extension QuestionViewController: UITableViewDataSource {
+extension TestViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return questionNum.answerList.count
     }
@@ -273,7 +273,7 @@ extension QuestionViewController: UITableViewDataSource {
     }
 }
 
-extension QuestionViewController: UITableViewDelegate {
+extension TestViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         mainButton.isDisabled = false
     }

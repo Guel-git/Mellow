@@ -102,18 +102,18 @@
 		525600D72AEA822100E122A5 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				525600E82AEA91F400E122A5 /* Question */,
+				525600E82AEA91F400E122A5 /* Test */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
 		};
-		525600E82AEA91F400E122A5 /* Question */ = {
+		525600E82AEA91F400E122A5 /* Test */ = {
 			isa = PBXGroup;
 			children = (
 				52E873C12AE025E100662723 /* QuestionViewController.swift */,
 				525600E92AEA920D00E122A5 /* AnswerTableViewCell.swift */,
 			);
-			path = Question;
+			path = Test;
 			sourceTree = "<group>";
 		};
 		525600ED2AEABE4200E122A5 /* UIComponent */ = {
