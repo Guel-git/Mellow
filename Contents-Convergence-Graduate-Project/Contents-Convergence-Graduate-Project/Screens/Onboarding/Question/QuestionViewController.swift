@@ -244,7 +244,9 @@ final class QuestionViewController: BaseViewController {
     private func navigateToNextQuestion() {
         if questionNum.rawValue == 5 {
             // FIXME: - 결과 화면으로 이동
-            print("마지막 페이지!")
+            let reportViewController = ReportViewController()
+            reportViewController.navigationItem.hidesBackButton = true
+            self.navigationController?.pushViewController(reportViewController, animated: true)
         } else {
             let nextNum = questionNum.rawValue + 1
             let questionViewController = QuestionViewController(questionNum: QuestionNum(rawValue: nextNum)!)
