@@ -15,7 +15,6 @@ final class ReportViewController: BaseViewController {
 
     let healthStore = HKHealthStore()
     let typeToRead = HKObjectType.categoryType(forIdentifier: .sleepAnalysis)
-//    let typeToShare = HKObjectType.categoryType(forIdentifier: .sleepAnalysis)
     
     // MARK: - life cycle
     
