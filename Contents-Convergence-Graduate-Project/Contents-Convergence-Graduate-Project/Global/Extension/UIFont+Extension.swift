@@ -33,10 +33,19 @@ extension UIFont {
     static var sb30: UIFont {
         return font(.semiBold, ofSize: 30)
     }
+    static var m24: UIFont {
+        return font(.regular, ofSize: 24)
+    }
     
     // MARK: - body
     static var m16: UIFont {
         return font(.medium, ofSize: 16)
+    }
+    static var m18: UIFont {
+        return font(.medium, ofSize: 18)
+    }
+    static var r20: UIFont {
+        return font(.regular, ofSize: 20)
     }
     
     // MARK: - caption

@@ -29,9 +29,11 @@
 		528DCD0B2AF131F000DD283A /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528DCD0A2AF131F000DD283A /* ReportViewController.swift */; };
 		528DCD0E2AF13AEB00DD283A /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528DCD0D2AF13AEB00DD283A /* String+Extension.swift */; };
 		528DCD102AF36CF000DD283A /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528DCD0F2AF36CF000DD283A /* UIViewController+Extension.swift */; };
+		528DCD132AF3C91400DD283A /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528DCD122AF3C91400DD283A /* ResultViewController.swift */; };
+		528DCD152AF3D24A00DD283A /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528DCD142AF3D24A00DD283A /* UILabel+Extension.swift */; };
 		52E873BE2AE025E100662723 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E873BD2AE025E100662723 /* AppDelegate.swift */; };
 		52E873C02AE025E100662723 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E873BF2AE025E100662723 /* SceneDelegate.swift */; };
-		52E873C22AE025E100662723 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E873C12AE025E100662723 /* QuestionViewController.swift */; };
+		52E873C22AE025E100662723 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E873C12AE025E100662723 /* TestViewController.swift */; };
 		52E873C72AE025E200662723 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52E873C62AE025E200662723 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -58,10 +60,12 @@
 		528DCD0C2AF1338D00DD283A /* Contents-Convergence-Graduate-Project.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Contents-Convergence-Graduate-Project.entitlements"; sourceTree = "<group>"; };
 		528DCD0D2AF13AEB00DD283A /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		528DCD0F2AF36CF000DD283A /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		528DCD122AF3C91400DD283A /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
+		528DCD142AF3D24A00DD283A /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		52E873BA2AE025E100662723 /* Contents-Convergence-Graduate-Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Contents-Convergence-Graduate-Project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52E873BD2AE025E100662723 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		52E873BF2AE025E100662723 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		52E873C12AE025E100662723 /* QuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
+		52E873C12AE025E100662723 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		52E873C62AE025E200662723 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		52E873CB2AE025E200662723 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -110,7 +114,7 @@
 		525600E82AEA91F400E122A5 /* Test */ = {
 			isa = PBXGroup;
 			children = (
-				52E873C12AE025E100662723 /* QuestionViewController.swift */,
+				52E873C12AE025E100662723 /* TestViewController.swift */,
 				525600E92AEA920D00E122A5 /* AnswerTableViewCell.swift */,
 			);
 			path = Test;
@@ -149,6 +153,14 @@
 			path = Report;
 			sourceTree = "<group>";
 		};
+		528DCD112AF3C90800DD283A /* Result */ = {
+			isa = PBXGroup;
+			children = (
+				528DCD122AF3C91400DD283A /* ResultViewController.swift */,
+			);
+			path = Result;
+			sourceTree = "<group>";
+		};
 		52E873B12AE025E100662723 = {
 			isa = PBXGroup;
 			children = (
@@ -179,6 +191,7 @@
 		52E873D12AE026CC00662723 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				528DCD112AF3C90800DD283A /* Result */,
 				528DCD092AF131D800DD283A /* Report */,
 				525600D72AEA822100E122A5 /* Onboarding */,
 			);
@@ -224,6 +237,7 @@
 				525600F92AEADD9300E122A5 /* UIApplication+Extension.swift */,
 				528DCD0D2AF13AEB00DD283A /* String+Extension.swift */,
 				528DCD0F2AF36CF000DD283A /* UIViewController+Extension.swift */,
+				528DCD142AF3D24A00DD283A /* UILabel+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -337,7 +351,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				525600D02AE67A0600E122A5 /* UIFont+Extension.swift in Sources */,
-				52E873C22AE025E100662723 /* QuestionViewController.swift in Sources */,
+				52E873C22AE025E100662723 /* TestViewController.swift in Sources */,
 				525600FA2AEADD9300E122A5 /* UIApplication+Extension.swift in Sources */,
 				525600C72AE6786E00E122A5 /* UserDefaultHandler.swift in Sources */,
 				525600C92AE6787E00E122A5 /* UserDefault.swift in Sources */,
@@ -351,7 +365,9 @@
 				525600F82AEADCE200E122A5 /* UIButton+Extension.swift in Sources */,
 				52E873BE2AE025E100662723 /* AppDelegate.swift in Sources */,
 				525600D92AEA824600E122A5 /* TextLiteral.swift in Sources */,
+				528DCD132AF3C91400DD283A /* ResultViewController.swift in Sources */,
 				525600EA2AEA920D00E122A5 /* AnswerTableViewCell.swift in Sources */,
+				528DCD152AF3D24A00DD283A /* UILabel+Extension.swift in Sources */,
 				525600F02AEABE5500E122A5 /* MainButton.swift in Sources */,
 				525600F62AEADC1100E122A5 /* BackButton.swift in Sources */,
 				52E873C02AE025E100662723 /* SceneDelegate.swift in Sources */,

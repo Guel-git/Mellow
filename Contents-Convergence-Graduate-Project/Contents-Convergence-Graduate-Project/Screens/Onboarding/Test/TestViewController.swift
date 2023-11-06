@@ -209,7 +209,7 @@ final class TestViewController: BaseViewController {
         navigationItem.leftBarButtonItem = questionNum.hasBackButton ? backButton : nil
         navigationItem.title = TextLiteral.questionViewControllerTitle
         navigationController?.navigationBar.tintColor = .fontBlack
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.fontBlack, NSAttributedString.Key.font: UIFont.m16]
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.fontBlack, NSAttributedString.Key.font: UIFont.sb16]
         
         let appearance = UINavigationBarAppearance()
         appearance.configureWithTransparentBackground()
@@ -244,9 +244,9 @@ final class TestViewController: BaseViewController {
     private func navigateToNextQuestion() {
         if questionNum.rawValue == 5 {
             // FIXME: - 결과 화면으로 이동
-            let reportViewController = ReportViewController()
-            reportViewController.navigationItem.hidesBackButton = true
-            self.navigationController?.pushViewController(reportViewController, animated: true)
+            let resultViewController = ResultViewController()
+            resultViewController.navigationItem.hidesBackButton = true
+            self.navigationController?.pushViewController(resultViewController, animated: true)
         } else {
             let nextNum = questionNum.rawValue + 1
             let testViewController = TestViewController(questionNum: QuestionNum(rawValue: nextNum)!)
