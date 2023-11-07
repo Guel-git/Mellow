@@ -7,8 +7,6 @@
 
 import UIKit
 
-import SnapKit
-
 final class AnswerTableViewCell: BaseTableViewCell {
     
     static let cellId = "cellId"
@@ -62,6 +60,6 @@ final class AnswerTableViewCell: BaseTableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 0, left: 8, bottom: 8, right: 16))
+        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 0, left: 16, bottom: 8, right: 16))
     }
 }

@@ -38,6 +38,9 @@ extension UIFont {
     }
     
     // MARK: - body
+    static var m14: UIFont {
+        return font(.medium, ofSize: 14)
+    }
     static var m16: UIFont {
         return font(.medium, ofSize: 16)
     }

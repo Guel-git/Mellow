@@ -7,8 +7,6 @@
 
 import UIKit
 
-import SnapKit
-
 enum QuestionNum: Int {
     case first = 1
     case second = 2
@@ -243,7 +241,6 @@ final class TestViewController: BaseViewController {
     
     private func navigateToNextQuestion() {
         if questionNum.rawValue == 5 {
-            // FIXME: - 결과 화면으로 이동
             let resultViewController = ResultViewController()
             resultViewController.navigationItem.hidesBackButton = true
             self.navigationController?.pushViewController(resultViewController, animated: true)

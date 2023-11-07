@@ -7,9 +7,10 @@
 
 import UIKit
 
-import SnapKit
-
 final class ResultViewController: BaseViewController {
+    
+    private let routineBeforeArray = ["미션 시작 시간 지키기", "방 불 끄기", "물 떠놓기", "양치 및 세수 하기"]
+    private let routineAfterArray = ["기상 시간 지키기", "핸드폰 사용하지 않기", "떠놓은 물 마시기", "밝은 빛 보기 - 커튼 열기"]
     
     // MARK: - property
     
@@ -74,6 +75,7 @@ final class ResultViewController: BaseViewController {
         label.font = .sb20
         return label
     }()
+    private let routineTableView = UITableView()
     private let mainButton: MainButton = {
         let button = MainButton()
         button.title = "규칙적인 수면 시작하기"
@@ -83,10 +85,15 @@ final class ResultViewController: BaseViewController {
     
     // MARK: - life cycle
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setRoutineTableView()
+    }
+    
     override func render() {
         [scrollView, mainButton].forEach { view.addSubview($0) }
         scrollView.addSubview(contentView)
-        [subTitleLabel, titleLabel, emojiLabel, angelLabel, favoriteImage, favoriteLabel, contentLabel, routineLabel].forEach {
+        [subTitleLabel, titleLabel, emojiLabel, angelLabel, favoriteImage, favoriteLabel, contentLabel, routineLabel, routineTableView].forEach {
             contentView.addSubview($0)
         }
         
@@ -145,7 +152,14 @@ final class ResultViewController: BaseViewController {
         routineLabel.snp.makeConstraints {
             $0.top.equalTo(contentLabel.snp.bottom).offset(28)
             $0.centerX.equalToSuperview()
-            $0.bottom.equalTo(0)
+        }
+        
+        routineTableView.snp.makeConstraints {
+            $0.top.equalTo(routineLabel.snp.bottom).offset(8)
+            $0.leading.trailing.equalToSuperview()
+            // FIXME: - 수면 요정 유형에 따라 height 조정하기
+            $0.height.equalTo(532)
+            $0.bottom.equalTo(-16)
         }
     }
     
@@ -166,5 +180,52 @@ final class ResultViewController: BaseViewController {
         appearance.configureWithTransparentBackground()
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
+    }
+    
+    private func setRoutineTableView() {
+        routineTableView.delegate = self
+        routineTableView.dataSource = self
+        
+        routineTableView.register(RoutineTableViewCell.self, forCellReuseIdentifier: RoutineTableViewCell.cellId)
+        routineTableView.rowHeight = 60
+        routineTableView.separatorStyle = .none
+        routineTableView.isScrollEnabled = false
+        routineTableView.sectionHeaderTopPadding = 8
+    }
+}
+
+// MARK: - extension
+
+extension ResultViewController: UITableViewDelegate {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: 17))
+        let header = UILabel()
+        header.text = section == 0 ? "수면 전" : "수면 후"
+        header.textColor = .fontBlack
+        header.font = .m14
+        header.frame = CGRect(x: 26, y: 0, width: tableView.bounds.size.width, height: 17)
+        headerView.addSubview(header)
+        return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 17
+    }
+}
+
+extension ResultViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return section == 0 ? routineBeforeArray.count : routineAfterArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = routineTableView.dequeueReusableCell(withIdentifier: RoutineTableViewCell.cellId, for: indexPath) as! RoutineTableViewCell
+        cell.selectionStyle = .none
+        cell.cellLabel.text = indexPath.section == 0 ? routineBeforeArray[indexPath.item] : routineAfterArray[indexPath.item]
+        return cell
     }
 }
