@@ -27,7 +27,6 @@ final class RoutineTableViewCell: BaseTableViewCell {
     }()
     let cellLabel: UILabel = {
         let label = UILabel()
-        label.text = "물 떠놓기"
         label.textColor = .fontBlack
         label.font = .m16
         return label

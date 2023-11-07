@@ -9,9 +9,6 @@ import UIKit
 
 final class ResultViewController: BaseViewController {
     
-    private let routineBeforeArray = ["미션 시작 시간 지키기", "방 불 끄기", "물 떠놓기", "양치 및 세수 하기"]
-    private let routineAfterArray = ["기상 시간 지키기", "핸드폰 사용하지 않기", "떠놓은 물 마시기", "밝은 빛 보기 - 커튼 열기"]
-    
     // MARK: - property
     
     private let backButton = BackButton()
@@ -19,41 +16,36 @@ final class ResultViewController: BaseViewController {
     private let contentView = UIView()
     private let subTitleLabel: UILabel = {
         let label = UILabel()
-        label.text = "당신의 수면 타입은"
+        label.text = TextLiteral.ResultView.subTitleText
         label.textColor = .fontBlack
         label.font = .m24
         return label
     }()
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "잠이 많은 타입!"
         label.textColor = .fontBlack
         label.font = .sb30
         return label
     }()
     private let emojiLabel: UILabel = {
         let label = UILabel()
-        label.text = "⏰😴😵💦"
         label.font = .sb30
         return label
     }()
     private let angelLabel: UILabel = {
         let label = UILabel()
-        label.text = "당신의 수면 요정은 갓생캐에요!"
         label.textColor = .fontBlack
         label.font = .r20
         return label
     }()
     private let favoriteImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = ImageLiteral.favoriteImage
         imageView.layer.cornerRadius = 8
         imageView.clipsToBounds = true
         return imageView
     }()
     private let favoriteLabel: UILabel = {
         let label = UILabel()
-        label.setTextWithLineHeight(text: "“ 언제나 맡은 일을 해내죠.\n믿고 맡겨만 주세요.”", lineHeight: 27)
         label.textColor = .fontBlack
         label.font = .m18
         label.numberOfLines = 0
@@ -62,7 +54,6 @@ final class ResultViewController: BaseViewController {
     }()
     private let contentLabel: UILabel = {
         let label = UILabel()
-        label.setTextWithLineHeight(text: "수면은 우리 일상에서 중요한 부분이며, 많은 측면에서 우리 건강과 행복에 큰 영향을 미칩니다. 그러나 현대 사회에서는 바쁜 일정, 스트레스, 디지털 기기의 사용, 나쁜 습관 등으로 인해 수면 문제가 더욱 흔해지고 있습니다. 이로 인해 많은 사람들의 일상이 수면 부족으로 인해 무너져가고 있습니다. 그러므로, 지금 당장 수면 습관을 세우고 규칙적인 잠을 자는 것이 중요합니다.", lineHeight: 24)
         label.textColor = .fontBlack
         label.font = .m16
         label.numberOfLines = 0
@@ -70,7 +61,7 @@ final class ResultViewController: BaseViewController {
     }()
     private let routineLabel: UILabel = {
         let label = UILabel()
-        label.text = "당신을 위한 추천 수면 루틴"
+        label.text = TextLiteral.ResultView.routineText
         label.textColor = .fontBlack
         label.font = .sb20
         return label
@@ -78,7 +69,7 @@ final class ResultViewController: BaseViewController {
     private let routineTableView = UITableView()
     private let mainButton: MainButton = {
         let button = MainButton()
-        button.title = "규칙적인 수면 시작하기"
+        button.title = TextLiteral.ResultView.mainButtonText
         button.isDisabled = false
         return button
     }()
@@ -163,6 +154,18 @@ final class ResultViewController: BaseViewController {
         }
     }
     
+    override func configUI() {
+        // FIXME: - 수면 요정 타입에 맞게 데이터 바인딩
+        titleLabel.text = "잠이 많은 타입!"
+        emojiLabel.text = "⏰😴😵💦"
+        angelLabel.text = "당신의 수면 요정은 갓생캐에요!"
+        angelLabel.applyFont("갓생캐", .sb20)
+        favoriteImage.image = ImageLiteral.favoriteImage
+        favoriteLabel.setTextWithLineHeight(text: "“ 언제나 맡은 일을 해내죠.\n믿고 맡겨만 주세요.”", lineHeight: 27)
+        contentLabel.setTextWithLineHeight(text: "수면은 우리 일상에서 중요한 부분이며, 많은 측면에서 우리 건강과 행복에 큰 영향을 미칩니다. 그러나 현대 사회에서는 바쁜 일정, 스트레스, 디지털 기기의 사용, 나쁜 습관 등으로 인해 수면 문제가 더욱 흔해지고 있습니다. 이로 인해 많은 사람들의 일상이 수면 부족으로 인해 무너져가고 있습니다. 그러므로, 지금 당장 수면 습관을 세우고 규칙적인 잠을 자는 것이 중요합니다.", lineHeight: 24)
+        super.configUI()
+    }
+    
     // MARK: - func
     
     override func setupNavigationBar() {
@@ -204,7 +207,7 @@ extension ResultViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: 17))
         let header = UILabel()
-        header.text = section == 0 ? "수면 전" : "수면 후"
+        header.text = section == 0 ? TextLiteral.ResultView.routineHeaderBefore : TextLiteral.ResultView.routineHeaderAfter
         header.textColor = .fontBlack
         header.font = .m14
         header.frame = CGRect(x: 26, y: 0, width: tableView.bounds.size.width, height: 17)
@@ -219,13 +222,13 @@ extension ResultViewController: UITableViewDelegate {
 
 extension ResultViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return section == 0 ? routineBeforeArray.count : routineAfterArray.count
+        return section == 0 ? TextLiteral.ResultView.routineBeforeArray.count : TextLiteral.ResultView.routineAfterArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = routineTableView.dequeueReusableCell(withIdentifier: RoutineTableViewCell.cellId, for: indexPath) as! RoutineTableViewCell
         cell.selectionStyle = .none
-        cell.cellLabel.text = indexPath.section == 0 ? routineBeforeArray[indexPath.item] : routineAfterArray[indexPath.item]
+        cell.cellLabel.text = indexPath.section == 0 ? TextLiteral.ResultView.routineBeforeArray[indexPath.item] : TextLiteral.ResultView.routineAfterArray[indexPath.item]
         return cell
     }
 }
