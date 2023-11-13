@@ -8,6 +8,6 @@
 import Foundation
 
 struct UserDefaultHandler {
-//    @UserDefault(key: "accessToken", defaultValue: "")
-//    static var accessToken: String
+    @UserDefault(key: "numOfBackgroundEntered", defaultValue: 0)
+    static var numOfBackgroundEntered: Int
 }
