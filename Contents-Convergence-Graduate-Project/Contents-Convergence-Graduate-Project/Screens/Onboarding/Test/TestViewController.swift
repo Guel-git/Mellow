@@ -91,11 +91,26 @@ enum QuestionNum: Int {
             return TextLiteral.endTestButtonTitle
         }
     }
+    
+    var weightScore: [String] {
+        switch self {
+        case .first:
+            return ["221", "00", "112", "33"]
+        case .second:
+            return ["00", "033", "211", "22"]
+        case .third:
+            return ["00", "11", "221", "33"]
+        case .fourth:
+            return ["00", "33", "22", "11"]
+        }
+    }
 }
 
 final class TestViewController: BaseViewController {
     
     var questionNum: QuestionNum
+    var selectedAnswer: String = ""
+    var totalAnswer: String
     
     // MARK: - property
 
@@ -132,8 +147,9 @@ final class TestViewController: BaseViewController {
 
     // MARK: - life cycle
     
-    init(questionNum: QuestionNum) {
+    init(questionNum: QuestionNum, totalAnswer: String) {
         self.questionNum = questionNum
+        self.totalAnswer = totalAnswer
         super.init()
     }
     
@@ -231,16 +247,28 @@ final class TestViewController: BaseViewController {
     }
     
     private func navigateToNextQuestion() {
+        totalAnswer += selectedAnswer
         if questionNum.rawValue == 4 {
-            let resultViewController = ResultViewController()
+            let resultViewController = ResultViewController(resultType: calculateScore())
             resultViewController.navigationItem.hidesBackButton = true
             self.navigationController?.pushViewController(resultViewController, animated: true)
         } else {
             let nextNum = questionNum.rawValue + 1
-            let testViewController = TestViewController(questionNum: QuestionNum(rawValue: nextNum)!)
+            let testViewController = TestViewController(questionNum: QuestionNum(rawValue: nextNum)!, totalAnswer: totalAnswer)
             testViewController.navigationItem.hidesBackButton = true
             self.navigationController?.pushViewController(testViewController, animated: true)
         }
+    }
+    
+    private func calculateScore() -> SleepType {
+        var typeDictionary: [SleepType:Int] = [.Best:0, .Zombie:0, .Baby:0, .Nervous:0]
+        for type in typeDictionary.keys {
+            typeDictionary[type] = totalAnswer.filter { $0 == type.rawValue }.count
+        }
+        if let maxType = typeDictionary.max(by: { $0.value < $1.value }) {
+            return maxType.key
+        }
+        return .Zombie
     }
 }
 
@@ -264,5 +292,6 @@ extension TestViewController: UITableViewDataSource {
 extension TestViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         mainButton.isDisabled = false
+        selectedAnswer = questionNum.weightScore[indexPath.item]
     }
 }

@@ -7,7 +7,95 @@
 
 import UIKit
 
+enum SleepType: Character {
+    case Best = "0"
+    case Zombie = "1"
+    case Baby = "2"
+    case Nervous = "3"
+    
+    var typeText: String {
+        switch self {
+        case .Best:
+            return TextLiteral.ResultView.babyTypeText
+        case .Zombie:
+            return TextLiteral.ResultView.zombieTypeText
+        case .Baby:
+            return TextLiteral.ResultView.babyTypeText
+        case .Nervous:
+            return TextLiteral.ResultView.nervousTypeText
+        }
+    }
+    
+    var angelText: String {
+        switch self {
+        case .Best:
+            return TextLiteral.ResultView.bestAngelText
+        case .Zombie:
+            return TextLiteral.ResultView.zombieAngelText
+        case .Baby:
+            return TextLiteral.ResultView.babyAngelText
+        case .Nervous:
+            return TextLiteral.ResultView.nervousAngelText
+        }
+    }
+    
+    var favoriteText: String {
+        switch self {
+        case .Best:
+            return TextLiteral.ResultView.bestFavoriteText
+        case .Zombie:
+            return TextLiteral.ResultView.zombieFavoriteText
+        case .Baby:
+            return TextLiteral.ResultView.babyFavoriteText
+        case .Nervous:
+            return TextLiteral.ResultView.nervousFavoriteText
+        }
+    }
+    
+    var contentText: String {
+        switch self {
+        case .Best:
+            return TextLiteral.ResultView.bestContentText
+        case .Zombie:
+            return TextLiteral.ResultView.zombieContentText
+        case .Baby:
+            return TextLiteral.ResultView.babyContentText
+        case .Nervous:
+            return TextLiteral.ResultView.nervousContentText
+        }
+    }
+    
+    var routineBeforeArray: [String] {
+        switch self {
+        case .Best, .Baby:
+            return TextLiteral.ResultView.shortRoutineBeforeArray
+        case .Zombie, .Nervous:
+            return TextLiteral.ResultView.longRoutineBeforeArray
+        }
+    }
+    
+    var routineAfterArray: [String] {
+        switch self {
+        case .Best, .Baby:
+            return TextLiteral.ResultView.shortRoutineAfterArray
+        case .Zombie, .Nervous:
+            return TextLiteral.ResultView.longRoutineAfterArray
+        }
+    }
+    
+    var routineTableViewHeight: Int {
+        switch self {
+        case .Best, .Baby:
+            return 350
+        case .Zombie, .Nervous:
+            return 470
+        }
+    }
+}
+
 final class ResultViewController: BaseViewController {
+    
+    let resultType: SleepType
     
     // MARK: - property
     
@@ -36,6 +124,7 @@ final class ResultViewController: BaseViewController {
         let label = UILabel()
         label.textColor = .fontBlack
         label.font = .r20
+        label.numberOfLines = 0
         return label
     }()
     private let favoriteImage: UIImageView = {
@@ -49,7 +138,6 @@ final class ResultViewController: BaseViewController {
         label.textColor = .fontBlack
         label.font = .m18
         label.numberOfLines = 0
-        label.textAlignment = .center
         return label
     }()
     private let contentLabel: UILabel = {
@@ -75,6 +163,13 @@ final class ResultViewController: BaseViewController {
     }()
     
     // MARK: - life cycle
+    
+    init(resultType: SleepType) {
+        self.resultType = resultType
+        super.init()
+    }
+    
+    required init?(coder: NSCoder) { nil }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -148,21 +243,21 @@ final class ResultViewController: BaseViewController {
         routineTableView.snp.makeConstraints {
             $0.top.equalTo(routineLabel.snp.bottom).offset(8)
             $0.leading.trailing.equalToSuperview()
-            // FIXME: - 수면 요정 유형에 따라 height 조정하기
-            $0.height.equalTo(532)
+            $0.height.equalTo(resultType.routineTableViewHeight)
             $0.bottom.equalTo(-16)
         }
     }
     
     override func configUI() {
-        // FIXME: - 수면 요정 타입에 맞게 데이터 바인딩
-        titleLabel.text = "잠이 많은 타입!"
+        titleLabel.text = resultType.typeText
         emojiLabel.text = "⏰😴😵💦"
-        angelLabel.text = "당신의 수면 요정은 갓생캐에요!"
-        angelLabel.applyFont("갓생캐", .sb20)
+        angelLabel.text = TextLiteral.ResultView.previousAngelText + resultType.angelText + TextLiteral.ResultView.afterAngelText
+        angelLabel.applyFont(resultType.angelText, .sb20)
+        angelLabel.textAlignment = .center
         favoriteImage.image = ImageLiteral.favoriteImage
-        favoriteLabel.setTextWithLineHeight(text: "“ 언제나 맡은 일을 해내죠.\n믿고 맡겨만 주세요.”", lineHeight: 27)
-        contentLabel.setTextWithLineHeight(text: "수면은 우리 일상에서 중요한 부분이며, 많은 측면에서 우리 건강과 행복에 큰 영향을 미칩니다. 그러나 현대 사회에서는 바쁜 일정, 스트레스, 디지털 기기의 사용, 나쁜 습관 등으로 인해 수면 문제가 더욱 흔해지고 있습니다. 이로 인해 많은 사람들의 일상이 수면 부족으로 인해 무너져가고 있습니다. 그러므로, 지금 당장 수면 습관을 세우고 규칙적인 잠을 자는 것이 중요합니다.", lineHeight: 24)
+        favoriteLabel.setTextWithLineHeight(text: resultType.favoriteText, lineHeight: 27)
+        favoriteLabel.textAlignment = .center
+        contentLabel.setTextWithLineHeight(text: resultType.contentText, lineHeight: 24)
         super.configUI()
     }
     
@@ -222,13 +317,13 @@ extension ResultViewController: UITableViewDelegate {
 
 extension ResultViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return section == 0 ? TextLiteral.ResultView.routineBeforeArray.count : TextLiteral.ResultView.routineAfterArray.count
+        return section == 0 ? resultType.routineBeforeArray.count : resultType.routineAfterArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = routineTableView.dequeueReusableCell(withIdentifier: RoutineTableViewCell.cellId, for: indexPath) as! RoutineTableViewCell
         cell.selectionStyle = .none
-        cell.cellLabel.text = indexPath.section == 0 ? TextLiteral.ResultView.routineBeforeArray[indexPath.item] : TextLiteral.ResultView.routineAfterArray[indexPath.item]
+        cell.cellLabel.text = indexPath.section == 0 ? resultType.routineBeforeArray[indexPath.item] : resultType.routineAfterArray[indexPath.item]
         return cell
     }
 }
