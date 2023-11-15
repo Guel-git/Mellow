@@ -32,6 +32,12 @@
 		528DCD132AF3C91400DD283A /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528DCD122AF3C91400DD283A /* ResultViewController.swift */; };
 		528DCD152AF3D24A00DD283A /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528DCD142AF3D24A00DD283A /* UILabel+Extension.swift */; };
 		528DCD172AF8CCEA00DD283A /* RoutineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528DCD162AF8CCEA00DD283A /* RoutineTableViewCell.swift */; };
+		528DCD1D2B0492B000DD283A /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528DCD1C2B0492B000DD283A /* ChatViewController.swift */; };
+		528DCD1F2B04965100DD283A /* ChatStartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528DCD1E2B04965100DD283A /* ChatStartView.swift */; };
+		528DCD212B049AC300DD283A /* BaseUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528DCD202B049AC300DD283A /* BaseUIView.swift */; };
+		528DCD252B04AB2200DD283A /* ChatCapsuleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528DCD242B04AB2200DD283A /* ChatCapsuleLabel.swift */; };
+		528DCD272B04EF2500DD283A /* ChatEndView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528DCD262B04EF2500DD283A /* ChatEndView.swift */; };
+		528DCD2B2B04F76300DD283A /* ChatButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528DCD2A2B04F76300DD283A /* ChatButton.swift */; };
 		52E873BE2AE025E100662723 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E873BD2AE025E100662723 /* AppDelegate.swift */; };
 		52E873C02AE025E100662723 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E873BF2AE025E100662723 /* SceneDelegate.swift */; };
 		52E873C22AE025E100662723 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E873C12AE025E100662723 /* TestViewController.swift */; };
@@ -64,6 +70,12 @@
 		528DCD122AF3C91400DD283A /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		528DCD142AF3D24A00DD283A /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		528DCD162AF8CCEA00DD283A /* RoutineTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTableViewCell.swift; sourceTree = "<group>"; };
+		528DCD1C2B0492B000DD283A /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		528DCD1E2B04965100DD283A /* ChatStartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatStartView.swift; sourceTree = "<group>"; };
+		528DCD202B049AC300DD283A /* BaseUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUIView.swift; sourceTree = "<group>"; };
+		528DCD242B04AB2200DD283A /* ChatCapsuleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCapsuleLabel.swift; sourceTree = "<group>"; };
+		528DCD262B04EF2500DD283A /* ChatEndView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatEndView.swift; sourceTree = "<group>"; };
+		528DCD2A2B04F76300DD283A /* ChatButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatButton.swift; sourceTree = "<group>"; };
 		52E873BA2AE025E100662723 /* Contents-Convergence-Graduate-Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Contents-Convergence-Graduate-Project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52E873BD2AE025E100662723 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		52E873BF2AE025E100662723 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -164,6 +176,18 @@
 			path = Result;
 			sourceTree = "<group>";
 		};
+		528DCD1B2B04929A00DD283A /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				528DCD1C2B0492B000DD283A /* ChatViewController.swift */,
+				528DCD1E2B04965100DD283A /* ChatStartView.swift */,
+				528DCD242B04AB2200DD283A /* ChatCapsuleLabel.swift */,
+				528DCD262B04EF2500DD283A /* ChatEndView.swift */,
+				528DCD2A2B04F76300DD283A /* ChatButton.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
 		52E873B12AE025E100662723 = {
 			isa = PBXGroup;
 			children = (
@@ -194,6 +218,7 @@
 		52E873D12AE026CC00662723 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				528DCD1B2B04929A00DD283A /* Chat */,
 				528DCD112AF3C90800DD283A /* Result */,
 				528DCD092AF131D800DD283A /* Report */,
 				525600D72AEA822100E122A5 /* Onboarding */,
@@ -227,6 +252,7 @@
 			children = (
 				525600DC2AEA8ACC00E122A5 /* BaseViewController.swift */,
 				525600EB2AEABDB100E122A5 /* BaseTableViewCell.swift */,
+				528DCD202B049AC300DD283A /* BaseUIView.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -355,20 +381,26 @@
 			files = (
 				528DCD172AF8CCEA00DD283A /* RoutineTableViewCell.swift in Sources */,
 				525600D02AE67A0600E122A5 /* UIFont+Extension.swift in Sources */,
+				528DCD272B04EF2500DD283A /* ChatEndView.swift in Sources */,
 				52E873C22AE025E100662723 /* TestViewController.swift in Sources */,
 				525600FA2AEADD9300E122A5 /* UIApplication+Extension.swift in Sources */,
 				525600C72AE6786E00E122A5 /* UserDefaultHandler.swift in Sources */,
 				525600C92AE6787E00E122A5 /* UserDefault.swift in Sources */,
 				525600EC2AEABDB100E122A5 /* BaseTableViewCell.swift in Sources */,
 				525600DB2AEA89A200E122A5 /* ImageLiteral.swift in Sources */,
+				528DCD2B2B04F76300DD283A /* ChatButton.swift in Sources */,
+				528DCD252B04AB2200DD283A /* ChatCapsuleLabel.swift in Sources */,
 				528DCD0B2AF131F000DD283A /* ReportViewController.swift in Sources */,
 				528DCD102AF36CF000DD283A /* UIViewController+Extension.swift in Sources */,
+				528DCD212B049AC300DD283A /* BaseUIView.swift in Sources */,
 				525600DD2AEA8ACC00E122A5 /* BaseViewController.swift in Sources */,
 				525600CE2AE679EE00E122A5 /* UIColor+Extension.swift in Sources */,
 				528DCD0E2AF13AEB00DD283A /* String+Extension.swift in Sources */,
 				525600F82AEADCE200E122A5 /* UIButton+Extension.swift in Sources */,
 				52E873BE2AE025E100662723 /* AppDelegate.swift in Sources */,
+				528DCD1F2B04965100DD283A /* ChatStartView.swift in Sources */,
 				525600D92AEA824600E122A5 /* TextLiteral.swift in Sources */,
+				528DCD1D2B0492B000DD283A /* ChatViewController.swift in Sources */,
 				528DCD132AF3C91400DD283A /* ResultViewController.swift in Sources */,
 				525600EA2AEA920D00E122A5 /* AnswerTableViewCell.swift in Sources */,
 				528DCD152AF3D24A00DD283A /* UILabel+Extension.swift in Sources */,
