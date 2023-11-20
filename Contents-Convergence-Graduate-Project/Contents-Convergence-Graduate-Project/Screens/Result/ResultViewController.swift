@@ -83,12 +83,30 @@ enum SleepType: Character {
         }
     }
     
+    var routineBeforeImage: [UIImage] {
+        switch self {
+        case .Best, .Baby:
+            return ImageLiteral.shortRoutineBeforeImage
+        case .Zombie, .Nervous:
+            return ImageLiteral.longRoutineBeforeImage
+        }
+    }
+    
+    var routineAfterImage: [UIImage] {
+        switch self {
+        case .Best, .Baby:
+            return ImageLiteral.shortRoutineAfterImage
+        case .Zombie, .Nervous:
+            return ImageLiteral.longRoutineAfterImage
+        }
+    }
+    
     var routineTableViewHeight: Int {
         switch self {
         case .Best, .Baby:
-            return 350
+            return 375
         case .Zombie, .Nervous:
-            return 470
+            return 495
         }
     }
 }
@@ -122,9 +140,15 @@ final class ResultViewController: BaseViewController {
     }()
     private let angelLabel: UILabel = {
         let label = UILabel()
+        label.text = TextLiteral.ResultView.previousAngelText
         label.textColor = .fontBlack
         label.font = .r20
-        label.numberOfLines = 0
+        return label
+    }()
+    private let angelNameLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .fontBlack
+        label.font = .r20
         return label
     }()
     private let favoriteImage: UIImageView = {
@@ -179,7 +203,7 @@ final class ResultViewController: BaseViewController {
     override func render() {
         [scrollView, mainButton].forEach { view.addSubview($0) }
         scrollView.addSubview(contentView)
-        [subTitleLabel, titleLabel, emojiLabel, angelLabel, favoriteImage, favoriteLabel, contentLabel, routineLabel, routineTableView].forEach {
+        [subTitleLabel, titleLabel, emojiLabel, angelLabel, angelNameLabel, favoriteImage, favoriteLabel, contentLabel, routineLabel, routineTableView].forEach {
             contentView.addSubview($0)
         }
         
@@ -219,8 +243,13 @@ final class ResultViewController: BaseViewController {
             $0.centerX.equalToSuperview()
         }
         
+        angelNameLabel.snp.makeConstraints {
+            $0.top.equalTo(angelLabel.snp.bottom).offset(2)
+            $0.centerX.equalToSuperview()
+        }
+        
         favoriteImage.snp.makeConstraints {
-            $0.top.equalTo(angelLabel.snp.bottom).offset(16)
+            $0.top.equalTo(angelNameLabel.snp.bottom).offset(16)
             $0.width.height.equalTo(200)
             $0.centerX.equalToSuperview()
         }
@@ -236,7 +265,7 @@ final class ResultViewController: BaseViewController {
         }
         
         routineLabel.snp.makeConstraints {
-            $0.top.equalTo(contentLabel.snp.bottom).offset(28)
+            $0.top.equalTo(contentLabel.snp.bottom).offset(36)
             $0.centerX.equalToSuperview()
         }
         
@@ -251,9 +280,9 @@ final class ResultViewController: BaseViewController {
     override func configUI() {
         titleLabel.text = resultType.typeText
         emojiLabel.text = "⏰😴😵💦"
-        angelLabel.text = TextLiteral.ResultView.previousAngelText + resultType.angelText + TextLiteral.ResultView.afterAngelText
-        angelLabel.applyFont(resultType.angelText, .sb20)
-        angelLabel.textAlignment = .center
+        angelNameLabel.text = resultType.angelText + TextLiteral.ResultView.afterAngelText
+        angelNameLabel.applyFont(resultType.angelText, .sb20)
+        angelNameLabel.textAlignment = .center
         favoriteImage.image = ImageLiteral.favoriteImage
         favoriteLabel.setTextWithLineHeight(text: resultType.favoriteText, lineHeight: 27)
         favoriteLabel.textAlignment = .center
@@ -296,13 +325,22 @@ final class ResultViewController: BaseViewController {
 
 extension ResultViewController: UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: 17))
         let header = UILabel()
-        header.text = section == 0 ? TextLiteral.ResultView.routineHeaderBefore : TextLiteral.ResultView.routineHeaderAfter
+        switch section {
+        case 0:
+            header.text = TextLiteral.ResultView.routineHeaderBefore
+        case 1:
+            header.text = TextLiteral.ResultView.routineHeaderDuring
+        case 2:
+            header.text = TextLiteral.ResultView.routineHeaderAfter
+        default:
+            header.text = TextLiteral.ResultView.routineHeaderBefore
+        }
         header.textColor = .fontBlack
         header.font = .m14
         header.frame = CGRect(x: 26, y: 0, width: tableView.bounds.size.width, height: 17)
@@ -317,13 +355,35 @@ extension ResultViewController: UITableViewDelegate {
 
 extension ResultViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return section == 0 ? resultType.routineBeforeArray.count : resultType.routineAfterArray.count
+        switch section {
+        case 0:
+            return resultType.routineBeforeArray.count
+        case 1:
+            return TextLiteral.ResultView.duringRoutineArray.count
+        case 2:
+            return resultType.routineAfterArray.count
+        default:
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = routineTableView.dequeueReusableCell(withIdentifier: RoutineTableViewCell.cellId, for: indexPath) as! RoutineTableViewCell
         cell.selectionStyle = .none
-        cell.cellLabel.text = indexPath.section == 0 ? resultType.routineBeforeArray[indexPath.item] : resultType.routineAfterArray[indexPath.item]
+        switch indexPath.section {
+        case 0:
+            cell.cellLabel.text = resultType.routineBeforeArray[indexPath.item]
+            cell.cellEmoji.image = resultType.routineBeforeImage[indexPath.item]
+        case 1:
+            cell.cellLabel.text = TextLiteral.ResultView.duringRoutineArray[indexPath.item]
+            cell.cellEmoji.image = ImageLiteral.duringRoutineImage[indexPath.item]
+        case 2:
+            cell.cellLabel.text = resultType.routineAfterArray[indexPath.item]
+            cell.cellEmoji.image = resultType.routineAfterImage[indexPath.item]
+        default:
+            cell.cellLabel.text = resultType.routineBeforeArray[indexPath.item]
+            cell.cellEmoji.image = resultType.routineBeforeImage[indexPath.item]
+        }
         return cell
     }
 }

@@ -19,22 +19,22 @@ final class ChatEndView: BaseUIView {
     }()
     private let firstLabel: ChatCapsuleLabel = {
         let label = ChatCapsuleLabel()
-        label.text = "안되겠다."
+        label.text = TextLiteral.ChatView.endFirstLabelText
         return label
     }()
     private let secondLabel: ChatCapsuleLabel = {
         let label = ChatCapsuleLabel()
-        label.setTextWithLineHeight(text: "너에게 딱 맞는 루틴을 알고 있는\n수면 요정을 데려와줄게.", lineHeight: 27)
+        label.setTextWithLineHeight(text: TextLiteral.ChatView.endSecondLabelText, lineHeight: 27)
         return label
     }()
     private let thirdLabel: ChatCapsuleLabel = {
         let label = ChatCapsuleLabel()
-        label.text = "네 요정 취향까지 가득 담아서!"
+        label.text = TextLiteral.ChatView.endThirdLabelText
         return label
     }()
     private let fourthLabel: ChatCapsuleLabel = {
         let label = ChatCapsuleLabel()
-        label.setTextWithLineHeight(text: "머릿속에 최애를 떠올리면서\n몇가지 질문에 답해줘!", lineHeight: 27)
+        label.setTextWithLineHeight(text: TextLiteral.ChatView.endFourthLabelText, lineHeight: 27)
         return label
     }()
     

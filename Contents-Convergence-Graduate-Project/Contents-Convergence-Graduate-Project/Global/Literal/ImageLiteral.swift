@@ -23,6 +23,20 @@ enum ImageLiteral {
     // MARK: - image
     
     static var favoriteImage: UIImage { .load(name: "favorite") }
+    static var bulbImage: UIImage { .load(name: "bulb") }
+    static var clockImage: UIImage { .load(name: "clock") }
+    static var clothesImage: UIImage { .load(name: "clothes") }
+    static var drinkImage: UIImage { .load(name: "drink") }
+    static var lightImage: UIImage { .load(name: "light") }
+    static var phoneImage: UIImage { .load(name: "phone") }
+    static var waterImage: UIImage { .load(name: "water") }
+    
+    static var shortRoutineBeforeImage = [clothesImage, waterImage]
+    static var shortRoutineAfterImage = [clockImage, drinkImage]
+    static var longRoutineBeforeImage = [clothesImage, waterImage, bulbImage]
+    static var longRoutineAfterImage = [clockImage, lightImage, drinkImage]
+    static var duringRoutineImage = [phoneImage]
+    
 }
 
 extension UIImage {

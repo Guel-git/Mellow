@@ -19,12 +19,12 @@ final class ChatStartView: BaseUIView {
     }()
     private let firstLabel: ChatCapsuleLabel = {
         let label = ChatCapsuleLabel()
-        label.text = "hey 친구야 어제는 잘 잤어?"
+        label.text = TextLiteral.ChatView.startFirstLabelText
         return label
     }()
     private let secondLabel: ChatCapsuleLabel = {
         let label = ChatCapsuleLabel()
-        label.text = "못 잤다구?"
+        label.text = TextLiteral.ChatView.startSecondLabelText
         return label
     }()
     

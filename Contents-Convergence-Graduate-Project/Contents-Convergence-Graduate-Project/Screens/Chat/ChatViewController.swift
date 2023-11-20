@@ -22,9 +22,9 @@ final class ChatViewController: BaseViewController {
         label.isHidden = true
         return label
     }()
-    private let firstButton = ChatButton(buttonText: "요즘 잠이 안와😵")
-    private let secondButton = ChatButton(buttonText: "알람을 잘 못 들어🧐")
-    private let thirdButton = ChatButton(buttonText: "자꾸 밤을 세네😫")
+    private let firstButton = ChatButton(buttonText: TextLiteral.ChatView.firstChatButtonText)
+    private let secondButton = ChatButton(buttonText: TextLiteral.ChatView.secondChatButtonText)
+    private let thirdButton = ChatButton(buttonText: TextLiteral.ChatView.thirdChatButtonText)
     private lazy var buttonStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [firstButton, secondButton, thirdButton])
         stackView.axis = .vertical
@@ -34,7 +34,7 @@ final class ChatViewController: BaseViewController {
         return stackView
     }()
     private let fourthButton: ChatButton = {
-        let button = ChatButton(buttonText: "준비됐어!")
+        let button = ChatButton(buttonText: TextLiteral.ChatView.fourthChatButtonText)
         button.isHidden = true
         return button
     }()

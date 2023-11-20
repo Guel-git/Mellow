@@ -19,12 +19,7 @@ final class RoutineTableViewCell: BaseTableViewCell {
         view.layer.cornerRadius = 8
         return view
     }()
-    private let cellEmoji: UILabel = {
-        let label = UILabel()
-        label.text = "💦"
-        label.font = .m16
-        return label
-    }()
+    let cellEmoji = UIImageView()
     let cellLabel: UILabel = {
         let label = UILabel()
         label.textColor = .fontBlack
@@ -46,6 +41,7 @@ final class RoutineTableViewCell: BaseTableViewCell {
         cellEmoji.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(20)
             $0.centerY.equalToSuperview()
+            $0.width.height.equalTo(16)
         }
         
         cellLabel.snp.makeConstraints {
