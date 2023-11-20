@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		525523C02B0B86CA0033D4C6 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525523BF2B0B86CA0033D4C6 /* SettingViewController.swift */; };
+		525523C22B0BA0E50033D4C6 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525523C12B0BA0E50033D4C6 /* SettingTableViewCell.swift */; };
+		525523C42B0BC2D90033D4C6 /* SettingTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525523C32B0BC2D90033D4C6 /* SettingTimeViewController.swift */; };
+		525523C72B0BCD2A0033D4C6 /* CancelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525523C62B0BCD2A0033D4C6 /* CancelButton.swift */; };
+		525523C92B0BD1240033D4C6 /* SettingDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525523C82B0BD1240033D4C6 /* SettingDetailTableViewCell.swift */; };
 		525600C72AE6786E00E122A5 /* UserDefaultHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525600C62AE6786E00E122A5 /* UserDefaultHandler.swift */; };
 		525600C92AE6787E00E122A5 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525600C82AE6787E00E122A5 /* UserDefault.swift */; };
 		525600CC2AE6791700E122A5 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 525600CB2AE6791700E122A5 /* SnapKit */; };
@@ -45,6 +50,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		525523BF2B0B86CA0033D4C6 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		525523C12B0BA0E50033D4C6 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
+		525523C32B0BC2D90033D4C6 /* SettingTimeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTimeViewController.swift; sourceTree = "<group>"; };
+		525523C62B0BCD2A0033D4C6 /* CancelButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelButton.swift; sourceTree = "<group>"; };
+		525523C82B0BD1240033D4C6 /* SettingDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingDetailTableViewCell.swift; sourceTree = "<group>"; };
 		525600C62AE6786E00E122A5 /* UserDefaultHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultHandler.swift; sourceTree = "<group>"; };
 		525600C82AE6787E00E122A5 /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		525600CD2AE679EE00E122A5 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
@@ -96,6 +106,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		525523BE2B0B86BF0033D4C6 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				525523BF2B0B86CA0033D4C6 /* SettingViewController.swift */,
+				525523C12B0BA0E50033D4C6 /* SettingTableViewCell.swift */,
+				525523C32B0BC2D90033D4C6 /* SettingTimeViewController.swift */,
+				525523C82B0BD1240033D4C6 /* SettingDetailTableViewCell.swift */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		525523C52B0BCD1F0033D4C6 /* CancelButton */ = {
+			isa = PBXGroup;
+			children = (
+				525523C62B0BCD2A0033D4C6 /* CancelButton.swift */,
+			);
+			path = CancelButton;
+			sourceTree = "<group>";
+		};
 		525600C52AE6785B00E122A5 /* Util */ = {
 			isa = PBXGroup;
 			children = (
@@ -137,6 +166,7 @@
 		525600ED2AEABE4200E122A5 /* UIComponent */ = {
 			isa = PBXGroup;
 			children = (
+				525523C52B0BCD1F0033D4C6 /* CancelButton */,
 				525600F42AEADC0800E122A5 /* BackButton */,
 				525600EE2AEABE4C00E122A5 /* MainButton */,
 			);
@@ -218,6 +248,7 @@
 		52E873D12AE026CC00662723 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				525523BE2B0B86BF0033D4C6 /* Setting */,
 				528DCD1B2B04929A00DD283A /* Chat */,
 				528DCD112AF3C90800DD283A /* Result */,
 				528DCD092AF131D800DD283A /* Report */,
@@ -379,12 +410,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				525523C02B0B86CA0033D4C6 /* SettingViewController.swift in Sources */,
 				528DCD172AF8CCEA00DD283A /* RoutineTableViewCell.swift in Sources */,
+				525523C92B0BD1240033D4C6 /* SettingDetailTableViewCell.swift in Sources */,
 				525600D02AE67A0600E122A5 /* UIFont+Extension.swift in Sources */,
 				528DCD272B04EF2500DD283A /* ChatEndView.swift in Sources */,
 				52E873C22AE025E100662723 /* TestViewController.swift in Sources */,
 				525600FA2AEADD9300E122A5 /* UIApplication+Extension.swift in Sources */,
 				525600C72AE6786E00E122A5 /* UserDefaultHandler.swift in Sources */,
+				525523C22B0BA0E50033D4C6 /* SettingTableViewCell.swift in Sources */,
 				525600C92AE6787E00E122A5 /* UserDefault.swift in Sources */,
 				525600EC2AEABDB100E122A5 /* BaseTableViewCell.swift in Sources */,
 				525600DB2AEA89A200E122A5 /* ImageLiteral.swift in Sources */,
@@ -392,11 +426,13 @@
 				528DCD252B04AB2200DD283A /* ChatCapsuleLabel.swift in Sources */,
 				528DCD0B2AF131F000DD283A /* ReportViewController.swift in Sources */,
 				528DCD102AF36CF000DD283A /* UIViewController+Extension.swift in Sources */,
+				525523C72B0BCD2A0033D4C6 /* CancelButton.swift in Sources */,
 				528DCD212B049AC300DD283A /* BaseUIView.swift in Sources */,
 				525600DD2AEA8ACC00E122A5 /* BaseViewController.swift in Sources */,
 				525600CE2AE679EE00E122A5 /* UIColor+Extension.swift in Sources */,
 				528DCD0E2AF13AEB00DD283A /* String+Extension.swift in Sources */,
 				525600F82AEADCE200E122A5 /* UIButton+Extension.swift in Sources */,
+				525523C42B0BC2D90033D4C6 /* SettingTimeViewController.swift in Sources */,
 				52E873BE2AE025E100662723 /* AppDelegate.swift in Sources */,
 				528DCD1F2B04965100DD283A /* ChatStartView.swift in Sources */,
 				525600D92AEA824600E122A5 /* TextLiteral.swift in Sources */,

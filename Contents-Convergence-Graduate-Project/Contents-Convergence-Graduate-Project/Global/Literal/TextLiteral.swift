@@ -88,4 +88,11 @@ enum TextLiteral {
         static let endThirdLabelText = "네 요정 취향까지 가득 담아서!"
         static let endFourthLabelText = "머릿속에 최애를 떠올리면서\n몇가지 질문에 답해줘!"
     }
+    
+    // MARK: - SettingView
+    
+    enum SettingView {
+        static let tableViewArray = ["수면 시간", "반복"]
+        static let timeTableViewArray = ["8시간", "9시간", "10시간", "11시간"]
+    }
 }

@@ -17,6 +17,9 @@ extension UIColor {
     static var systemMain: UIColor {
         return UIColor(hex: "B0B1B4")
     }
+    static var systemCancel: UIColor {
+        return UIColor(hex: "FF453A")
+    }
     
     // MARK: - font
     

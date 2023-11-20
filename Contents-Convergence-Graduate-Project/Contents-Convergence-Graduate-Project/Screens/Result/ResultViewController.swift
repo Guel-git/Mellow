@@ -229,7 +229,7 @@ final class ResultViewController: BaseViewController {
         }
         
         titleLabel.snp.makeConstraints {
-            $0.top.equalTo(subTitleLabel.snp.bottom).offset(16)
+            $0.top.equalTo(subTitleLabel.snp.bottom).offset(12)
             $0.centerX.equalToSuperview()
         }
         
@@ -239,7 +239,7 @@ final class ResultViewController: BaseViewController {
         }
         
         angelLabel.snp.makeConstraints {
-            $0.top.equalTo(emojiLabel.snp.bottom).offset(38)
+            $0.top.equalTo(emojiLabel.snp.bottom).offset(36)
             $0.centerX.equalToSuperview()
         }
         
@@ -260,7 +260,7 @@ final class ResultViewController: BaseViewController {
         }
         
         contentLabel.snp.makeConstraints {
-            $0.top.equalTo(favoriteLabel.snp.bottom).offset(38)
+            $0.top.equalTo(favoriteLabel.snp.bottom).offset(36)
             $0.leading.trailing.equalToSuperview().inset(26)
         }
         
