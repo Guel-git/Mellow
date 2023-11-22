@@ -10,7 +10,11 @@ import UIKit
 final class SettingRepeatViewController: BaseViewController {
     
     private var selectedIndex = 0 {
-        didSet { settingRepeatTableView.reloadData() }
+        didSet {
+            settingRepeatTableView.reloadData()
+            settingDayTableView.isHidden = selectedIndex == 0
+            if selectedIndex == 0 { selectedIndexArray = [] }
+        }
     }
     private var selectedIndexArray: [Int] = [] {
         didSet { settingDayTableView.reloadData() }
@@ -104,6 +108,7 @@ final class SettingRepeatViewController: BaseViewController {
         settingDayTableView.separatorStyle = .singleLine
         settingDayTableView.separatorColor = .systemMain
         settingDayTableView.isScrollEnabled = false
+        settingDayTableView.isHidden = true
     }
     
     private func setButtonAction() {
@@ -119,15 +124,23 @@ final class SettingRepeatViewController: BaseViewController {
     
     private func changeRepeatRoutine() {
         // FIXME: - 로직 수정 필요
+        let weekday = [0, 1, 2, 3, 4]
+        let weekend = [5, 6]
         var indexToString = ""
-        for i in 0..<7 {
-            if selectedIndexArray.contains(i) {
-                indexToString += (TextLiteral.SettingView.repeatTableViewDictionary[i] ?? "") + ", "
-            }
-        }
-        if indexToString.isEmpty {
+        if selectedIndexArray.isEmpty {
             indexToString = TextLiteral.SettingView.initialRepeatText
+        } else if selectedIndexArray.count == 7 {
+            indexToString = TextLiteral.SettingView.everyDayText
+        } else if weekday == selectedIndexArray {
+            indexToString = TextLiteral.SettingView.everyWeekdayText
+        } else if weekend == selectedIndexArray {
+            indexToString = TextLiteral.SettingView.everyWeekendText
         } else {
+            for i in 0..<7 {
+                if selectedIndexArray.contains(i) {
+                    indexToString += (TextLiteral.SettingView.repeatTableViewDictionary[i] ?? "") + TextLiteral.SettingView.commaText
+                }
+            }
             indexToString.removeSubrange(indexToString.index(indexToString.endIndex, offsetBy: -2)..<indexToString.endIndex)
         }
         bindRepeatRoutine?(indexToString)
@@ -177,7 +190,7 @@ extension SettingRepeatViewController: UITableViewDataSource {
         } else {
             let cell = settingDayTableView.dequeueReusableCell(withIdentifier: SettingDayTableViewCell.cellId, for: indexPath) as! SettingDayTableViewCell
             cell.selectionStyle = .none
-            cell.cellLabel.text = TextLiteral.SettingView.repeatTableViewDictionary[indexPath.item]
+            cell.cellLabel.text = (TextLiteral.SettingView.repeatTableViewDictionary[indexPath.item] ?? "") + TextLiteral.SettingView.repeatDayText
             cell.isSelected = selectedIndexArray.contains(indexPath.item)
             return cell
         }

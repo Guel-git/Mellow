@@ -99,7 +99,12 @@ enum TextLiteral {
         static let tableViewArray = ["수면 시간", "반복"]
         static let timeTableViewDictionary = [0:"8시간", 1:"9시간", 2:"10시간", 3:"11시간"]
         static let repeatTableViewArray = ["없음", "요일 반복"]
-        static let repeatTableViewDictionary = [0:"월요일", 1:"화요일", 2:"수요일", 3:"목요일", 4:"금요일", 5:"토요일", 6:"일요일"]
+        static let repeatTableViewDictionary = [0:"월", 1:"화", 2:"수", 3:"목", 4:"금", 5:"토", 6:"일"]
+        static let commaText = ", "
+        static let repeatDayText = "요일"
+        static let everyDayText = "매일"
+        static let everyWeekdayText = "주중"
+        static let everyWeekendText = "주말"
         static let initialResultArray = ["8시간", "없음"]
         static let initialRepeatText = "없음"
         static let mainButtonText = "규칙적인 수면 시작하기"
