@@ -9,7 +9,7 @@ import UIKit
 
 final class SettingViewController: BaseViewController {
     
-    private var resultArray = ["8시간", "없음"]
+    private var resultArray = TextLiteral.SettingView.initialResultArray
     
     // MARK: - property
     
@@ -32,7 +32,7 @@ final class SettingViewController: BaseViewController {
     private let settingRepeatViewController = SettingRepeatViewController()
     private let mainButton: MainButton = {
         let button = MainButton()
-        button.title = "규칙적인 수면 시작하기"
+        button.title = TextLiteral.SettingView.mainButtonText
         button.isDisabled = false
         return button
     }()
@@ -78,7 +78,7 @@ final class SettingViewController: BaseViewController {
         
         navigationController?.navigationBar.prefersLargeTitles = false
         navigationItem.largeTitleDisplayMode = .never
-        navigationItem.title = "시간 설정하기"
+        navigationItem.title = TextLiteral.SettingView.navigationTitleText
         navigationController?.navigationBar.tintColor = .fontBlack
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.fontBlack, NSAttributedString.Key.font: UIFont.sb16]
         

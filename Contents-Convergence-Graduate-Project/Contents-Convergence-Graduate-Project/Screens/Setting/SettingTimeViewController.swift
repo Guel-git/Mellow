@@ -19,7 +19,7 @@ final class SettingTimeViewController: BaseViewController {
     private let cancelButton = CancelButton()
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "수면 시간"
+        label.text = TextLiteral.SettingView.timeNavigationTitleText
         label.textColor = .fontBlack
         label.font = .sb16
         return label
@@ -27,7 +27,7 @@ final class SettingTimeViewController: BaseViewController {
     private let settingTimeTableView = UITableView()
     private let mainButton: MainButton = {
         let button = MainButton()
-        button.title = "확인"
+        button.title = TextLiteral.SettingView.sheetMainButtonText
         button.isDisabled = false
         return button
     }()
@@ -95,7 +95,7 @@ final class SettingTimeViewController: BaseViewController {
     }
     
     private func changeSleepTime() {
-        let timeString = TextLiteral.SettingView.timeTableViewDictionary[selectedIndex] ?? ""
+        guard let timeString = TextLiteral.SettingView.timeTableViewDictionary[selectedIndex] else { return }
         bindSleepTime?(timeString)
         self.dismiss(animated: true)
     }

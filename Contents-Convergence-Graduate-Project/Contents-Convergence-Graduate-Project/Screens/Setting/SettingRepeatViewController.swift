@@ -19,7 +19,7 @@ final class SettingRepeatViewController: BaseViewController {
     private let cancelButton = CancelButton()
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "반복"
+        label.text = TextLiteral.SettingView.repeatNavigationTitleText
         label.textColor = .fontBlack
         label.font = .sb16
         return label
@@ -27,7 +27,7 @@ final class SettingRepeatViewController: BaseViewController {
     private let settingRepeatTableView = UITableView()
     private let mainButton: MainButton = {
         let button = MainButton()
-        button.title = "확인"
+        button.title = TextLiteral.SettingView.sheetMainButtonText
         button.isDisabled = false
         return button
     }()
@@ -95,6 +95,7 @@ final class SettingRepeatViewController: BaseViewController {
     }
     
     private func changeRepeatRoutine() {
+        // FIXME: - 로직 수정 필요
         var indexToString = ""
         for i in 0..<7 {
             if selectedIndexArray.contains(i) {
@@ -102,7 +103,7 @@ final class SettingRepeatViewController: BaseViewController {
             }
         }
         if indexToString.isEmpty {
-            indexToString = "없음"
+            indexToString = TextLiteral.SettingView.initialRepeatText
         } else {
             indexToString.removeSubrange(indexToString.index(indexToString.endIndex, offsetBy: -2)..<indexToString.endIndex)
         }
