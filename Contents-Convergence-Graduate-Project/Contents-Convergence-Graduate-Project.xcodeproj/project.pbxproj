@@ -47,6 +47,7 @@
 		52DDFD0B2B0DF8EB007368CC /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DDFD0A2B0DF8EB007368CC /* PopupViewController.swift */; };
 		52DDFD102B0E02E1007368CC /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DDFD0F2B0E02E1007368CC /* NotificationManager.swift */; };
 		52DDFD122B0E7185007368CC /* SettingDayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DDFD112B0E7185007368CC /* SettingDayTableViewCell.swift */; };
+		52DDFD192B0E8539007368CC /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DDFD182B0E8539007368CC /* SplashViewController.swift */; };
 		52E873BE2AE025E100662723 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E873BD2AE025E100662723 /* AppDelegate.swift */; };
 		52E873C02AE025E100662723 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E873BF2AE025E100662723 /* SceneDelegate.swift */; };
 		52E873C22AE025E100662723 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E873C12AE025E100662723 /* TestViewController.swift */; };
@@ -94,6 +95,7 @@
 		52DDFD0A2B0DF8EB007368CC /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
 		52DDFD0F2B0E02E1007368CC /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		52DDFD112B0E7185007368CC /* SettingDayTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingDayTableViewCell.swift; sourceTree = "<group>"; };
+		52DDFD182B0E8539007368CC /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		52E873BA2AE025E100662723 /* Contents-Convergence-Graduate-Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Contents-Convergence-Graduate-Project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52E873BD2AE025E100662723 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		52E873BF2AE025E100662723 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -117,12 +119,9 @@
 		525523BE2B0B86BF0033D4C6 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
-				525523BF2B0B86CA0033D4C6 /* SettingViewController.swift */,
-				525523C12B0BA0E50033D4C6 /* SettingTableViewCell.swift */,
-				525523C32B0BC2D90033D4C6 /* SettingTimeViewController.swift */,
-				525523C82B0BD1240033D4C6 /* SettingDetailTableViewCell.swift */,
-				525523CA2B0BDD2B0033D4C6 /* SettingRepeatViewController.swift */,
-				52DDFD112B0E7185007368CC /* SettingDayTableViewCell.swift */,
+				52DDFD152B0E84D1007368CC /* SettingRepeat */,
+				52DDFD142B0E84CA007368CC /* SettingTime */,
+				52DDFD132B0E84BB007368CC /* Setting */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -159,6 +158,8 @@
 		525600D72AEA822100E122A5 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				52DDFD172B0E852D007368CC /* Splash */,
+				528DCD1B2B04929A00DD283A /* Chat */,
 				525600E82AEA91F400E122A5 /* Test */,
 			);
 			path = Onboarding;
@@ -210,8 +211,7 @@
 		528DCD112AF3C90800DD283A /* Result */ = {
 			isa = PBXGroup;
 			children = (
-				528DCD122AF3C91400DD283A /* ResultViewController.swift */,
-				528DCD162AF8CCEA00DD283A /* RoutineTableViewCell.swift */,
+				52DDFD162B0E8511007368CC /* Result */,
 			);
 			path = Result;
 			sourceTree = "<group>";
@@ -242,6 +242,50 @@
 				525600C82AE6787E00E122A5 /* UserDefault.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		52DDFD132B0E84BB007368CC /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				525523BF2B0B86CA0033D4C6 /* SettingViewController.swift */,
+				525523C12B0BA0E50033D4C6 /* SettingTableViewCell.swift */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		52DDFD142B0E84CA007368CC /* SettingTime */ = {
+			isa = PBXGroup;
+			children = (
+				525523C32B0BC2D90033D4C6 /* SettingTimeViewController.swift */,
+				525523C82B0BD1240033D4C6 /* SettingDetailTableViewCell.swift */,
+			);
+			path = SettingTime;
+			sourceTree = "<group>";
+		};
+		52DDFD152B0E84D1007368CC /* SettingRepeat */ = {
+			isa = PBXGroup;
+			children = (
+				52DDFD112B0E7185007368CC /* SettingDayTableViewCell.swift */,
+				525523CA2B0BDD2B0033D4C6 /* SettingRepeatViewController.swift */,
+			);
+			path = SettingRepeat;
+			sourceTree = "<group>";
+		};
+		52DDFD162B0E8511007368CC /* Result */ = {
+			isa = PBXGroup;
+			children = (
+				528DCD122AF3C91400DD283A /* ResultViewController.swift */,
+				528DCD162AF8CCEA00DD283A /* RoutineTableViewCell.swift */,
+			);
+			path = Result;
+			sourceTree = "<group>";
+		};
+		52DDFD172B0E852D007368CC /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				52DDFD182B0E8539007368CC /* SplashViewController.swift */,
+			);
+			path = Splash;
 			sourceTree = "<group>";
 		};
 		52E873B12AE025E100662723 = {
@@ -276,7 +320,6 @@
 			children = (
 				52DDFD092B0DF8DF007368CC /* Popup */,
 				525523BE2B0B86BF0033D4C6 /* Setting */,
-				528DCD1B2B04929A00DD283A /* Chat */,
 				528DCD112AF3C90800DD283A /* Result */,
 				528DCD092AF131D800DD283A /* Report */,
 				525600D72AEA822100E122A5 /* Onboarding */,
@@ -471,6 +514,7 @@
 				528DCD132AF3C91400DD283A /* ResultViewController.swift in Sources */,
 				52DDFD102B0E02E1007368CC /* NotificationManager.swift in Sources */,
 				525600EA2AEA920D00E122A5 /* AnswerTableViewCell.swift in Sources */,
+				52DDFD192B0E8539007368CC /* SplashViewController.swift in Sources */,
 				528DCD152AF3D24A00DD283A /* UILabel+Extension.swift in Sources */,
 				525600F02AEABE5500E122A5 /* MainButton.swift in Sources */,
 				525600F62AEADC1100E122A5 /* BackButton.swift in Sources */,

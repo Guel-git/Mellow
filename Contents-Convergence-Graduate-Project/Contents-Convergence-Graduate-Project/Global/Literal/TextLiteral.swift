@@ -12,6 +12,7 @@ enum TextLiteral {
     // MARK: - common
     
     static let confirmText = "확인"
+    static let startText = "시작하기"
     
     // MARK: - title
     

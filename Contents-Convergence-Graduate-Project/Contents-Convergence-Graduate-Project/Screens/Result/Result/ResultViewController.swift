@@ -16,7 +16,7 @@ enum SleepType: Character {
     var typeText: String {
         switch self {
         case .Best:
-            return TextLiteral.ResultView.babyTypeText
+            return TextLiteral.ResultView.bestTypeText
         case .Zombie:
             return TextLiteral.ResultView.zombieTypeText
         case .Baby:
@@ -208,6 +208,7 @@ final class ResultViewController: BaseViewController {
         super.viewDidLoad()
         setRoutineTableView()
         setButtonAction()
+        print(resultType)
     }
     
     override func render() {

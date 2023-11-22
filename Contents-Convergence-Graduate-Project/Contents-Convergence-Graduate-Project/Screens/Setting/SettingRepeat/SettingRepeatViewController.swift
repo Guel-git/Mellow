@@ -123,7 +123,6 @@ final class SettingRepeatViewController: BaseViewController {
     }
     
     private func changeRepeatRoutine() {
-        // FIXME: - 로직 수정 필요
         let weekday = [0, 1, 2, 3, 4]
         let weekend = [5, 6]
         var indexToString = ""
@@ -131,9 +130,9 @@ final class SettingRepeatViewController: BaseViewController {
             indexToString = TextLiteral.SettingView.initialRepeatText
         } else if selectedIndexArray.count == 7 {
             indexToString = TextLiteral.SettingView.everyDayText
-        } else if weekday == selectedIndexArray {
+        } else if weekday == selectedIndexArray.sorted() {
             indexToString = TextLiteral.SettingView.everyWeekdayText
-        } else if weekend == selectedIndexArray {
+        } else if weekend == selectedIndexArray.sorted() {
             indexToString = TextLiteral.SettingView.everyWeekendText
         } else {
             for i in 0..<7 {
