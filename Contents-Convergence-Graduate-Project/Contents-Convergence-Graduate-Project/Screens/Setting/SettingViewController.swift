@@ -29,17 +29,26 @@ final class SettingViewController: BaseViewController {
     }()
     private let settingTableView = UITableView()
     private let settingTimeViewController = SettingTimeViewController()
+    private let settingRepeatViewController = SettingRepeatViewController()
+    private let mainButton: MainButton = {
+        let button = MainButton()
+        button.title = "규칙적인 수면 시작하기"
+        button.isDisabled = false
+        return button
+    }()
     
     // MARK: - life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setSettingTableView()
-        didTappedTime()
+        bindSleepTime()
+        bindRepeatRoutine()
+        setButtonAction()
     }
     
     override func render() {
-        [sleepTimePicker, settingTableView].forEach {
+        [sleepTimePicker, settingTableView, mainButton].forEach {
             view.addSubview($0)
         }
         
@@ -53,6 +62,12 @@ final class SettingViewController: BaseViewController {
             $0.top.equalTo(sleepTimePicker.snp.bottom).offset(20)
             $0.leading.trailing.equalToSuperview().inset(16)
             $0.height.equalTo(102)
+        }
+        
+        mainButton.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview().inset(16)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(8)
+            $0.height.equalTo(52)
         }
     }
     
@@ -84,11 +99,29 @@ final class SettingViewController: BaseViewController {
         settingTableView.isScrollEnabled = false
     }
     
-    private func didTappedTime() {
-        settingTimeViewController.didTappedTime = { [weak self] timeString in
+    private func bindSleepTime() {
+        settingTimeViewController.bindSleepTime = { [weak self] timeString in
             self?.resultArray[0] = timeString
             self?.settingTableView.reloadData()
         }
+    }
+    
+    private func bindRepeatRoutine() {
+        settingRepeatViewController.bindRepeatRoutine = { [weak self] repeatString in
+            self?.resultArray[1] = repeatString
+            self?.settingTableView.reloadData()
+        }
+    }
+    
+    private func setButtonAction() {
+        let action = UIAction { [weak self] _ in
+            self?.navigateToPopup()
+        }
+        mainButton.addAction(action, for: .touchUpInside)
+    }
+    
+    private func navigateToPopup() {
+        // FIXME: - popup view controller 로 navigate
     }
 }
 
@@ -104,8 +137,13 @@ extension SettingViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        settingTimeViewController.modalPresentationStyle = .pageSheet
-        self.present(settingTimeViewController, animated: true)
+        if indexPath.item == 0 {
+            settingTimeViewController.modalPresentationStyle = .pageSheet
+            self.present(settingTimeViewController, animated: true)
+        } else {
+            settingRepeatViewController.modalPresentationStyle = .pageSheet
+            self.present(settingRepeatViewController, animated: true)
+        }
     }
 }
 

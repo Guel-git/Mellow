@@ -12,6 +12,7 @@
 		525523C42B0BC2D90033D4C6 /* SettingTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525523C32B0BC2D90033D4C6 /* SettingTimeViewController.swift */; };
 		525523C72B0BCD2A0033D4C6 /* CancelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525523C62B0BCD2A0033D4C6 /* CancelButton.swift */; };
 		525523C92B0BD1240033D4C6 /* SettingDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525523C82B0BD1240033D4C6 /* SettingDetailTableViewCell.swift */; };
+		525523CB2B0BDD2B0033D4C6 /* SettingRepeatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525523CA2B0BDD2B0033D4C6 /* SettingRepeatViewController.swift */; };
 		525600C72AE6786E00E122A5 /* UserDefaultHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525600C62AE6786E00E122A5 /* UserDefaultHandler.swift */; };
 		525600C92AE6787E00E122A5 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525600C82AE6787E00E122A5 /* UserDefault.swift */; };
 		525600CC2AE6791700E122A5 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 525600CB2AE6791700E122A5 /* SnapKit */; };
@@ -55,6 +56,7 @@
 		525523C32B0BC2D90033D4C6 /* SettingTimeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTimeViewController.swift; sourceTree = "<group>"; };
 		525523C62B0BCD2A0033D4C6 /* CancelButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelButton.swift; sourceTree = "<group>"; };
 		525523C82B0BD1240033D4C6 /* SettingDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingDetailTableViewCell.swift; sourceTree = "<group>"; };
+		525523CA2B0BDD2B0033D4C6 /* SettingRepeatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingRepeatViewController.swift; sourceTree = "<group>"; };
 		525600C62AE6786E00E122A5 /* UserDefaultHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultHandler.swift; sourceTree = "<group>"; };
 		525600C82AE6787E00E122A5 /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		525600CD2AE679EE00E122A5 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 				525523C12B0BA0E50033D4C6 /* SettingTableViewCell.swift */,
 				525523C32B0BC2D90033D4C6 /* SettingTimeViewController.swift */,
 				525523C82B0BD1240033D4C6 /* SettingDetailTableViewCell.swift */,
+				525523CA2B0BDD2B0033D4C6 /* SettingRepeatViewController.swift */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -430,6 +433,7 @@
 				528DCD212B049AC300DD283A /* BaseUIView.swift in Sources */,
 				525600DD2AEA8ACC00E122A5 /* BaseViewController.swift in Sources */,
 				525600CE2AE679EE00E122A5 /* UIColor+Extension.swift in Sources */,
+				525523CB2B0BDD2B0033D4C6 /* SettingRepeatViewController.swift in Sources */,
 				528DCD0E2AF13AEB00DD283A /* String+Extension.swift in Sources */,
 				525600F82AEADCE200E122A5 /* UIButton+Extension.swift in Sources */,
 				525523C42B0BC2D90033D4C6 /* SettingTimeViewController.swift in Sources */,

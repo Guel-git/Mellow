@@ -1,5 +1,5 @@
 //
-//  SettingTimeViewController.swift
+//  SettingRepeatViewController.swift
 //  Contents-Convergence-Graduate-Project
 //
 //  Created by 김유나 on 2023/11/21.
@@ -7,24 +7,24 @@
 
 import UIKit
 
-final class SettingTimeViewController: BaseViewController {
+final class SettingRepeatViewController: BaseViewController {
     
-    private var selectedIndex: Int = 0 {
-        didSet { settingTimeTableView.reloadData() }
+    private var selectedIndexArray: [Int] = [] {
+        didSet { settingRepeatTableView.reloadData() }
     }
-    var bindSleepTime: ((String) -> ())?
+    var bindRepeatRoutine: ((String) -> ())?
     
     // MARK: - property
     
     private let cancelButton = CancelButton()
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "수면 시간"
+        label.text = "반복"
         label.textColor = .fontBlack
         label.font = .sb16
         return label
     }()
-    private let settingTimeTableView = UITableView()
+    private let settingRepeatTableView = UITableView()
     private let mainButton: MainButton = {
         let button = MainButton()
         button.title = "확인"
@@ -41,7 +41,7 @@ final class SettingTimeViewController: BaseViewController {
     }
     
     override func render() {
-        [cancelButton, titleLabel, settingTimeTableView, mainButton].forEach {
+        [cancelButton, titleLabel, settingRepeatTableView, mainButton].forEach {
             view.addSubview($0)
         }
         
@@ -57,10 +57,10 @@ final class SettingTimeViewController: BaseViewController {
             $0.centerX.equalToSuperview()
         }
         
-        settingTimeTableView.snp.makeConstraints {
+        settingRepeatTableView.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(28)
             $0.leading.trailing.equalToSuperview().inset(16)
-            $0.height.equalTo(204)
+            $0.height.equalTo(358)
         }
         
         mainButton.snp.makeConstraints {
@@ -73,19 +73,19 @@ final class SettingTimeViewController: BaseViewController {
     // MARK: - func
     
     private func setSettingTimeTableView() {
-        settingTimeTableView.delegate = self
-        settingTimeTableView.dataSource = self
+        settingRepeatTableView.delegate = self
+        settingRepeatTableView.dataSource = self
         
-        settingTimeTableView.register(SettingDetailTableViewCell.self, forCellReuseIdentifier: SettingDetailTableViewCell.cellId)
-        settingTimeTableView.rowHeight = 51
-        settingTimeTableView.separatorStyle = .singleLine
-        settingTimeTableView.separatorColor = .systemMain
-        settingTimeTableView.isScrollEnabled = false
+        settingRepeatTableView.register(SettingDetailTableViewCell.self, forCellReuseIdentifier: SettingDetailTableViewCell.cellId)
+        settingRepeatTableView.rowHeight = 51
+        settingRepeatTableView.separatorStyle = .singleLine
+        settingRepeatTableView.separatorColor = .systemMain
+        settingRepeatTableView.isScrollEnabled = false
     }
     
     private func setButtonAction() {
         let confirmAction = UIAction { [weak self] _ in
-            self?.changeSleepTime()
+            self?.changeRepeatRoutine()
         }
         let cancelAction = UIAction { [weak self] _ in
             self?.dismiss(animated: true)
@@ -94,39 +94,53 @@ final class SettingTimeViewController: BaseViewController {
         cancelButton.addAction(cancelAction, for: .touchUpInside)
     }
     
-    private func changeSleepTime() {
-        let timeString = TextLiteral.SettingView.timeTableViewDictionary[selectedIndex] ?? ""
-        bindSleepTime?(timeString)
+    private func changeRepeatRoutine() {
+        var indexToString = ""
+        for i in 0..<7 {
+            if selectedIndexArray.contains(i) {
+                indexToString += (TextLiteral.SettingView.repeatTableViewDictionary[i] ?? "") + ", "
+            }
+        }
+        if indexToString.isEmpty {
+            indexToString = "없음"
+        } else {
+            indexToString.removeSubrange(indexToString.index(indexToString.endIndex, offsetBy: -2)..<indexToString.endIndex)
+        }
+        bindRepeatRoutine?(indexToString)
         self.dismiss(animated: true)
     }
 }
 
 // MARK: - extension
 
-extension SettingTimeViewController: UITableViewDelegate {
+extension SettingRepeatViewController: UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cell.separatorInset = UIEdgeInsets(top: 0, left: indexPath.row == 3 ? cell.bounds.size.width : 0, bottom: 0, right: 0)
+        cell.separatorInset = UIEdgeInsets(top: 0, left: indexPath.row == 6 ? cell.bounds.size.width : 0, bottom: 0, right: 0)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedIndex = indexPath.item
+        if selectedIndexArray.contains(indexPath.item) {
+            selectedIndexArray = selectedIndexArray.filter { $0 != indexPath.item }
+        } else {
+            selectedIndexArray.append(indexPath.item)
+        }
     }
 }
 
-extension SettingTimeViewController: UITableViewDataSource {
+extension SettingRepeatViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return TextLiteral.SettingView.timeTableViewDictionary.count
+        return TextLiteral.SettingView.repeatTableViewDictionary.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = settingTimeTableView.dequeueReusableCell(withIdentifier: SettingDetailTableViewCell.cellId, for: indexPath) as! SettingDetailTableViewCell
+        let cell = settingRepeatTableView.dequeueReusableCell(withIdentifier: SettingDetailTableViewCell.cellId, for: indexPath) as! SettingDetailTableViewCell
         cell.selectionStyle = .none
-        cell.cellLabel.text = TextLiteral.SettingView.timeTableViewDictionary[indexPath.item]
-        cell.isSelected = indexPath.item == selectedIndex ? true : false
+        cell.cellLabel.text = TextLiteral.SettingView.repeatTableViewDictionary[indexPath.item]
+        cell.isSelected = selectedIndexArray.contains(indexPath.item)
         return cell
     }
 }
