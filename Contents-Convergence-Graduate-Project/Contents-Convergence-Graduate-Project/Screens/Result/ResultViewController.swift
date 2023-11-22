@@ -26,6 +26,19 @@ enum SleepType: Character {
         }
     }
     
+    var typeImage: UIImage {
+        switch self {
+        case .Best:
+            return ImageLiteral.bestEmoji
+        case .Zombie:
+            return ImageLiteral.zombieEmoji
+        case .Baby:
+            return ImageLiteral.babyEmoji
+        case .Nervous:
+            return ImageLiteral.nervousEmoji
+        }
+    }
+    
     var angelText: String {
         switch self {
         case .Best:
@@ -133,11 +146,7 @@ final class ResultViewController: BaseViewController {
         label.font = .sb30
         return label
     }()
-    private let emojiLabel: UILabel = {
-        let label = UILabel()
-        label.font = .sb30
-        return label
-    }()
+    private let emojiImage = UIImageView()
     private let angelLabel: UILabel = {
         let label = UILabel()
         label.text = TextLiteral.ResultView.previousAngelText
@@ -198,12 +207,13 @@ final class ResultViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setRoutineTableView()
+        setButtonAction()
     }
     
     override func render() {
         [scrollView, mainButton].forEach { view.addSubview($0) }
         scrollView.addSubview(contentView)
-        [subTitleLabel, titleLabel, emojiLabel, angelLabel, angelNameLabel, favoriteImage, favoriteLabel, contentLabel, routineLabel, routineTableView].forEach {
+        [subTitleLabel, titleLabel, emojiImage, angelLabel, angelNameLabel, favoriteImage, favoriteLabel, contentLabel, routineLabel, routineTableView].forEach {
             contentView.addSubview($0)
         }
         
@@ -233,13 +243,14 @@ final class ResultViewController: BaseViewController {
             $0.centerX.equalToSuperview()
         }
         
-        emojiLabel.snp.makeConstraints {
+        emojiImage.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(16)
+            $0.height.equalTo(30)
             $0.centerX.equalToSuperview()
         }
         
         angelLabel.snp.makeConstraints {
-            $0.top.equalTo(emojiLabel.snp.bottom).offset(36)
+            $0.top.equalTo(emojiImage.snp.bottom).offset(36)
             $0.centerX.equalToSuperview()
         }
         
@@ -279,7 +290,7 @@ final class ResultViewController: BaseViewController {
     
     override func configUI() {
         titleLabel.text = resultType.typeText
-        emojiLabel.text = "⏰😴😵💦"
+        emojiImage.image = resultType.typeImage
         angelNameLabel.text = resultType.angelText + TextLiteral.ResultView.afterAngelText
         angelNameLabel.applyFont(resultType.angelText, .sb20)
         angelNameLabel.textAlignment = .center
@@ -318,6 +329,19 @@ final class ResultViewController: BaseViewController {
         routineTableView.separatorStyle = .none
         routineTableView.isScrollEnabled = false
         routineTableView.sectionHeaderTopPadding = 8
+    }
+    
+    private func setButtonAction() {
+        let action = UIAction { [weak self] _ in
+            self?.navigateToSettingViewController()
+        }
+        mainButton.addAction(action, for: .touchUpInside)
+    }
+    
+    private func navigateToSettingViewController() {
+        let settingViewController = SettingViewController()
+        settingViewController.navigationItem.hidesBackButton = true
+        self.navigationController?.pushViewController(settingViewController, animated: true)
     }
 }
 

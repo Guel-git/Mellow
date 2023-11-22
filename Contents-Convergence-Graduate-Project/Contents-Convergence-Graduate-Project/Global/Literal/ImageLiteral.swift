@@ -31,6 +31,11 @@ enum ImageLiteral {
     static var phoneImage: UIImage { .load(name: "phone") }
     static var waterImage: UIImage { .load(name: "water") }
     
+    static var bestEmoji: UIImage { .load(name: "bestEmoji") }
+    static var babyEmoji: UIImage { .load(name: "babyEmoji") }
+    static var zombieEmoji: UIImage { .load(name: "zombieEmoji") }
+    static var nervousEmoji: UIImage { .load(name: "nervousEmoji") }
+    
     static var shortRoutineBeforeImage = [clothesImage, waterImage]
     static var shortRoutineAfterImage = [clockImage, drinkImage]
     static var longRoutineBeforeImage = [clothesImage, waterImage, bulbImage]
