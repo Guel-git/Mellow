@@ -98,6 +98,7 @@ enum TextLiteral {
     enum SettingView {
         static let tableViewArray = ["수면 시간", "반복"]
         static let timeTableViewDictionary = [0:"8시간", 1:"9시간", 2:"10시간", 3:"11시간"]
+        static let repeatTableViewArray = ["없음", "요일 반복"]
         static let repeatTableViewDictionary = [0:"월요일", 1:"화요일", 2:"수요일", 3:"목요일", 4:"금요일", 5:"토요일", 6:"일요일"]
         static let initialResultArray = ["8시간", "없음"]
         static let initialRepeatText = "없음"

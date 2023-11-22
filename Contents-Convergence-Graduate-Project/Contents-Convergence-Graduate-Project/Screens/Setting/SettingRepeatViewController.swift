@@ -9,8 +9,11 @@ import UIKit
 
 final class SettingRepeatViewController: BaseViewController {
     
-    private var selectedIndexArray: [Int] = [] {
+    private var selectedIndex = 0 {
         didSet { settingRepeatTableView.reloadData() }
+    }
+    private var selectedIndexArray: [Int] = [] {
+        didSet { settingDayTableView.reloadData() }
     }
     var bindRepeatRoutine: ((String) -> ())?
     
@@ -25,6 +28,7 @@ final class SettingRepeatViewController: BaseViewController {
         return label
     }()
     private let settingRepeatTableView = UITableView()
+    private let settingDayTableView = UITableView()
     private let mainButton: MainButton = {
         let button = MainButton()
         button.title = TextLiteral.confirmText
@@ -37,11 +41,12 @@ final class SettingRepeatViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setSettingTimeTableView()
+        setSettingDayTableView()
         setButtonAction()
     }
     
     override func render() {
-        [cancelButton, titleLabel, settingRepeatTableView, mainButton].forEach {
+        [cancelButton, titleLabel, settingRepeatTableView, settingDayTableView, mainButton].forEach {
             view.addSubview($0)
         }
         
@@ -60,7 +65,13 @@ final class SettingRepeatViewController: BaseViewController {
         settingRepeatTableView.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(28)
             $0.leading.trailing.equalToSuperview().inset(16)
-            $0.height.equalTo(358)
+            $0.height.equalTo(102)
+        }
+        
+        settingDayTableView.snp.makeConstraints {
+            $0.top.equalTo(settingRepeatTableView.snp.bottom)
+            $0.leading.trailing.equalToSuperview().inset(16)
+            $0.height.equalTo(357)
         }
         
         mainButton.snp.makeConstraints {
@@ -81,6 +92,18 @@ final class SettingRepeatViewController: BaseViewController {
         settingRepeatTableView.separatorStyle = .singleLine
         settingRepeatTableView.separatorColor = .systemMain
         settingRepeatTableView.isScrollEnabled = false
+        settingRepeatTableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    }
+    
+    private func setSettingDayTableView() {
+        settingDayTableView.delegate = self
+        settingDayTableView.dataSource = self
+        
+        settingDayTableView.register(SettingDayTableViewCell.self, forCellReuseIdentifier: SettingDayTableViewCell.cellId)
+        settingDayTableView.rowHeight = 51
+        settingDayTableView.separatorStyle = .singleLine
+        settingDayTableView.separatorColor = .systemMain
+        settingDayTableView.isScrollEnabled = false
     }
     
     private func setButtonAction() {
@@ -120,28 +143,43 @@ extension SettingRepeatViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cell.separatorInset = UIEdgeInsets(top: 0, left: indexPath.row == 6 ? cell.bounds.size.width : 0, bottom: 0, right: 0)
+        if tableView == settingDayTableView {
+            cell.separatorInset = UIEdgeInsets(top: 0, left: indexPath.row == 6 ? cell.bounds.size.width : 0, bottom: 0, right: 0)
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if selectedIndexArray.contains(indexPath.item) {
-            selectedIndexArray = selectedIndexArray.filter { $0 != indexPath.item }
+        if tableView == settingRepeatTableView {
+            selectedIndex = indexPath.item
         } else {
-            selectedIndexArray.append(indexPath.item)
+            if selectedIndexArray.contains(indexPath.item) {
+                selectedIndexArray = selectedIndexArray.filter { $0 != indexPath.item }
+            } else {
+                selectedIndexArray.append(indexPath.item)
+            }
+            print(selectedIndexArray)
         }
     }
 }
 
 extension SettingRepeatViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return TextLiteral.SettingView.repeatTableViewDictionary.count
+        return tableView == settingRepeatTableView ? TextLiteral.SettingView.repeatTableViewArray.count : TextLiteral.SettingView.repeatTableViewDictionary.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = settingRepeatTableView.dequeueReusableCell(withIdentifier: SettingDetailTableViewCell.cellId, for: indexPath) as! SettingDetailTableViewCell
-        cell.selectionStyle = .none
-        cell.cellLabel.text = TextLiteral.SettingView.repeatTableViewDictionary[indexPath.item]
-        cell.isSelected = selectedIndexArray.contains(indexPath.item)
-        return cell
+        if tableView == settingRepeatTableView {
+            let cell = settingRepeatTableView.dequeueReusableCell(withIdentifier: SettingDetailTableViewCell.cellId, for: indexPath) as! SettingDetailTableViewCell
+            cell.selectionStyle = .none
+            cell.cellLabel.text = TextLiteral.SettingView.repeatTableViewArray[indexPath.item]
+            cell.isSelected = indexPath.item == selectedIndex
+            return cell
+        } else {
+            let cell = settingDayTableView.dequeueReusableCell(withIdentifier: SettingDayTableViewCell.cellId, for: indexPath) as! SettingDayTableViewCell
+            cell.selectionStyle = .none
+            cell.cellLabel.text = TextLiteral.SettingView.repeatTableViewDictionary[indexPath.item]
+            cell.isSelected = selectedIndexArray.contains(indexPath.item)
+            return cell
+        }
     }
 }
