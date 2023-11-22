@@ -27,7 +27,7 @@ final class SettingRepeatViewController: BaseViewController {
     private let settingRepeatTableView = UITableView()
     private let mainButton: MainButton = {
         let button = MainButton()
-        button.title = TextLiteral.SettingView.sheetMainButtonText
+        button.title = TextLiteral.confirmText
         button.isDisabled = false
         return button
     }()

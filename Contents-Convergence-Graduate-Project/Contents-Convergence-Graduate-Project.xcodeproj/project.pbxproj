@@ -13,7 +13,7 @@
 		525523C72B0BCD2A0033D4C6 /* CancelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525523C62B0BCD2A0033D4C6 /* CancelButton.swift */; };
 		525523C92B0BD1240033D4C6 /* SettingDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525523C82B0BD1240033D4C6 /* SettingDetailTableViewCell.swift */; };
 		525523CB2B0BDD2B0033D4C6 /* SettingRepeatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525523CA2B0BDD2B0033D4C6 /* SettingRepeatViewController.swift */; };
-		525600C72AE6786E00E122A5 /* UserDefaultHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525600C62AE6786E00E122A5 /* UserDefaultHandler.swift */; };
+		525600C72AE6786E00E122A5 /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525600C62AE6786E00E122A5 /* UserDefaultManager.swift */; };
 		525600C92AE6787E00E122A5 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525600C82AE6787E00E122A5 /* UserDefault.swift */; };
 		525600CC2AE6791700E122A5 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 525600CB2AE6791700E122A5 /* SnapKit */; };
 		525600CE2AE679EE00E122A5 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525600CD2AE679EE00E122A5 /* UIColor+Extension.swift */; };
@@ -44,6 +44,8 @@
 		528DCD252B04AB2200DD283A /* ChatCapsuleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528DCD242B04AB2200DD283A /* ChatCapsuleLabel.swift */; };
 		528DCD272B04EF2500DD283A /* ChatEndView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528DCD262B04EF2500DD283A /* ChatEndView.swift */; };
 		528DCD2B2B04F76300DD283A /* ChatButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528DCD2A2B04F76300DD283A /* ChatButton.swift */; };
+		52DDFD0B2B0DF8EB007368CC /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DDFD0A2B0DF8EB007368CC /* PopupViewController.swift */; };
+		52DDFD102B0E02E1007368CC /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DDFD0F2B0E02E1007368CC /* NotificationManager.swift */; };
 		52E873BE2AE025E100662723 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E873BD2AE025E100662723 /* AppDelegate.swift */; };
 		52E873C02AE025E100662723 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E873BF2AE025E100662723 /* SceneDelegate.swift */; };
 		52E873C22AE025E100662723 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E873C12AE025E100662723 /* TestViewController.swift */; };
@@ -57,7 +59,7 @@
 		525523C62B0BCD2A0033D4C6 /* CancelButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelButton.swift; sourceTree = "<group>"; };
 		525523C82B0BD1240033D4C6 /* SettingDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingDetailTableViewCell.swift; sourceTree = "<group>"; };
 		525523CA2B0BDD2B0033D4C6 /* SettingRepeatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingRepeatViewController.swift; sourceTree = "<group>"; };
-		525600C62AE6786E00E122A5 /* UserDefaultHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultHandler.swift; sourceTree = "<group>"; };
+		525600C62AE6786E00E122A5 /* UserDefaultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
 		525600C82AE6787E00E122A5 /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		525600CD2AE679EE00E122A5 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		525600CF2AE67A0600E122A5 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
@@ -88,6 +90,8 @@
 		528DCD242B04AB2200DD283A /* ChatCapsuleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCapsuleLabel.swift; sourceTree = "<group>"; };
 		528DCD262B04EF2500DD283A /* ChatEndView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatEndView.swift; sourceTree = "<group>"; };
 		528DCD2A2B04F76300DD283A /* ChatButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatButton.swift; sourceTree = "<group>"; };
+		52DDFD0A2B0DF8EB007368CC /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
+		52DDFD0F2B0E02E1007368CC /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		52E873BA2AE025E100662723 /* Contents-Convergence-Graduate-Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Contents-Convergence-Graduate-Project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52E873BD2AE025E100662723 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		52E873BF2AE025E100662723 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -128,13 +132,13 @@
 			path = CancelButton;
 			sourceTree = "<group>";
 		};
-		525600C52AE6785B00E122A5 /* Util */ = {
+		525600C52AE6785B00E122A5 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
-				525600C62AE6786E00E122A5 /* UserDefaultHandler.swift */,
-				525600C82AE6787E00E122A5 /* UserDefault.swift */,
+				525600C62AE6786E00E122A5 /* UserDefaultManager.swift */,
+				52DDFD0F2B0E02E1007368CC /* NotificationManager.swift */,
 			);
-			path = Util;
+			path = Manager;
 			sourceTree = "<group>";
 		};
 		525600D12AE67AC000E122A5 /* Fonts */ = {
@@ -221,6 +225,22 @@
 			path = Chat;
 			sourceTree = "<group>";
 		};
+		52DDFD092B0DF8DF007368CC /* Popup */ = {
+			isa = PBXGroup;
+			children = (
+				52DDFD0A2B0DF8EB007368CC /* PopupViewController.swift */,
+			);
+			path = Popup;
+			sourceTree = "<group>";
+		};
+		52DDFD0E2B0E02CC007368CC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				525600C82AE6787E00E122A5 /* UserDefault.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		52E873B12AE025E100662723 = {
 			isa = PBXGroup;
 			children = (
@@ -251,6 +271,7 @@
 		52E873D12AE026CC00662723 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				52DDFD092B0DF8DF007368CC /* Popup */,
 				525523BE2B0B86BF0033D4C6 /* Setting */,
 				528DCD1B2B04929A00DD283A /* Chat */,
 				528DCD112AF3C90800DD283A /* Result */,
@@ -263,8 +284,9 @@
 		52E873D22AE026E600662723 /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				52DDFD0E2B0E02CC007368CC /* Model */,
 				525600ED2AEABE4200E122A5 /* UIComponent */,
-				525600C52AE6785B00E122A5 /* Util */,
+				525600C52AE6785B00E122A5 /* Manager */,
 				52E873D92AE027AB00662723 /* Resource */,
 				52E873D72AE0272200662723 /* Support */,
 				52E873D62AE0271D00662723 /* Literal */,
@@ -420,7 +442,7 @@
 				528DCD272B04EF2500DD283A /* ChatEndView.swift in Sources */,
 				52E873C22AE025E100662723 /* TestViewController.swift in Sources */,
 				525600FA2AEADD9300E122A5 /* UIApplication+Extension.swift in Sources */,
-				525600C72AE6786E00E122A5 /* UserDefaultHandler.swift in Sources */,
+				525600C72AE6786E00E122A5 /* UserDefaultManager.swift in Sources */,
 				525523C22B0BA0E50033D4C6 /* SettingTableViewCell.swift in Sources */,
 				525600C92AE6787E00E122A5 /* UserDefault.swift in Sources */,
 				525600EC2AEABDB100E122A5 /* BaseTableViewCell.swift in Sources */,
@@ -433,6 +455,7 @@
 				528DCD212B049AC300DD283A /* BaseUIView.swift in Sources */,
 				525600DD2AEA8ACC00E122A5 /* BaseViewController.swift in Sources */,
 				525600CE2AE679EE00E122A5 /* UIColor+Extension.swift in Sources */,
+				52DDFD0B2B0DF8EB007368CC /* PopupViewController.swift in Sources */,
 				525523CB2B0BDD2B0033D4C6 /* SettingRepeatViewController.swift in Sources */,
 				528DCD0E2AF13AEB00DD283A /* String+Extension.swift in Sources */,
 				525600F82AEADCE200E122A5 /* UIButton+Extension.swift in Sources */,
@@ -442,6 +465,7 @@
 				525600D92AEA824600E122A5 /* TextLiteral.swift in Sources */,
 				528DCD1D2B0492B000DD283A /* ChatViewController.swift in Sources */,
 				528DCD132AF3C91400DD283A /* ResultViewController.swift in Sources */,
+				52DDFD102B0E02E1007368CC /* NotificationManager.swift in Sources */,
 				525600EA2AEA920D00E122A5 /* AnswerTableViewCell.swift in Sources */,
 				528DCD152AF3D24A00DD283A /* UILabel+Extension.swift in Sources */,
 				525600F02AEABE5500E122A5 /* MainButton.swift in Sources */,

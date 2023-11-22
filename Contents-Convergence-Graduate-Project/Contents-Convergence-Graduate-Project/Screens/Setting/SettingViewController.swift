@@ -115,13 +115,14 @@ final class SettingViewController: BaseViewController {
     
     private func setButtonAction() {
         let action = UIAction { [weak self] _ in
-            self?.navigateToPopup()
+            self?.navigateToPopupViewController()
         }
         mainButton.addAction(action, for: .touchUpInside)
     }
     
-    private func navigateToPopup() {
-        // FIXME: - popup view controller 로 navigate
+    private func navigateToPopupViewController() {
+        let popupViewController = PopupViewController()
+        navigationController?.pushViewController(popupViewController, animated: true)
     }
 }
 

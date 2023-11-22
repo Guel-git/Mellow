@@ -9,6 +9,10 @@ import Foundation
 
 enum TextLiteral {
     
+    // MARK: - common
+    
+    static let confirmText = "확인"
+    
     // MARK: - title
     
     static let questionViewControllerTitle = "수면 요정 찾기 테스트"
@@ -101,6 +105,12 @@ enum TextLiteral {
         static let navigationTitleText = "시간 설정하기"
         static let timeNavigationTitleText = "수면 시간"
         static let repeatNavigationTitleText = "반복"
-        static let sheetMainButtonText = "확인"
+    }
+    
+    // MARK: - PopupView
+    
+    enum PopupView {
+        static let titleLabelText = "정확한 수면 측정을 위해\n권한을 허용해주세요."
+        static let navigationTitleText = "취침 시간 설정하기"
     }
 }
