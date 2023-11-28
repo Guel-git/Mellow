@@ -55,4 +55,7 @@ extension UIFont {
     static var sb12: UIFont {
         return font(.semiBold, ofSize: 12)
     }
+    static var r12: UIFont {
+        return font(.regular, ofSize: 12)
+    }
 }

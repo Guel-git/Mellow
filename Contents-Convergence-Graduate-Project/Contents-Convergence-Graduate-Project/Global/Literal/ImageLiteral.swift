@@ -19,6 +19,8 @@ enum ImageLiteral {
     static var answerCheckImage: UIImage { .load(systemName: "checkmark.circle.fill") }
     static var mainButtonChevronImage: UIImage { .load(systemName: "chevron.right") }
     static var navigationBarBackButton: UIImage { .load(systemName: "chevron.left") }
+    static var navigationBarMenuButton: UIImage { .load(systemName: "line.3.horizontal") }
+    static var dotImage: UIImage { .load(systemName: "circle.fill") }
     
     // MARK: - image
     

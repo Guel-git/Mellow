@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		523F5C702B16314400A46D4F /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523F5C6F2B16314400A46D4F /* MainViewController.swift */; };
+		523F5C732B16324900A46D4F /* RoutineStartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523F5C722B16324900A46D4F /* RoutineStartViewController.swift */; };
+		523F5C772B16338B00A46D4F /* MenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523F5C762B16338B00A46D4F /* MenuButton.swift */; };
+		523F5C792B16412F00A46D4F /* RoutineDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523F5C782B16412F00A46D4F /* RoutineDetailTableViewCell.swift */; };
+		523F5C7B2B165DBF00A46D4F /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523F5C7A2B165DBF00A46D4F /* UIView+Extension.swift */; };
 		525523C02B0B86CA0033D4C6 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525523BF2B0B86CA0033D4C6 /* SettingViewController.swift */; };
 		525523C22B0BA0E50033D4C6 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525523C12B0BA0E50033D4C6 /* SettingTableViewCell.swift */; };
 		525523C42B0BC2D90033D4C6 /* SettingTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525523C32B0BC2D90033D4C6 /* SettingTimeViewController.swift */; };
@@ -55,6 +60,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		523F5C6F2B16314400A46D4F /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		523F5C722B16324900A46D4F /* RoutineStartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineStartViewController.swift; sourceTree = "<group>"; };
+		523F5C762B16338B00A46D4F /* MenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuButton.swift; sourceTree = "<group>"; };
+		523F5C782B16412F00A46D4F /* RoutineDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineDetailTableViewCell.swift; sourceTree = "<group>"; };
+		523F5C7A2B165DBF00A46D4F /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		525523BF2B0B86CA0033D4C6 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		525523C12B0BA0E50033D4C6 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		525523C32B0BC2D90033D4C6 /* SettingTimeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTimeViewController.swift; sourceTree = "<group>"; };
@@ -116,12 +126,45 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		523F5C6E2B16313600A46D4F /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				523F5C6F2B16314400A46D4F /* MainViewController.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		523F5C712B16323200A46D4F /* Routine */ = {
+			isa = PBXGroup;
+			children = (
+				523F5C742B16324E00A46D4F /* RoutineStart */,
+				523F5C782B16412F00A46D4F /* RoutineDetailTableViewCell.swift */,
+			);
+			path = Routine;
+			sourceTree = "<group>";
+		};
+		523F5C742B16324E00A46D4F /* RoutineStart */ = {
+			isa = PBXGroup;
+			children = (
+				523F5C722B16324900A46D4F /* RoutineStartViewController.swift */,
+			);
+			path = RoutineStart;
+			sourceTree = "<group>";
+		};
+		523F5C752B16338000A46D4F /* MenuButton */ = {
+			isa = PBXGroup;
+			children = (
+				523F5C762B16338B00A46D4F /* MenuButton.swift */,
+			);
+			path = MenuButton;
+			sourceTree = "<group>";
+		};
 		525523BE2B0B86BF0033D4C6 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
+				52DDFD132B0E84BB007368CC /* Setting */,
 				52DDFD152B0E84D1007368CC /* SettingRepeat */,
 				52DDFD142B0E84CA007368CC /* SettingTime */,
-				52DDFD132B0E84BB007368CC /* Setting */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -177,6 +220,7 @@
 		525600ED2AEABE4200E122A5 /* UIComponent */ = {
 			isa = PBXGroup;
 			children = (
+				523F5C752B16338000A46D4F /* MenuButton */,
 				525523C52B0BCD1F0033D4C6 /* CancelButton */,
 				525600F42AEADC0800E122A5 /* BackButton */,
 				525600EE2AEABE4C00E122A5 /* MainButton */,
@@ -318,11 +362,13 @@
 		52E873D12AE026CC00662723 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				52DDFD092B0DF8DF007368CC /* Popup */,
-				525523BE2B0B86BF0033D4C6 /* Setting */,
-				528DCD112AF3C90800DD283A /* Result */,
-				528DCD092AF131D800DD283A /* Report */,
 				525600D72AEA822100E122A5 /* Onboarding */,
+				528DCD112AF3C90800DD283A /* Result */,
+				525523BE2B0B86BF0033D4C6 /* Setting */,
+				52DDFD092B0DF8DF007368CC /* Popup */,
+				523F5C6E2B16313600A46D4F /* Main */,
+				523F5C712B16323200A46D4F /* Routine */,
+				528DCD092AF131D800DD283A /* Report */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -369,6 +415,7 @@
 				528DCD0D2AF13AEB00DD283A /* String+Extension.swift */,
 				528DCD0F2AF36CF000DD283A /* UIViewController+Extension.swift */,
 				528DCD142AF3D24A00DD283A /* UILabel+Extension.swift */,
+				523F5C7A2B165DBF00A46D4F /* UIView+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -485,14 +532,17 @@
 				528DCD172AF8CCEA00DD283A /* RoutineTableViewCell.swift in Sources */,
 				525523C92B0BD1240033D4C6 /* SettingDetailTableViewCell.swift in Sources */,
 				525600D02AE67A0600E122A5 /* UIFont+Extension.swift in Sources */,
+				523F5C792B16412F00A46D4F /* RoutineDetailTableViewCell.swift in Sources */,
 				528DCD272B04EF2500DD283A /* ChatEndView.swift in Sources */,
 				52DDFD122B0E7185007368CC /* SettingDayTableViewCell.swift in Sources */,
 				52E873C22AE025E100662723 /* TestViewController.swift in Sources */,
+				523F5C7B2B165DBF00A46D4F /* UIView+Extension.swift in Sources */,
 				525600FA2AEADD9300E122A5 /* UIApplication+Extension.swift in Sources */,
 				525600C72AE6786E00E122A5 /* UserDefaultManager.swift in Sources */,
 				525523C22B0BA0E50033D4C6 /* SettingTableViewCell.swift in Sources */,
 				525600C92AE6787E00E122A5 /* UserDefault.swift in Sources */,
 				525600EC2AEABDB100E122A5 /* BaseTableViewCell.swift in Sources */,
+				523F5C732B16324900A46D4F /* RoutineStartViewController.swift in Sources */,
 				525600DB2AEA89A200E122A5 /* ImageLiteral.swift in Sources */,
 				528DCD2B2B04F76300DD283A /* ChatButton.swift in Sources */,
 				528DCD252B04AB2200DD283A /* ChatCapsuleLabel.swift in Sources */,
@@ -500,6 +550,7 @@
 				528DCD102AF36CF000DD283A /* UIViewController+Extension.swift in Sources */,
 				525523C72B0BCD2A0033D4C6 /* CancelButton.swift in Sources */,
 				528DCD212B049AC300DD283A /* BaseUIView.swift in Sources */,
+				523F5C772B16338B00A46D4F /* MenuButton.swift in Sources */,
 				525600DD2AEA8ACC00E122A5 /* BaseViewController.swift in Sources */,
 				525600CE2AE679EE00E122A5 /* UIColor+Extension.swift in Sources */,
 				52DDFD0B2B0DF8EB007368CC /* PopupViewController.swift in Sources */,
@@ -508,6 +559,7 @@
 				525600F82AEADCE200E122A5 /* UIButton+Extension.swift in Sources */,
 				525523C42B0BC2D90033D4C6 /* SettingTimeViewController.swift in Sources */,
 				52E873BE2AE025E100662723 /* AppDelegate.swift in Sources */,
+				523F5C702B16314400A46D4F /* MainViewController.swift in Sources */,
 				528DCD1F2B04965100DD283A /* ChatStartView.swift in Sources */,
 				525600D92AEA824600E122A5 /* TextLiteral.swift in Sources */,
 				528DCD1D2B0492B000DD283A /* ChatViewController.swift in Sources */,

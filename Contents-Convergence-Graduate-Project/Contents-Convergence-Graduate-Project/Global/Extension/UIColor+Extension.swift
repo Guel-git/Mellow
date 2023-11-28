@@ -29,7 +29,9 @@ extension UIColor {
     static var fontWhite: UIColor {
         return UIColor(hex: "FFFFFF")
     }
-    
+    static var fontGray: UIColor {
+        return UIColor(hex: "949494")
+    }
 }
 
 extension UIColor {

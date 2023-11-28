@@ -169,7 +169,6 @@ extension SettingRepeatViewController: UITableViewDelegate {
             } else {
                 selectedIndexArray.append(indexPath.item)
             }
-            print(selectedIndexArray)
         }
     }
 }

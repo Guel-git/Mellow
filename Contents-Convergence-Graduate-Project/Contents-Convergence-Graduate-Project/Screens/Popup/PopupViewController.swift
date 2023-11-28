@@ -85,6 +85,7 @@ final class PopupViewController: BaseViewController {
     }
     
     private func navigateToMainViewController() {
-        // FIXME: - main vc 로 navigate
+        let mainViewController = MainViewController()
+        navigationController?.pushViewController(mainViewController, animated: true)
     }
 }

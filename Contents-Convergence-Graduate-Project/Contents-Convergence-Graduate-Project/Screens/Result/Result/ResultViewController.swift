@@ -208,7 +208,6 @@ final class ResultViewController: BaseViewController {
         super.viewDidLoad()
         setRoutineTableView()
         setButtonAction()
-        print(resultType)
     }
     
     override func render() {
