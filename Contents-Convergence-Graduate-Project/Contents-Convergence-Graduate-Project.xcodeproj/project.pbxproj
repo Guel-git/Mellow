@@ -12,6 +12,9 @@
 		523F5C772B16338B00A46D4F /* MenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523F5C762B16338B00A46D4F /* MenuButton.swift */; };
 		523F5C792B16412F00A46D4F /* RoutineDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523F5C782B16412F00A46D4F /* RoutineDetailTableViewCell.swift */; };
 		523F5C7B2B165DBF00A46D4F /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523F5C7A2B165DBF00A46D4F /* UIView+Extension.swift */; };
+		523F5C7D2B1705EA00A46D4F /* SleepType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523F5C7C2B1705EA00A46D4F /* SleepType.swift */; };
+		523F5C7F2B17151B00A46D4F /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523F5C7E2B17151B00A46D4F /* Date+Extension.swift */; };
+		523F5C822B1724CC00A46D4F /* RoutineProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523F5C812B1724CB00A46D4F /* RoutineProgressViewController.swift */; };
 		525523C02B0B86CA0033D4C6 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525523BF2B0B86CA0033D4C6 /* SettingViewController.swift */; };
 		525523C22B0BA0E50033D4C6 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525523C12B0BA0E50033D4C6 /* SettingTableViewCell.swift */; };
 		525523C42B0BC2D90033D4C6 /* SettingTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525523C32B0BC2D90033D4C6 /* SettingTimeViewController.swift */; };
@@ -65,6 +68,9 @@
 		523F5C762B16338B00A46D4F /* MenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuButton.swift; sourceTree = "<group>"; };
 		523F5C782B16412F00A46D4F /* RoutineDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineDetailTableViewCell.swift; sourceTree = "<group>"; };
 		523F5C7A2B165DBF00A46D4F /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		523F5C7C2B1705EA00A46D4F /* SleepType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepType.swift; sourceTree = "<group>"; };
+		523F5C7E2B17151B00A46D4F /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		523F5C812B1724CB00A46D4F /* RoutineProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineProgressViewController.swift; sourceTree = "<group>"; };
 		525523BF2B0B86CA0033D4C6 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		525523C12B0BA0E50033D4C6 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		525523C32B0BC2D90033D4C6 /* SettingTimeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTimeViewController.swift; sourceTree = "<group>"; };
@@ -138,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				523F5C742B16324E00A46D4F /* RoutineStart */,
+				523F5C802B1724B700A46D4F /* RoutineProgress */,
 				523F5C782B16412F00A46D4F /* RoutineDetailTableViewCell.swift */,
 			);
 			path = Routine;
@@ -157,6 +164,14 @@
 				523F5C762B16338B00A46D4F /* MenuButton.swift */,
 			);
 			path = MenuButton;
+			sourceTree = "<group>";
+		};
+		523F5C802B1724B700A46D4F /* RoutineProgress */ = {
+			isa = PBXGroup;
+			children = (
+				523F5C812B1724CB00A46D4F /* RoutineProgressViewController.swift */,
+			);
+			path = RoutineProgress;
 			sourceTree = "<group>";
 		};
 		525523BE2B0B86BF0033D4C6 /* Setting */ = {
@@ -284,6 +299,7 @@
 			isa = PBXGroup;
 			children = (
 				525600C82AE6787E00E122A5 /* UserDefault.swift */,
+				523F5C7C2B1705EA00A46D4F /* SleepType.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -416,6 +432,7 @@
 				528DCD0F2AF36CF000DD283A /* UIViewController+Extension.swift */,
 				528DCD142AF3D24A00DD283A /* UILabel+Extension.swift */,
 				523F5C7A2B165DBF00A46D4F /* UIView+Extension.swift */,
+				523F5C7E2B17151B00A46D4F /* Date+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -546,6 +563,7 @@
 				525600DB2AEA89A200E122A5 /* ImageLiteral.swift in Sources */,
 				528DCD2B2B04F76300DD283A /* ChatButton.swift in Sources */,
 				528DCD252B04AB2200DD283A /* ChatCapsuleLabel.swift in Sources */,
+				523F5C822B1724CC00A46D4F /* RoutineProgressViewController.swift in Sources */,
 				528DCD0B2AF131F000DD283A /* ReportViewController.swift in Sources */,
 				528DCD102AF36CF000DD283A /* UIViewController+Extension.swift in Sources */,
 				525523C72B0BCD2A0033D4C6 /* CancelButton.swift in Sources */,
@@ -557,11 +575,13 @@
 				525523CB2B0BDD2B0033D4C6 /* SettingRepeatViewController.swift in Sources */,
 				528DCD0E2AF13AEB00DD283A /* String+Extension.swift in Sources */,
 				525600F82AEADCE200E122A5 /* UIButton+Extension.swift in Sources */,
+				523F5C7D2B1705EA00A46D4F /* SleepType.swift in Sources */,
 				525523C42B0BC2D90033D4C6 /* SettingTimeViewController.swift in Sources */,
 				52E873BE2AE025E100662723 /* AppDelegate.swift in Sources */,
 				523F5C702B16314400A46D4F /* MainViewController.swift in Sources */,
 				528DCD1F2B04965100DD283A /* ChatStartView.swift in Sources */,
 				525600D92AEA824600E122A5 /* TextLiteral.swift in Sources */,
+				523F5C7F2B17151B00A46D4F /* Date+Extension.swift in Sources */,
 				528DCD1D2B0492B000DD283A /* ChatViewController.swift in Sources */,
 				528DCD132AF3C91400DD283A /* ResultViewController.swift in Sources */,
 				52DDFD102B0E02E1007368CC /* NotificationManager.swift in Sources */,

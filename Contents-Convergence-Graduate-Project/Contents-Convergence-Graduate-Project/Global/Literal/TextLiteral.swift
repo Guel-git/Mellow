@@ -13,6 +13,11 @@ enum TextLiteral {
     
     static let confirmText = "확인"
     static let startText = "시작하기"
+    static let hourText = "시"
+    static let minuteText = "분"
+    static let secondText = "초"
+    static let moringText = "오전 "
+    static let afternoonText = "오후 "
     
     // MARK: - title
     
@@ -119,5 +124,17 @@ enum TextLiteral {
     enum PopupView {
         static let titleLabelText = "정확한 수면 측정을 위해\n권한을 허용해주세요."
         static let navigationTitleText = "취침 시간 설정하기"
+    }
+    
+    // MARK: - RoutineStartView
+    
+    enum RoutineStartView {
+        static let beforeLabelText = "수면 전"
+        static let afterLabelText = "수면 후"
+        static let hourText = "시간"
+        static let navigationTitleText = "추천 수면 루틴"
+        static let recommendTimeText = "권장 시간 : "
+        static let promiseTimeText = "약속 시간 : "
+        static let duringCellText = "스마트폰 없이 잠들기"
     }
 }

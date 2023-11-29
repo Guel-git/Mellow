@@ -249,6 +249,7 @@ final class TestViewController: BaseViewController {
     private func navigateToNextQuestion() {
         totalAnswer += selectedAnswer
         if questionNum.rawValue == 4 {
+            UserDefaultManager.sleepType = calculateScore()
             let resultViewController = ResultViewController(resultType: calculateScore())
             resultViewController.navigationItem.hidesBackButton = true
             self.navigationController?.pushViewController(resultViewController, animated: true)

@@ -9,6 +9,9 @@ import UIKit
 
 final class RoutineStartViewController: BaseViewController {
     
+    let sleepType = UserDefaultManager.sleepType
+    private var wakeUpTime = ""
+    
     // MARK: - property
     
     private let backButton = BackButton(type: .system)
@@ -22,7 +25,7 @@ final class RoutineStartViewController: BaseViewController {
     }()
     private let beforeLabel: UILabel = {
         let label = UILabel()
-        label.text = "수면 전"
+        label.text = TextLiteral.RoutineStartView.beforeLabelText
         label.textColor = .fontGray
         label.font = .m16
         return label
@@ -31,7 +34,6 @@ final class RoutineStartViewController: BaseViewController {
     private let beforeTableView = UITableView()
     private let beforeTimeLabel: UILabel = {
         let label = UILabel()
-        label.text = "4분\n30초"
         label.textColor = .fontGray
         label.font = .r12
         label.numberOfLines = 0
@@ -46,7 +48,7 @@ final class RoutineStartViewController: BaseViewController {
     }()
     private let duringLabel: UILabel = {
         let label = UILabel()
-        label.text = "수면 시작"
+        label.text = TextLiteral.startText
         label.textColor = .fontGray
         label.font = .m16
         return label
@@ -55,7 +57,7 @@ final class RoutineStartViewController: BaseViewController {
     private let duringTableView = UITableView()
     private let duringTimeLabel: UILabel = {
         let label = UILabel()
-        label.text = "11시간"
+        label.text = String(UserDefaultManager.sleepHour) + TextLiteral.RoutineStartView.hourText
         label.textColor = .fontGray
         label.font = .r12
         label.numberOfLines = 0
@@ -70,7 +72,7 @@ final class RoutineStartViewController: BaseViewController {
     }()
     private let afterLabel: UILabel = {
         let label = UILabel()
-        label.text = "수면 후"
+        label.text = TextLiteral.RoutineStartView.afterLabelText
         label.textColor = .fontGray
         label.font = .m16
         return label
@@ -79,7 +81,6 @@ final class RoutineStartViewController: BaseViewController {
     private let afterTableView = UITableView()
     private let afterTimeLabel: UILabel = {
         let label = UILabel()
-        label.text = "4분\n30초"
         label.textColor = .fontGray
         label.font = .r12
         label.numberOfLines = 0
@@ -88,7 +89,7 @@ final class RoutineStartViewController: BaseViewController {
     }()
     private let mainButton: MainButton = {
         let button = MainButton()
-        button.title = "시작하기"
+        button.title = TextLiteral.startText
         button.isDisabled = false
         return button
     }()
@@ -99,13 +100,12 @@ final class RoutineStartViewController: BaseViewController {
         super.viewDidLoad()
         setButtonAction()
         setTableView()
+        setTimeLabel()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        beforeDashView.addDashedLine()
-        duringDashView.addDashedLine()
-        afterDashView.addDashedLine()
+        addDashLine()
     }
     
     override func render() {
@@ -147,18 +147,18 @@ final class RoutineStartViewController: BaseViewController {
             $0.top.equalTo(beforeLabel.snp.bottom).offset(12)
             $0.trailing.equalToSuperview()
             $0.width.equalTo(UIScreen.main.bounds.width * 0.8)
-            $0.height.equalTo(264) // 2 - 176, 3 - 264
+            $0.height.equalTo(sleepType.routineDetailViewHeight)
         }
         
         beforeDashView.snp.makeConstraints {
             $0.trailing.equalTo(beforeTableView.snp.leading).offset(-16)
             $0.width.equalTo(1)
-            $0.height.equalTo(265) // 2 - 177, 3 - 265
+            $0.height.equalTo(sleepType.routineDetailViewHeight + 1)
             $0.centerY.equalTo(beforeTableView.snp.centerY)
         }
         
         beforeTimeLabel.snp.makeConstraints {
-            $0.trailing.equalTo(beforeDashView.snp.leading).offset(-10)
+            $0.trailing.equalTo(beforeDashView.snp.leading).offset(-14)
             $0.centerY.equalTo(beforeDashView.snp.centerY)
         }
         
@@ -235,7 +235,7 @@ final class RoutineStartViewController: BaseViewController {
         navigationController?.navigationBar.prefersLargeTitles = false
         navigationItem.largeTitleDisplayMode = .never
         navigationItem.leftBarButtonItem = backButton
-        navigationItem.title = "추천 수면 루틴"
+        navigationItem.title = TextLiteral.RoutineStartView.navigationTitleText
         navigationController?.navigationBar.tintColor = .fontBlack
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.fontBlack, NSAttributedString.Key.font: UIFont.sb16]
         
@@ -253,8 +253,8 @@ final class RoutineStartViewController: BaseViewController {
     }
     
     private func navigateToRoutineProgressViewController() {
-//        let routineStartViewController = RoutineStartViewController()
-//        navigationController?.pushViewController(routineStartViewController, animated: true)
+        let routineProgressViewController = RoutineProgressViewController()
+        navigationController?.pushViewController(routineProgressViewController, animated: true)
     }
     
     private func setTableView() {
@@ -267,6 +267,24 @@ final class RoutineStartViewController: BaseViewController {
             $0.separatorStyle = .none
             $0.isScrollEnabled = false
         }
+    }
+    
+    private func addDashLine() {
+        beforeDashView.addDashedLine()
+        duringDashView.addDashedLine()
+        afterDashView.addDashedLine()
+    }
+    
+    private func setTimeLabel() {
+        var totalBeforeTime = 0, totalAfterTime = 0
+        sleepType.routineBeforeTime.forEach {
+            totalBeforeTime += Int($0)!
+        }
+        sleepType.routineAfterTime.forEach {
+            totalAfterTime += Int($0)!
+        }
+        beforeTimeLabel.text = String(totalBeforeTime).secondToMinuteWithSpacing()
+        afterTimeLabel.text = String(totalAfterTime).secondToMinuteWithSpacing()
     }
 }
 
@@ -282,11 +300,11 @@ extension RoutineStartViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch tableView {
         case beforeTableView:
-            return 3
+            return sleepType.routineBeforeArray.count
         case duringTableView:
             return 1
         case afterTableView:
-            return 3
+            return sleepType.routineAfterArray.count
         default:
             return 0
         }
@@ -297,14 +315,22 @@ extension RoutineStartViewController: UITableViewDataSource {
         case beforeTableView:
             let beforeCell = beforeTableView.dequeueReusableCell(withIdentifier: RoutineDetailTableViewCell.cellId, for: indexPath) as! RoutineDetailTableViewCell
             beforeCell.selectionStyle = .none
+            beforeCell.cellLabel.text = sleepType.routineBeforeArray[indexPath.item]
+            beforeCell.cellImage.image = sleepType.routineBeforeImage[indexPath.item]
+            beforeCell.cellSubLabel.text = TextLiteral.RoutineStartView.recommendTimeText + sleepType.routineBeforeTime[indexPath.item].secondToMinute()
             return beforeCell
         case duringTableView:
             let duringCell = duringTableView.dequeueReusableCell(withIdentifier: RoutineDetailTableViewCell.cellId, for: indexPath) as! RoutineDetailTableViewCell
+            duringCell.cellLabel.text = [TextLiteral.RoutineStartView.duringCellText][indexPath.item]
+            duringCell.cellImage.image = ImageLiteral.phoneImage
             duringCell.selectionStyle = .none
             return duringCell
         case afterTableView:
             let afterCell = duringTableView.dequeueReusableCell(withIdentifier: RoutineDetailTableViewCell.cellId, for: indexPath) as! RoutineDetailTableViewCell
             afterCell.selectionStyle = .none
+            afterCell.cellLabel.text = sleepType.routineAfterArray[indexPath.item]
+            afterCell.cellImage.image = sleepType.routineAfterImage[indexPath.item]
+            afterCell.cellSubLabel.text = indexPath.item == 0 ? TextLiteral.RoutineStartView.promiseTimeText + UserDefaultManager.sleepTime.calculateSleepTime() : TextLiteral.RoutineStartView.recommendTimeText + sleepType.routineAfterTime[indexPath.item - 1].secondToMinute()
             return afterCell
         default:
             let beforeCell = beforeTableView.dequeueReusableCell(withIdentifier: RoutineDetailTableViewCell.cellId, for: indexPath) as! RoutineDetailTableViewCell

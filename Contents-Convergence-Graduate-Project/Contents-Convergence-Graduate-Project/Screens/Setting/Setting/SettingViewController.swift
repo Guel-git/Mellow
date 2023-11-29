@@ -121,8 +121,15 @@ final class SettingViewController: BaseViewController {
     }
     
     private func navigateToPopupViewController() {
+        UserDefaultManager.sleepHour = parseSleepHour()
+        UserDefaultManager.sleepTime = sleepTimePicker.date.dateToTimeString
         let popupViewController = PopupViewController()
         navigationController?.pushViewController(popupViewController, animated: true)
+    }
+    
+    private func parseSleepHour() -> Int {
+        let hour = resultArray[0].dropLast(2)
+        return Int(String(hour))!
     }
 }
 
