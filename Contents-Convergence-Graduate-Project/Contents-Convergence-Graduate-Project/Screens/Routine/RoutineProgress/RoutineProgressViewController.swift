@@ -9,15 +9,19 @@ import UIKit
 
 final class RoutineProgressViewController: BaseViewController {
     
-    var sleepType = UserDefaultManager.sleepType
-    var stageNum: Int
+    private var sleepType = SleepType(rawValue: UserDefaultManager.sleepType)
+    private let isBefore: Bool
+    private let stageNum: Int
+    private let firstTime = Date()
+    
+    private var countdownTimer: Timer?
+    private var targetTime: TimeInterval?
     
     // MARK: - property
     
     private let backButton = BackButton(type: .system)
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "내일 입을 옷 꺼내두기"
         label.textColor = .fontBlack
         label.font = .sb24
         return label
@@ -29,10 +33,10 @@ final class RoutineProgressViewController: BaseViewController {
         view.layer.borderWidth = 5
         return view
     }()
-    private let routineImage = UIImageView(image: ImageLiteral.clothesImage)
+    private let routineImage = UIImageView()
     private let timerLabel: UILabel = {
         let label = UILabel()
-        label.text = "00:56"
+        label.text = "00:00"
         label.textColor = .fontBlack
         label.font = .sb36
         return label
@@ -40,9 +44,7 @@ final class RoutineProgressViewController: BaseViewController {
     private let nextButton: UIButton = {
         let button = UIButton()
         button.setTitle("건너뛰기", for: .normal)
-        button.setTitle("완료!", for: .highlighted)
         button.setTitleColor(.fontBlack, for: .normal)
-        button.setTitleColor(.fontBlack, for: .highlighted)
         button.backgroundColor = .systemSub
         button.titleLabel?.font = .m16
         button.layer.cornerRadius = 8
@@ -56,16 +58,13 @@ final class RoutineProgressViewController: BaseViewController {
     }()
     private let descriptionLabel: UILabel = {
         let label = UILabel()
-        label.setTextWithLineHeight(text: "내일에 대한 기대감을 높이고,\n아침에 느끼는 의사결정의 피로감을 줄여줘요.", lineHeight: 19)
         label.textColor = .fontGray
         label.font = .m14
         label.numberOfLines = 2
-        label.textAlignment = .center
         return label
     }()
     private let nextRoutineLabel: UILabel = {
         let label = UILabel()
-        label.text = "다음 루틴 : 물 떠놓기"
         label.textColor = .fontGray
         label.font = .m14
         return label
@@ -73,12 +72,28 @@ final class RoutineProgressViewController: BaseViewController {
     
     // MARK: - life cycle
     
-    init(stageNum: Int) {
+    init(stageNum: Int, isBefore: Bool) {
         self.stageNum = stageNum
+        self.isBefore = isBefore
         super.init()
     }
     
     required init?(coder: NSCoder) { nil }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        targetTime = TimeInterval(Int(isBefore ? (sleepType?.routineBeforeTime[stageNum] ?? "0") : (sleepType?.routineAfterTime[stageNum] ?? "0"))!)
+        startTimer()
+        titleLabel.text = isBefore ? sleepType?.routineBeforeArray[stageNum] : sleepType?.routineAfterArray[stageNum + 1]
+        routineImage.image = isBefore ? sleepType?.routineBeforeImage[stageNum] : sleepType?.routineAfterImage[stageNum + 1]
+        descriptionLabel.setTextWithLineHeight(text: isBefore ? sleepType?.routineBeforeContentArray[stageNum] : sleepType?.routineAfterContentArray[stageNum], lineHeight: 19)
+        descriptionLabel.textAlignment = .center
+        let count = isBefore ? (sleepType?.routineBeforeArray.count ?? 0) : (sleepType?.routineAfterArray.count ?? 0) - 1
+        if stageNum < count - 1 {
+            nextRoutineLabel.text = "다음 루틴 : " + (isBefore ? (sleepType?.routineBeforeArray[stageNum + 1] ?? String()) : (sleepType?.routineAfterArray[stageNum + 1] ?? String()))
+        }
+        setButtonAction()
+    }
     
     override func render() {
         [titleLabel, circularView, timerLabel, nextButton, descriptionBackView, nextRoutineLabel].forEach {
@@ -140,7 +155,7 @@ final class RoutineProgressViewController: BaseViewController {
         navigationController?.navigationBar.prefersLargeTitles = false
         navigationItem.largeTitleDisplayMode = .never
         navigationItem.leftBarButtonItem = backButton
-        navigationItem.title = "수면 전"
+        navigationItem.title = isBefore ? "수면 전" : "수면 후"
         navigationController?.navigationBar.tintColor = .fontBlack
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.fontBlack, NSAttributedString.Key.font: UIFont.sb16]
         
@@ -148,5 +163,56 @@ final class RoutineProgressViewController: BaseViewController {
         appearance.configureWithTransparentBackground()
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
+    }
+    
+    private func setButtonAction() {
+        let action = UIAction { [weak self] _ in
+            self?.navigateToNextRoutine()
+        }
+        nextButton.addAction(action, for: .touchUpInside)
+    }
+    
+    private func navigateToNextRoutine() {
+        if isBefore {
+            let beforeCount = sleepType?.routineBeforeArray.count ?? 0
+            if stageNum < beforeCount - 1 {
+                let routineProgressViewController = RoutineProgressViewController(stageNum: stageNum + 1, isBefore: true)
+                navigationController?.pushViewController(routineProgressViewController, animated: true)
+            } else {
+                let routineDoneViewController = RoutineDoneViewController(isBefore: true)
+                navigationController?.pushViewController(routineDoneViewController, animated: true)
+            }
+        } else {
+            let afterCount = sleepType?.routineAfterTime.count ?? 0
+            if stageNum < afterCount - 1 {
+                let routineProgressViewController = RoutineProgressViewController(stageNum: stageNum + 1, isBefore: false)
+                navigationController?.pushViewController(routineProgressViewController, animated: true)
+            } else {
+                let routineDoneViewController = RoutineDoneViewController(isBefore: false)
+                navigationController?.pushViewController(routineDoneViewController, animated: true)
+            }
+        }
+    }
+
+    private func startTimer() {
+        countdownTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+    }
+
+    @objc private func updateTimer() {
+        guard let targetTime = targetTime else { return }
+        
+        let currentTime = Date()
+        let target = firstTime.addingTimeInterval(targetTime)
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.minute, .second], from: currentTime, to: target)
+        
+        if let minute = components.minute, let second = components.second {
+            let formattedString = String(format: "%02d:%02d", minute, second)
+            timerLabel.text = formattedString
+            
+            if minute == 0, second == 0 {
+                countdownTimer?.invalidate()
+            }
+        }
     }
 }

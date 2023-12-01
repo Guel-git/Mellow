@@ -149,4 +149,22 @@ enum SleepType: String {
             return 264
         }
     }
+    
+    var routineBeforeContentArray: [String] {
+        switch self {
+        case .Best, .Baby:
+            return TextLiteral.RoutineProgressView.shortRoutineContentBeforeArray
+        case .Zombie, .Nervous:
+            return TextLiteral.RoutineProgressView.longRoutineContentBeforeArray
+        }
+    }
+    
+    var routineAfterContentArray: [String] {
+        switch self {
+        case .Best, .Baby:
+            return TextLiteral.RoutineProgressView.shortRoutineContentAfterArray
+        case .Zombie, .Nervous:
+            return TextLiteral.RoutineProgressView.longRoutineContentAfterArray
+        }
+    }
 }

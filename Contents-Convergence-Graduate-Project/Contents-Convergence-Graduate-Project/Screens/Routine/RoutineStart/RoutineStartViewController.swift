@@ -209,13 +209,13 @@ final class RoutineStartViewController: BaseViewController {
             $0.top.equalTo(afterLabel.snp.bottom).offset(12)
             $0.trailing.equalToSuperview()
             $0.width.equalTo(UIScreen.main.bounds.width * 0.8)
-            $0.height.equalTo(264)
+            $0.height.equalTo(sleepType.routineDetailViewHeight)
         }
         
         afterDashView.snp.makeConstraints {
             $0.trailing.equalTo(afterTableView.snp.leading).offset(-16)
             $0.width.equalTo(1)
-            $0.height.equalTo(265)
+            $0.height.equalTo(sleepType.routineDetailViewHeight + 1)
             $0.centerY.equalTo(afterTableView.snp.centerY)
             $0.bottom.equalTo(0)
         }
@@ -253,7 +253,7 @@ final class RoutineStartViewController: BaseViewController {
     }
     
     private func navigateToRoutineProgressViewController() {
-        let routineProgressViewController = RoutineProgressViewController(stageNum: 0)
+        let routineProgressViewController = RoutineProgressViewController(stageNum: 0, isBefore: true)
         navigationController?.pushViewController(routineProgressViewController, animated: true)
     }
     

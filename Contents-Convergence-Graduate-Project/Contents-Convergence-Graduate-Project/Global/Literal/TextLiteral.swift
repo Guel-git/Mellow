@@ -137,4 +137,13 @@ enum TextLiteral {
         static let promiseTimeText = "약속 시간 : "
         static let duringCellText = "스마트폰 없이 잠들기"
     }
+    
+    // MARK: - RoutineProgressView
+    
+    enum RoutineProgressView {
+        static let shortRoutineContentBeforeArray = ["내일에 대한 기대감을 높이고,\n아침에 느끼는 의사결정의 피로감을 줄여줘요.", "혈액 순환을 책임지는 물 한컵,\n내일의 나를 위한 선물을 준비해요."]
+        static let shortRoutineContentAfterArray = ["어제 나를 위해 떠 둔 물 한 컵을 마시고,\n기분 좋은 하루의 시작을 맞이해요."]
+        static let longRoutineContentBeforeArray = ["내일에 대한 기대감을 높이고,\n아침에 느끼는 의사결정의 피로감을 줄여줘요.", "혈액 순환을 책임지는 물 한컵,\n내일의 나를 위한 선물을 준비해요.", "아주 흐릿한 빛이라도,\n수면 중 빛은 수면의 질과 뇌기능을 저하시켜요."]
+        static let longRoutineContentAfterArray = ["기상 후 맞는 햇빛은\n기분을 개선하는 세로토닌을 만들어줘요.", "어제 나를 위해 떠 둔 물 한 컵을 마시고,\n기분 좋은 하루의 시작을 맞이해요."]
+    }
 }
