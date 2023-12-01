@@ -36,14 +36,14 @@ final class RoutineProgressViewController: BaseViewController {
     private let routineImage = UIImageView()
     private let timerLabel: UILabel = {
         let label = UILabel()
-        label.text = "00:00"
-        label.textColor = .fontBlack
+        label.text = TextLiteral.RoutineProgressView.timerPlaceHolderText
+        label.textColor = .fontGray
         label.font = .sb36
         return label
     }()
     private let nextButton: UIButton = {
         let button = UIButton()
-        button.setTitle("건너뛰기", for: .normal)
+        button.setTitle(TextLiteral.RoutineProgressView.jumpText, for: .normal)
         button.setTitleColor(.fontBlack, for: .normal)
         button.backgroundColor = .systemSub
         button.titleLabel?.font = .m16
@@ -82,16 +82,7 @@ final class RoutineProgressViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        targetTime = TimeInterval(Int(isBefore ? (sleepType?.routineBeforeTime[stageNum] ?? "0") : (sleepType?.routineAfterTime[stageNum] ?? "0"))!)
-        startTimer()
-        titleLabel.text = isBefore ? sleepType?.routineBeforeArray[stageNum] : sleepType?.routineAfterArray[stageNum + 1]
-        routineImage.image = isBefore ? sleepType?.routineBeforeImage[stageNum] : sleepType?.routineAfterImage[stageNum + 1]
-        descriptionLabel.setTextWithLineHeight(text: isBefore ? sleepType?.routineBeforeContentArray[stageNum] : sleepType?.routineAfterContentArray[stageNum], lineHeight: 19)
-        descriptionLabel.textAlignment = .center
-        let count = isBefore ? (sleepType?.routineBeforeArray.count ?? 0) : (sleepType?.routineAfterArray.count ?? 0) - 1
-        if stageNum < count - 1 {
-            nextRoutineLabel.text = "다음 루틴 : " + (isBefore ? (sleepType?.routineBeforeArray[stageNum + 1] ?? String()) : (sleepType?.routineAfterArray[stageNum + 1] ?? String()))
-        }
+        bindUI()
         setButtonAction()
     }
     
@@ -155,7 +146,7 @@ final class RoutineProgressViewController: BaseViewController {
         navigationController?.navigationBar.prefersLargeTitles = false
         navigationItem.largeTitleDisplayMode = .never
         navigationItem.leftBarButtonItem = backButton
-        navigationItem.title = isBefore ? "수면 전" : "수면 후"
+        navigationItem.title = isBefore ? TextLiteral.RoutineStartView.beforeLabelText : TextLiteral.RoutineStartView.afterLabelText
         navigationController?.navigationBar.tintColor = .fontBlack
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.fontBlack, NSAttributedString.Key.font: UIFont.sb16]
         
@@ -163,6 +154,21 @@ final class RoutineProgressViewController: BaseViewController {
         appearance.configureWithTransparentBackground()
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
+    }
+    
+    private func bindUI() {
+        targetTime = TimeInterval(Int(isBefore ? (sleepType?.routineBeforeTime[stageNum] ?? "0") : (sleepType?.routineAfterTime[stageNum] ?? "0"))!)
+        startTimer()
+        
+        titleLabel.text = isBefore ? sleepType?.routineBeforeArray[stageNum] : sleepType?.routineAfterArray[stageNum + 1]
+        routineImage.image = isBefore ? sleepType?.routineBeforeImage[stageNum] : sleepType?.routineAfterImage[stageNum + 1]
+        descriptionLabel.setTextWithLineHeight(text: isBefore ? sleepType?.routineBeforeContentArray[stageNum] : sleepType?.routineAfterContentArray[stageNum], lineHeight: 19)
+        descriptionLabel.textAlignment = .center
+        
+        let count = isBefore ? (sleepType?.routineBeforeArray.count ?? 0) : (sleepType?.routineAfterArray.count ?? 0) - 1
+        if stageNum < count - 1 {
+            nextRoutineLabel.text = TextLiteral.RoutineProgressView.nextRoutineText + (isBefore ? (sleepType?.routineBeforeArray[stageNum + 1] ?? String()) : (sleepType?.routineAfterArray[stageNum + 1] ?? String()))
+        }
     }
     
     private func setButtonAction() {
@@ -173,25 +179,9 @@ final class RoutineProgressViewController: BaseViewController {
     }
     
     private func navigateToNextRoutine() {
-        if isBefore {
-            let beforeCount = sleepType?.routineBeforeArray.count ?? 0
-            if stageNum < beforeCount - 1 {
-                let routineProgressViewController = RoutineProgressViewController(stageNum: stageNum + 1, isBefore: true)
-                navigationController?.pushViewController(routineProgressViewController, animated: true)
-            } else {
-                let routineDoneViewController = RoutineDoneViewController(isBefore: true)
-                navigationController?.pushViewController(routineDoneViewController, animated: true)
-            }
-        } else {
-            let afterCount = sleepType?.routineAfterTime.count ?? 0
-            if stageNum < afterCount - 1 {
-                let routineProgressViewController = RoutineProgressViewController(stageNum: stageNum + 1, isBefore: false)
-                navigationController?.pushViewController(routineProgressViewController, animated: true)
-            } else {
-                let routineDoneViewController = RoutineDoneViewController(isBefore: false)
-                navigationController?.pushViewController(routineDoneViewController, animated: true)
-            }
-        }
+        let count = isBefore ? (sleepType?.routineBeforeArray.count ?? 0) : (sleepType?.routineAfterTime.count ?? 0)
+        let viewController = stageNum < count - 1 ? RoutineProgressViewController(stageNum: stageNum + 1, isBefore: isBefore) : RoutineDoneViewController(isBefore: isBefore)
+        navigationController?.pushViewController(viewController, animated: true)
     }
 
     private func startTimer() {
@@ -209,9 +199,12 @@ final class RoutineProgressViewController: BaseViewController {
         if let minute = components.minute, let second = components.second {
             let formattedString = String(format: "%02d:%02d", minute, second)
             timerLabel.text = formattedString
+            timerLabel.textColor = .fontBlack
             
             if minute == 0, second == 0 {
                 countdownTimer?.invalidate()
+                nextButton.setTitle(TextLiteral.RoutineProgressView.doneText, for: .normal)
+                nextButton.backgroundColor = .systemMain
             }
         }
     }
