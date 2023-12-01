@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
 //        let viewController = UINavigationController(rootViewController: SplashViewController())
-        let viewController = UINavigationController(rootViewController: RoutineStartViewController())
+        let viewController = UINavigationController(rootViewController: RoutineProgressViewController(stageNum: 0))
         window?.rootViewController = viewController
         window?.makeKeyAndVisible()
     }

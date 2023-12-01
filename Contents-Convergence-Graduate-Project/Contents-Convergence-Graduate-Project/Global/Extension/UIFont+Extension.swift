@@ -21,6 +21,9 @@ extension UIFont {
     }
     
     // MARK: - header
+    static var sb36: UIFont {
+        return font(.semiBold, ofSize: 36)
+    }
     static var sb20: UIFont {
         return font(.semiBold, ofSize: 20)
     }

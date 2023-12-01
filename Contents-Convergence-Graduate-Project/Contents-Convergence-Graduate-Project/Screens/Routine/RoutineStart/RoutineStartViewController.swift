@@ -9,7 +9,7 @@ import UIKit
 
 final class RoutineStartViewController: BaseViewController {
     
-    let sleepType = UserDefaultManager.sleepType
+    let sleepType = SleepType(rawValue: UserDefaultManager.sleepType) ?? SleepType.Zombie
     private var wakeUpTime = ""
     
     // MARK: - property
@@ -253,7 +253,7 @@ final class RoutineStartViewController: BaseViewController {
     }
     
     private func navigateToRoutineProgressViewController() {
-        let routineProgressViewController = RoutineProgressViewController()
+        let routineProgressViewController = RoutineProgressViewController(stageNum: 0)
         navigationController?.pushViewController(routineProgressViewController, animated: true)
     }
     

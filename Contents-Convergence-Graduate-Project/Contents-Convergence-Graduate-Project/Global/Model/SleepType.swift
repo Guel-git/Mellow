@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum SleepType: Character {
+enum SleepType: String {
     case Best = "0"
     case Zombie = "1"
     case Baby = "2"

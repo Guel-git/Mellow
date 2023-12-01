@@ -249,7 +249,7 @@ final class TestViewController: BaseViewController {
     private func navigateToNextQuestion() {
         totalAnswer += selectedAnswer
         if questionNum.rawValue == 4 {
-            UserDefaultManager.sleepType = calculateScore()
+            UserDefaultManager.sleepType = calculateScore().rawValue
             let resultViewController = ResultViewController(resultType: calculateScore())
             resultViewController.navigationItem.hidesBackButton = true
             self.navigationController?.pushViewController(resultViewController, animated: true)
@@ -264,7 +264,7 @@ final class TestViewController: BaseViewController {
     private func calculateScore() -> SleepType {
         var typeDictionary: [SleepType:Int] = [.Best:0, .Zombie:0, .Baby:0, .Nervous:0]
         for type in typeDictionary.keys {
-            typeDictionary[type] = totalAnswer.filter { $0 == type.rawValue }.count
+            typeDictionary[type] = totalAnswer.filter { $0 == Character(type.rawValue) }.count
         }
         if let maxType = typeDictionary.max(by: { $0.value < $1.value }) {
             return maxType.key

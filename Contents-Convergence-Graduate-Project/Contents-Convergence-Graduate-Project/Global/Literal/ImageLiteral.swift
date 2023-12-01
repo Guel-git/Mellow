@@ -44,6 +44,10 @@ enum ImageLiteral {
     static var longRoutineAfterImage = [clockImage, lightImage, drinkImage]
     static var duringRoutineImage = [phoneImage]
     
+    static var happyImage: UIImage { .load(name: "happy") }
+    static var sosoImage: UIImage { .load(name: "soso") }
+    static var sadImage: UIImage { .load(name: "sad") }
+    
 }
 
 extension UIImage {
