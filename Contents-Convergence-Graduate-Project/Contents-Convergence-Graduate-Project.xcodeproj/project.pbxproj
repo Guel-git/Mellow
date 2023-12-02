@@ -223,13 +223,14 @@
 			path = CancelButton;
 			sourceTree = "<group>";
 		};
-		525600C52AE6785B00E122A5 /* Manager */ = {
+		525600C52AE6785B00E122A5 /* Singleton */ = {
 			isa = PBXGroup;
 			children = (
+				525600C82AE6787E00E122A5 /* UserDefault.swift */,
 				525600C62AE6786E00E122A5 /* UserDefaultManager.swift */,
 				52DDFD0F2B0E02E1007368CC /* NotificationManager.swift */,
 			);
-			path = Manager;
+			path = Singleton;
 			sourceTree = "<group>";
 		};
 		525600D12AE67AC000E122A5 /* Fonts */ = {
@@ -318,13 +319,12 @@
 			path = Popup;
 			sourceTree = "<group>";
 		};
-		52DDFD0E2B0E02CC007368CC /* Model */ = {
+		52DDFD0E2B0E02CC007368CC /* Enum */ = {
 			isa = PBXGroup;
 			children = (
-				525600C82AE6787E00E122A5 /* UserDefault.swift */,
 				523F5C7C2B1705EA00A46D4F /* SleepType.swift */,
 			);
-			path = Model;
+			path = Enum;
 			sourceTree = "<group>";
 		};
 		52DDFD132B0E84BB007368CC /* Setting */ = {
@@ -391,7 +391,6 @@
 			isa = PBXGroup;
 			children = (
 				528DCD0C2AF1338D00DD283A /* Contents-Convergence-Graduate-Project.entitlements */,
-				52E873D32AE026EB00662723 /* Network */,
 				52E873D22AE026E600662723 /* Global */,
 				52E873D12AE026CC00662723 /* Screens */,
 			);
@@ -416,9 +415,9 @@
 		52E873D22AE026E600662723 /* Global */ = {
 			isa = PBXGroup;
 			children = (
-				52DDFD0E2B0E02CC007368CC /* Model */,
+				525600C52AE6785B00E122A5 /* Singleton */,
+				52DDFD0E2B0E02CC007368CC /* Enum */,
 				525600ED2AEABE4200E122A5 /* UIComponent */,
-				525600C52AE6785B00E122A5 /* Manager */,
 				52E873D92AE027AB00662723 /* Resource */,
 				52E873D72AE0272200662723 /* Support */,
 				52E873D62AE0271D00662723 /* Literal */,
@@ -426,13 +425,6 @@
 				52E873D42AE026F600662723 /* Base */,
 			);
 			path = Global;
-			sourceTree = "<group>";
-		};
-		52E873D32AE026EB00662723 /* Network */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Network;
 			sourceTree = "<group>";
 		};
 		52E873D42AE026F600662723 /* Base */ = {
