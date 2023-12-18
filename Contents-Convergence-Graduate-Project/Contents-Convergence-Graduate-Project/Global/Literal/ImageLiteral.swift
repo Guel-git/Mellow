@@ -50,7 +50,9 @@ enum ImageLiteral {
     static var sadImage: UIImage { .load(name: "sad") }
     
     static var mainFavorite: UIImage { .load(name: "main") }
-    
+    static var heartImage: UIImage { .load(name: "heart-fill") }
+    static var moonImage: UIImage { .load(name: "bedtime") }
+    static var sunImage: UIImage { .load(name: "clear_day") }
 }
 
 extension UIImage {

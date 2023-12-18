@@ -29,10 +29,79 @@ final class MainViewController: BaseViewController {
         label.textAlignment = .center
         return label
     }()
-    private let mainButton: MainButton = {
-        let button = MainButton()
-        button.title = TextLiteral.confirmText
-        button.isDisabled = false
+    private let heartImage = UIImageView(image: ImageLiteral.heartImage)
+    private let heartLabel: UILabel = {
+        let label = UILabel()
+        label.text = "63%"
+        label.textColor = .fontBlack
+        label.font = .m16
+        return label
+    }()
+    private let progressBackView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemSub
+        view.layer.cornerRadius = 4
+        return view
+    }()
+    private let progressView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemMain
+        view.layer.cornerRadius = 4
+        return view
+    }()
+    private let promiseLabel: UILabel = {
+        let label = UILabel()
+        label.text = "우리만의 약속"
+        label.textColor = .fontBlack
+        label.font = .sb20
+        return label
+    }()
+    private let sleepBackView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemSub
+        view.layer.cornerRadius = 8
+        return view
+    }()
+    private let sleepImage = UIImageView(image: ImageLiteral.moonImage)
+    private let sleepLabel: UILabel = {
+        let label = UILabel()
+        label.text = "취침 시간"
+        label.textColor = .fontGray
+        label.font = .m14
+        return label
+    }()
+    private let sleepTimeLabel: UILabel = {
+        let label = UILabel()
+        label.text = "23:00"
+        label.textColor = .fontBlack
+        label.font = .m16
+        return label
+    }()
+    private let wakeBackView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemSub
+        view.layer.cornerRadius = 8
+        return view
+    }()
+    private let wakeImage = UIImageView(image: ImageLiteral.sunImage)
+    private let wakeLabel: UILabel = {
+        let label = UILabel()
+        label.text = "기상 시간"
+        label.textColor = .fontGray
+        label.font = .m14
+        return label
+    }()
+    private let wakeTimeLabel: UILabel = {
+        let label = UILabel()
+        label.text = "07:00"
+        label.textColor = .fontBlack
+        label.font = .m16
+        return label
+    }()
+    private let mainButton: StartButton = {
+        let button = StartButton()
+        button.title = "잠들기 준비"
+        button.isGray = true
         return button
     }()
     
@@ -44,8 +113,14 @@ final class MainViewController: BaseViewController {
     }
     
     override func render() {
-        [favoriteLabel, favoriteImage, favoriteTalkLabel, mainButton].forEach {
+        [favoriteLabel, favoriteImage, favoriteTalkLabel, heartImage, heartLabel, progressBackView, progressView, promiseLabel, sleepBackView, wakeBackView, mainButton].forEach {
             view.addSubview($0)
+        }
+        [sleepImage, sleepLabel, sleepTimeLabel].forEach {
+            sleepBackView.addSubview($0)
+        }
+        [wakeImage, wakeLabel, wakeTimeLabel].forEach {
+            wakeBackView.addSubview($0)
         }
         
         favoriteLabel.snp.makeConstraints {
@@ -64,10 +139,86 @@ final class MainViewController: BaseViewController {
             $0.centerX.equalToSuperview()
         }
         
+        heartImage.snp.makeConstraints {
+            $0.top.equalTo(favoriteTalkLabel.snp.bottom).offset(16)
+            $0.leading.equalToSuperview().inset(16)
+            $0.width.height.equalTo(24)
+        }
+        
+        heartLabel.snp.makeConstraints {
+            $0.centerY.equalTo(heartImage.snp.centerY)
+            $0.trailing.equalToSuperview().inset(16)
+        }
+        
+        progressBackView.snp.makeConstraints {
+            $0.centerY.equalTo(heartImage.snp.centerY)
+            $0.leading.equalTo(heartImage.snp.trailing).offset(8)
+            $0.trailing.equalTo(heartLabel.snp.leading).offset(-8)
+            $0.height.equalTo(10)
+        }
+        
+        progressView.snp.makeConstraints {
+            $0.centerY.equalTo(progressBackView.snp.centerY)
+            $0.leading.equalTo(progressBackView.snp.leading)
+            $0.width.equalTo(progressBackView.snp.width).multipliedBy(0.63)
+            $0.height.equalTo(10)
+        }
+        
+        promiseLabel.snp.makeConstraints {
+            $0.top.equalTo(progressView.snp.bottom).offset(55)
+            $0.centerX.equalToSuperview()
+        }
+        
+        sleepBackView.snp.makeConstraints {
+            $0.top.equalTo(promiseLabel.snp.bottom).offset(16)
+            $0.centerX.equalToSuperview().offset(-78)
+            $0.width.equalTo(140)
+            $0.height.equalTo(82)
+        }
+        
+        sleepImage.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(18)
+            $0.leading.equalToSuperview().inset(34)
+            $0.width.height.equalTo(16)
+        }
+        
+        sleepLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(18)
+            $0.trailing.equalToSuperview().inset(34)
+        }
+        
+        sleepTimeLabel.snp.makeConstraints {
+            $0.bottom.equalToSuperview().inset(16)
+            $0.centerX.equalToSuperview()
+        }
+        
+        wakeBackView.snp.makeConstraints {
+            $0.top.equalTo(promiseLabel.snp.bottom).offset(16)
+            $0.centerX.equalToSuperview().offset(78)
+            $0.width.equalTo(140)
+            $0.height.equalTo(82)
+        }
+        
+        wakeImage.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(18)
+            $0.leading.equalToSuperview().inset(34)
+            $0.width.height.equalTo(16)
+        }
+        
+        wakeLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(18)
+            $0.trailing.equalToSuperview().inset(34)
+        }
+        
+        wakeTimeLabel.snp.makeConstraints {
+            $0.bottom.equalToSuperview().inset(16)
+            $0.centerX.equalToSuperview()
+        }
+        
         mainButton.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(16)
-            $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(8)
-            $0.height.equalTo(52)
+            $0.leading.trailing.equalToSuperview()
+            $0.bottom.equalToSuperview()
+            $0.height.equalTo(103)
         }
     }
     
