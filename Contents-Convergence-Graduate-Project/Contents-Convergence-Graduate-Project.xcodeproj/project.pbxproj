@@ -55,6 +55,7 @@
 		528DCD252B04AB2200DD283A /* ChatCapsuleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528DCD242B04AB2200DD283A /* ChatCapsuleLabel.swift */; };
 		528DCD272B04EF2500DD283A /* ChatEndView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528DCD262B04EF2500DD283A /* ChatEndView.swift */; };
 		528DCD2B2B04F76300DD283A /* ChatButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528DCD2A2B04F76300DD283A /* ChatButton.swift */; };
+		52968BA22B30F91300D20342 /* StartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52968BA12B30F91300D20342 /* StartButton.swift */; };
 		52DDFD0B2B0DF8EB007368CC /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DDFD0A2B0DF8EB007368CC /* PopupViewController.swift */; };
 		52DDFD102B0E02E1007368CC /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DDFD0F2B0E02E1007368CC /* NotificationManager.swift */; };
 		52DDFD122B0E7185007368CC /* SettingDayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DDFD112B0E7185007368CC /* SettingDayTableViewCell.swift */; };
@@ -114,6 +115,7 @@
 		528DCD242B04AB2200DD283A /* ChatCapsuleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCapsuleLabel.swift; sourceTree = "<group>"; };
 		528DCD262B04EF2500DD283A /* ChatEndView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatEndView.swift; sourceTree = "<group>"; };
 		528DCD2A2B04F76300DD283A /* ChatButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatButton.swift; sourceTree = "<group>"; };
+		52968BA12B30F91300D20342 /* StartButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartButton.swift; sourceTree = "<group>"; };
 		52DDFD0A2B0DF8EB007368CC /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
 		52DDFD0F2B0E02E1007368CC /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		52DDFD112B0E7185007368CC /* SettingDayTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingDayTableViewCell.swift; sourceTree = "<group>"; };
@@ -267,6 +269,7 @@
 		525600ED2AEABE4200E122A5 /* UIComponent */ = {
 			isa = PBXGroup;
 			children = (
+				52968BA02B30F8F500D20342 /* StartButton */,
 				523F5C752B16338000A46D4F /* MenuButton */,
 				525523C52B0BCD1F0033D4C6 /* CancelButton */,
 				525600F42AEADC0800E122A5 /* BackButton */,
@@ -309,6 +312,14 @@
 				528DCD2A2B04F76300DD283A /* ChatButton.swift */,
 			);
 			path = Chat;
+			sourceTree = "<group>";
+		};
+		52968BA02B30F8F500D20342 /* StartButton */ = {
+			isa = PBXGroup;
+			children = (
+				52968BA12B30F91300D20342 /* StartButton.swift */,
+			);
+			path = StartButton;
 			sourceTree = "<group>";
 		};
 		52DDFD092B0DF8DF007368CC /* Popup */ = {
@@ -564,6 +575,7 @@
 			files = (
 				525523C02B0B86CA0033D4C6 /* SettingViewController.swift in Sources */,
 				528DCD172AF8CCEA00DD283A /* RoutineTableViewCell.swift in Sources */,
+				52968BA22B30F91300D20342 /* StartButton.swift in Sources */,
 				525523C92B0BD1240033D4C6 /* SettingDetailTableViewCell.swift in Sources */,
 				525600D02AE67A0600E122A5 /* UIFont+Extension.swift in Sources */,
 				523F5C952B1A62ED00A46D4F /* SleepingViewController.swift in Sources */,

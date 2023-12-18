@@ -12,6 +12,23 @@ final class MainViewController: BaseViewController {
     // MARK: - property
     
     private let menuButton = MenuButton(type: .system)
+    private let favoriteLabel: UILabel = {
+        let label = UILabel()
+        label.text = "최애"
+        label.textColor = .fontBlack
+        label.font = .sb24
+        return label
+    }()
+    private let favoriteImage = UIImageView(image: ImageLiteral.mainFavorite)
+    private let favoriteTalkLabel: UILabel = {
+        let label = UILabel()
+        label.setTextWithLineHeight(text: "어제 수면 시간에 핸드폰 했지?\n정말 실망이야.", lineHeight: 26)
+        label.textColor = .fontBlack
+        label.font = .r20
+        label.numberOfLines = 2
+        label.textAlignment = .center
+        return label
+    }()
     private let mainButton: MainButton = {
         let button = MainButton()
         button.title = TextLiteral.confirmText
@@ -27,8 +44,24 @@ final class MainViewController: BaseViewController {
     }
     
     override func render() {
-        [mainButton].forEach {
+        [favoriteLabel, favoriteImage, favoriteTalkLabel, mainButton].forEach {
             view.addSubview($0)
+        }
+        
+        favoriteLabel.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide).inset(16)
+            $0.centerX.equalToSuperview()
+        }
+        
+        favoriteImage.snp.makeConstraints {
+            $0.top.equalTo(favoriteLabel.snp.bottom).offset(16)
+            $0.width.height.equalTo(220)
+            $0.centerX.equalToSuperview()
+        }
+        
+        favoriteTalkLabel.snp.makeConstraints {
+            $0.top.equalTo(favoriteImage.snp.bottom).offset(16)
+            $0.centerX.equalToSuperview()
         }
         
         mainButton.snp.makeConstraints {

@@ -9,7 +9,7 @@ import UIKit
 
 final class RoutineStartViewController: BaseViewController {
     
-    let sleepType = SleepType(rawValue: UserDefaultManager.sleepType) ?? SleepType.Zombie
+    private let sleepType = SleepType(rawValue: UserDefaultManager.sleepType) ?? SleepType.Zombie
     private var wakeUpTime = ""
     
     // MARK: - property

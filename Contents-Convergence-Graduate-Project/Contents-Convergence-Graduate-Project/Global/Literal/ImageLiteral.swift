@@ -18,6 +18,7 @@ enum ImageLiteral {
     static var questionFiveImage: UIImage { .load(systemName: "5.circle.fill") }
     static var answerCheckImage: UIImage { .load(systemName: "checkmark.circle.fill") }
     static var mainButtonChevronImage: UIImage { .load(systemName: "chevron.right") }
+    static var startButtonChevronImage: UIImage { .load(systemName: "chevron.up") }
     static var navigationBarBackButton: UIImage { .load(systemName: "chevron.left") }
     static var navigationBarMenuButton: UIImage { .load(systemName: "line.3.horizontal") }
     static var dotImage: UIImage { .load(systemName: "circle.fill") }
@@ -47,6 +48,8 @@ enum ImageLiteral {
     static var happyImage: UIImage { .load(name: "happy") }
     static var sosoImage: UIImage { .load(name: "soso") }
     static var sadImage: UIImage { .load(name: "sad") }
+    
+    static var mainFavorite: UIImage { .load(name: "main") }
     
 }
 

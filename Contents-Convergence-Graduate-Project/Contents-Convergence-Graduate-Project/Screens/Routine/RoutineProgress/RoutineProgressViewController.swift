@@ -180,7 +180,7 @@ final class RoutineProgressViewController: BaseViewController {
     
     private func navigateToNextRoutine() {
         let count = isBefore ? (sleepType?.routineBeforeArray.count ?? 0) : (sleepType?.routineAfterTime.count ?? 0)
-        let viewController = stageNum < count - 1 ? RoutineProgressViewController(stageNum: stageNum + 1, isBefore: isBefore) : RoutineDoneViewController(isBefore: isBefore)
+        let viewController = stageNum < count - 1 ? RoutineProgressViewController(stageNum: stageNum + 1, isBefore: isBefore) : isBefore ? RoutineDoneViewController() : ReportViewController()
         navigationController?.pushViewController(viewController, animated: true)
     }
 

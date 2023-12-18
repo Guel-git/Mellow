@@ -45,6 +45,7 @@ final class ResultViewController: BaseViewController {
     }()
     private let favoriteImage: UIImageView = {
         let imageView = UIImageView()
+        imageView.backgroundColor = .systemSub
         imageView.layer.cornerRadius = 8
         imageView.clipsToBounds = true
         return imageView
@@ -177,7 +178,6 @@ final class ResultViewController: BaseViewController {
         angelNameLabel.text = resultType.angelText + TextLiteral.ResultView.afterAngelText
         angelNameLabel.applyFont(resultType.angelText, .sb20)
         angelNameLabel.textAlignment = .center
-        favoriteImage.image = ImageLiteral.favoriteImage
         favoriteLabel.setTextWithLineHeight(text: resultType.favoriteText, lineHeight: 27)
         favoriteLabel.textAlignment = .center
         contentLabel.setTextWithLineHeight(text: resultType.contentText, lineHeight: 24)
