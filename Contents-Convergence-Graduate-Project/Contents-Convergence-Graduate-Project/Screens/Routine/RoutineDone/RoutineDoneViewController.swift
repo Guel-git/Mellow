@@ -14,10 +14,10 @@ final class RoutineDoneViewController: BaseViewController {
     // MARK: - property
     
     private let backButton = BackButton(type: .system)
-    private let feedbackEmoji = UIImageView(image: ImageLiteral.happyImage)
+    private let feedbackEmoji = UIImageView(image: ImageLiteral.sadImage)
     private let feedbackLabel: UILabel = {
         let label = UILabel()
-        label.setTextWithLineHeight(text: "오늘의 수면 루틴을 모두 달성했어요!\n너무 대단해요!!", lineHeight: 24)
+        label.setTextWithLineHeight(text: "수면 미션이 있다는 걸 까먹었을까요?\n내일은 꼭 수면 미션을 모두 달성해보아요!", lineHeight: 24)
         label.textColor = .fontBlack
         label.font = .m16
         label.numberOfLines = 2
