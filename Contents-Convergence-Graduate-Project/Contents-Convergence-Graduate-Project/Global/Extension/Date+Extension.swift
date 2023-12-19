@@ -14,5 +14,12 @@ extension Date {
         formatter.dateFormat = "HH:mm"
         return formatter.string(from: self)
     }
+    
+    var dateToKoreanString: String {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "ko_KR")
+        formatter.dateFormat = "YYYY년 MM월 d일"
+        return formatter.string(from: self)
+    }
 }
 

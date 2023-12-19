@@ -51,9 +51,13 @@ enum ImageLiteral {
     
     static var mainFavorite: UIImage { .load(name: "main") }
     static var sleepFavorite: UIImage { .load(name: "sleepmain") }
+    static var reportFavorite: UIImage { .load(name: "reportfavorite") }
+    
     static var heartImage: UIImage { .load(name: "heart-fill") }
     static var moonImage: UIImage { .load(name: "bedtime") }
     static var sunImage: UIImage { .load(name: "clear_day") }
+    
+    static var popupImage: UIImage { .load(name: "popup") }
 }
 
 extension UIImage {

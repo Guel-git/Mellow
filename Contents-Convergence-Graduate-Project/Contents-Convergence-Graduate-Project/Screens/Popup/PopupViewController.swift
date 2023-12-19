@@ -20,6 +20,7 @@ final class PopupViewController: BaseViewController {
         label.setTextWithLineHeight(text: TextLiteral.PopupView.titleLabelText, lineHeight: 39)
         return label
     }()
+    private let popupImage = UIImageView(image: ImageLiteral.popupImage)
     private let mainButton: MainButton = {
         let button = MainButton()
         button.title = TextLiteral.confirmText
@@ -36,13 +37,20 @@ final class PopupViewController: BaseViewController {
     }
     
     override func render() {
-        [titleLabel, mainButton].forEach {
+        [titleLabel, popupImage, mainButton].forEach {
             view.addSubview($0)
         }
         
         titleLabel.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide).inset(40)
             $0.leading.equalToSuperview().inset(16)
+        }
+        
+        popupImage.snp.makeConstraints {
+            $0.top.equalTo(titleLabel.snp.bottom).offset(118)
+            $0.centerX.equalToSuperview()
+            $0.width.equalTo(270)
+            $0.height.equalTo(184)
         }
         
         mainButton.snp.makeConstraints {

@@ -122,7 +122,7 @@ enum TextLiteral {
     // MARK: - PopupView
     
     enum PopupView {
-        static let titleLabelText = "정확한 수면 측정을 위해\n권한을 허용해주세요."
+        static let titleLabelText = "규칙적인 수면을 위해\n알림을 허용해주세요."
         static let navigationTitleText = "취침 시간 설정하기"
     }
     

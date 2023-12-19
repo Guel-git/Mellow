@@ -27,7 +27,7 @@ final class SleepingViewController: BaseViewController {
     }()
     private let wakeTimeLabel: UILabel = {
         let label = UILabel()
-        label.text = "알람 7:30"
+        label.text = "알람 07:00"
         label.textColor = .systemSub
         label.font = .m16
         return label

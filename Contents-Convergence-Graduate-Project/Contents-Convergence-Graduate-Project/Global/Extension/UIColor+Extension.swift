@@ -14,8 +14,14 @@ extension UIColor {
     static var systemSub: UIColor {
         return UIColor(hex: "#F5F6FA")
     }
+    static var systemBack: UIColor {
+        return UIColor(hex: "D9D9D9")
+    }
     static var systemMain: UIColor {
         return UIColor(hex: "B0B1B4")
+    }
+    static var systemDark: UIColor {
+        return UIColor(hex: "5C5C5C")
     }
     static var systemCancel: UIColor {
         return UIColor(hex: "FF453A")
