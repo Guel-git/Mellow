@@ -12,9 +12,8 @@ final class AnswerTableViewCell: BaseTableViewCell {
     static let cellId = "cellId"
     
     override func setSelected(_ selected: Bool, animated: Bool) {
-        cellBackground.backgroundColor = selected ? .systemMain : .systemSub
-        cellImage.tintColor = selected ? .fontWhite : .fontBlack
-        cellLabel.textColor = selected ? .fontWhite : .fontBlack
+        cellBackground.backgroundColor = selected ? .dreamPurple100 : .dreamPurple50
+        cellImage.tintColor = selected ? .dreamPurple300 : .dreamPurple100
     }
     
     // MARK: - property
@@ -32,6 +31,7 @@ final class AnswerTableViewCell: BaseTableViewCell {
     let cellLabel: UILabel = {
         let label = UILabel()
         label.font = .m16
+        label.textColor = .fontBlack
         return label
     }()
     

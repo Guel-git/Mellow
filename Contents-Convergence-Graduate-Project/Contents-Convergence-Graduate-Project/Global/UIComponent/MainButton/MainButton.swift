@@ -46,7 +46,6 @@ final class MainButton: UIButton {
         self.layer.cornerRadius = 8
         self.titleLabel?.font = .m16
         self.setTitleColor(.fontWhite, for: .normal)
-        self.setTitleColor(.fontBlack, for: .disabled)
     }
     
     private func setupAttribute() {
@@ -55,8 +54,8 @@ final class MainButton: UIButton {
         }
         
         self.isEnabled = !isDisabled
-        self.chevronImage.tintColor = isDisabled ? .fontBlack : .fontWhite
-        self.backgroundColor = isDisabled ? .systemSub : .systemMain
+        self.chevronImage.tintColor = .fontWhite
+        self.backgroundColor = isDisabled ? .dreamPurple500.withAlphaComponent(0.24) : .dreamPurple500
     }
 }
 

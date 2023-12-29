@@ -117,19 +117,18 @@ final class TestViewController: BaseViewController {
     private let backButton = BackButton()
     private let progressBackground: UIView = {
         let view = UIView()
-        view.backgroundColor = .systemSub
+        view.backgroundColor = .dreamPurple50
         view.layer.cornerRadius = 2
         return view
     }()
     private let progressBar: UIView = {
         let view = UIView()
-        view.backgroundColor = .systemMain
         view.layer.cornerRadius = 2
         return view
     }()
     private let questionNumImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.tintColor = .fontBlack
+        imageView.tintColor = .dreamPurple500
         return imageView
     }()
     private let questionLabel: UILabel = {
@@ -230,6 +229,9 @@ final class TestViewController: BaseViewController {
     private func setupAttribute() {
         questionNumImage.image = questionNum.numImage
         questionLabel.text = questionNum.questionText
+        progressBar.layoutIfNeeded()
+        progressBar.setGradient(start: .gradientPurpleStart, end: .gradientPurpleEnd)
+        progressBar.layer.masksToBounds = true
         progressBar.layer.maskedCorners = questionNum.progressRadius
         mainButton.title = questionNum.mainButtonTitle
         
