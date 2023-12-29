@@ -19,6 +19,7 @@ final class ChatViewController: BaseViewController {
     }()
     private let answerLabel: ChatCapsuleLabel = {
         let label = ChatCapsuleLabel()
+        label.backgroundColor = .dreamPurple100
         label.isHidden = true
         return label
     }()

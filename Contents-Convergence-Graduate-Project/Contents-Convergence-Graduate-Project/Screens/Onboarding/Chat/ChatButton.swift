@@ -36,7 +36,7 @@ class ChatButton: UIButton {
         self.backgroundColor = .fontWhite
         self.layer.cornerRadius = 20
         self.layer.borderWidth = 1
-        self.layer.borderColor = UIColor.systemSub.cgColor
+        self.layer.borderColor = UIColor.dreamPurple50.cgColor
         self.layer.shadowOpacity = 0.1
         self.layer.shadowRadius = 6
         self.layer.shadowOffset = CGSize(width: 0, height: 2)

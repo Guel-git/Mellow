@@ -13,7 +13,8 @@ final class ChatStartView: BaseUIView {
     
     private let profileImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = .systemMain
+        imageView.image = ImageLiteral.logoImage
+        imageView.layer.masksToBounds = true
         imageView.layer.cornerRadius = 4
         return imageView
     }()

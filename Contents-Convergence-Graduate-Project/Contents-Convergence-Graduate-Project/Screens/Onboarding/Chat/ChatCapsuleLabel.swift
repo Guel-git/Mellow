@@ -34,7 +34,7 @@ class ChatCapsuleLabel: UILabel {
     required init?(coder: NSCoder) { nil }
     
     private func configUI() {
-        self.backgroundColor = .systemSub
+        self.backgroundColor = .dreamPurple50
         self.textColor = .fontBlack
         self.font = .m16
         self.clipsToBounds = true

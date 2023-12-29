@@ -9,7 +9,7 @@ import UIKit
 
 extension UIColor {
     
-    // MARK: - system
+    // MARK: - system 추후 삭제 필요
     
     static var systemSub: UIColor {
         return UIColor(hex: "#F5F6FA")
@@ -27,16 +27,52 @@ extension UIColor {
         return UIColor(hex: "FF453A")
     }
     
+    // MARK: - style
+    
+    static var dreamPurple50: UIColor {
+        return UIColor(hex: "F7F5FA")
+    }
+    static var dreamPurple100: UIColor {
+        return UIColor(hex: "E2DEFF")
+    }
+    static var dreamPurple300: UIColor {
+        return UIColor(hex: "7F68F5")
+    }
+    static var dreamPurple500: UIColor {
+        return UIColor(hex: "6349EB")
+    }
+    static var dreamPurple700: UIColor {
+        return UIColor(hex: "35268F")
+    }
+    static var dayYellow: UIColor {
+        return UIColor(hex: "FDC13C")
+    }
+    
+    // MARK: - gradient
+    
+    static var gradientBackgroundStart: UIColor {
+        return UIColor(hex: "FFF5FD")
+    }
+    static var gradientBackgroundEnd: UIColor {
+        return UIColor(hex: "F7F5FF")
+    }
+    static var gradientPurpleStart: UIColor {
+        return UIColor(hex: "E2DEFF")
+    }
+    static var gradientPurpleEnd: UIColor {
+        return UIColor(hex: "7F68F5")
+    }
+    
     // MARK: - font
     
     static var fontBlack: UIColor {
-        return UIColor(hex: "333333")
+        return UIColor(hex: "162140")
     }
     static var fontWhite: UIColor {
         return UIColor(hex: "FFFFFF")
     }
     static var fontGray: UIColor {
-        return UIColor(hex: "949494")
+        return UIColor(hex: "7F8696")
     }
 }
 

@@ -58,6 +58,7 @@ enum ImageLiteral {
     static var sunImage: UIImage { .load(name: "clear_day") }
     
     static var popupImage: UIImage { .load(name: "popup") }
+    static var logoImage: UIImage { .load(name: "logo") }
 }
 
 extension UIImage {
