@@ -12,54 +12,67 @@ final class MainViewController: BaseViewController {
     // MARK: - property
     
     private let menuButton = MenuButton(type: .system)
+    private let favoriteBackView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .fontWhite
+        view.layer.cornerRadius = 16
+        view.layer.shadowColor = UIColor.shadowPurple.cgColor
+        view.layer.shadowOffset = CGSize(width: 0, height: 2)
+        view.layer.shadowRadius = 6
+        return view
+    }()
+    private let favoriteImage = UIImageView(image: ImageLiteral.smileMellowImage)
     private let favoriteLabel: UILabel = {
         let label = UILabel()
-        label.text = "최애"
+        label.text = "재현이"
         label.textColor = .fontBlack
-        label.font = .sb24
+        label.font = .sb20
         return label
     }()
-    private let favoriteImage = UIImageView(image: ImageLiteral.mainFavorite)
     private let favoriteTalkLabel: UILabel = {
         let label = UILabel()
-        label.setTextWithLineHeight(text: "어제 수면 시간에 핸드폰 했지?\n정말 실망이야.", lineHeight: 26)
+        label.text = "요즘 노력한다던 데, 잘 하고 있나 봐?"
         label.textColor = .fontBlack
-        label.font = .r20
-        label.numberOfLines = 2
-        label.textAlignment = .center
+        label.font = .m16
         return label
     }()
     private let heartImage = UIImageView(image: ImageLiteral.heartImage)
     private let heartLabel: UILabel = {
         let label = UILabel()
-        label.text = "63%"
-        label.textColor = .fontBlack
+        label.text = "50%"
+        label.textColor = .dreamPurple300
         label.font = .m16
         return label
     }()
     private let progressBackView: UIView = {
         let view = UIView()
-        view.backgroundColor = .systemSub
-        view.layer.cornerRadius = 4
+        view.backgroundColor = .dreamPurple50
         return view
     }()
-    private let progressView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .systemMain
-        view.layer.cornerRadius = 4
-        return view
-    }()
+    private let progressView = UIView()
     private let promiseLabel: UILabel = {
         let label = UILabel()
-        label.text = "우리만의 약속"
+        label.text = "우리들만의 약속"
         label.textColor = .fontBlack
         label.font = .sb20
         return label
     }()
-    private let sleepBackView: UIView = {
+    private let sleepTimeBackView: UIView = {
         let view = UIView()
-        view.backgroundColor = .systemSub
+        view.backgroundColor = .fontWhite
         view.layer.cornerRadius = 8
+        view.layer.shadowColor = UIColor.shadowPurple.cgColor
+        view.layer.shadowOffset = CGSize(width: 0, height: 2)
+        view.layer.shadowRadius = 6
+        return view
+    }()
+    private let wakeTimeBackView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .fontWhite
+        view.layer.cornerRadius = 8
+        view.layer.shadowColor = UIColor.shadowPurple.cgColor
+        view.layer.shadowOffset = CGSize(width: 0, height: 2)
+        view.layer.shadowRadius = 6
         return view
     }()
     private let sleepImage = UIImageView(image: ImageLiteral.moonImage)
@@ -74,14 +87,8 @@ final class MainViewController: BaseViewController {
         let label = UILabel()
         label.text = "23:00"
         label.textColor = .fontBlack
-        label.font = .m16
+        label.font = .sb16
         return label
-    }()
-    private let wakeBackView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .systemSub
-        view.layer.cornerRadius = 8
-        return view
     }()
     private let wakeImage = UIImageView(image: ImageLiteral.sunImage)
     private let wakeLabel: UILabel = {
@@ -95,7 +102,31 @@ final class MainViewController: BaseViewController {
         let label = UILabel()
         label.text = "07:00"
         label.textColor = .fontBlack
-        label.font = .m16
+        label.font = .sb16
+        return label
+    }()
+    private let repeatBackView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .fontWhite
+        view.layer.cornerRadius = 8
+        view.layer.shadowColor = UIColor.shadowPurple.cgColor
+        view.layer.shadowOffset = CGSize(width: 0, height: 2)
+        view.layer.shadowRadius = 6
+        return view
+    }()
+    private let repeatLabel: UILabel = {
+        let label = UILabel()
+        label.text = "반복"
+        label.textColor = .fontGray
+        label.font = .m14
+        return label
+    }()
+    private let repeatCollectionView = RepeatCollectionView()
+    private let routineLabel: UILabel = {
+        let label = UILabel()
+        label.text = "나만의 루틴"
+        label.textColor = .fontBlack
+        label.font = .sb20
         return label
     }()
     private let mainButton: StartButton = {
@@ -110,37 +141,55 @@ final class MainViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setButtonAction()
+        setGradient()
+    }
+    
+    override func configUI() {
+        view.setBackgroundGradient(start: .gradientBackgroundStart, end: .gradientBackgroundEnd)
     }
     
     override func render() {
-        [favoriteLabel, favoriteImage, favoriteTalkLabel, heartImage, heartLabel, progressBackView, progressView, promiseLabel, sleepBackView, wakeBackView, mainButton].forEach {
+        [favoriteBackView, promiseLabel, sleepTimeBackView, wakeTimeBackView, repeatBackView, routineLabel].forEach {
             view.addSubview($0)
         }
+        [favoriteImage, favoriteLabel, favoriteTalkLabel, heartImage, heartLabel, progressBackView].forEach {
+            favoriteBackView.addSubview($0)
+        }
+        progressBackView.addSubview(progressView)
         [sleepImage, sleepLabel, sleepTimeLabel].forEach {
-            sleepBackView.addSubview($0)
+            sleepTimeBackView.addSubview($0)
         }
         [wakeImage, wakeLabel, wakeTimeLabel].forEach {
-            wakeBackView.addSubview($0)
+            wakeTimeBackView.addSubview($0)
         }
-        
-        favoriteLabel.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide).inset(16)
-            $0.centerX.equalToSuperview()
+        [repeatLabel, repeatCollectionView].forEach {
+            repeatBackView.addSubview($0)
+        }
+
+        favoriteBackView.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide).inset(32)
+            $0.leading.trailing.equalToSuperview().inset(16)
+            $0.height.equalTo(115)
         }
         
         favoriteImage.snp.makeConstraints {
-            $0.top.equalTo(favoriteLabel.snp.bottom).offset(16)
-            $0.width.height.equalTo(220)
-            $0.centerX.equalToSuperview()
+            $0.top.equalToSuperview().inset(20)
+            $0.leading.equalToSuperview().inset(16)
+            $0.width.height.equalTo(40)
+        }
+        
+        favoriteLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(16)
+            $0.leading.equalTo(favoriteImage.snp.trailing).offset(10)
         }
         
         favoriteTalkLabel.snp.makeConstraints {
-            $0.top.equalTo(favoriteImage.snp.bottom).offset(16)
-            $0.centerX.equalToSuperview()
+            $0.top.equalTo(favoriteLabel.snp.bottom).offset(6)
+            $0.leading.equalTo(favoriteImage.snp.trailing).offset(10)
         }
         
         heartImage.snp.makeConstraints {
-            $0.top.equalTo(favoriteTalkLabel.snp.bottom).offset(16)
+            $0.top.equalTo(favoriteImage.snp.bottom).offset(10)
             $0.leading.equalToSuperview().inset(16)
             $0.width.height.equalTo(24)
         }
@@ -151,74 +200,91 @@ final class MainViewController: BaseViewController {
         }
         
         progressBackView.snp.makeConstraints {
-            $0.centerY.equalTo(heartImage.snp.centerY)
-            $0.leading.equalTo(heartImage.snp.trailing).offset(8)
+            $0.leading.equalTo(heartImage.snp.trailing).offset(4)
             $0.trailing.equalTo(heartLabel.snp.leading).offset(-8)
+            $0.centerY.equalTo(heartImage.snp.centerY)
             $0.height.equalTo(10)
         }
         
         progressView.snp.makeConstraints {
-            $0.centerY.equalTo(progressBackView.snp.centerY)
-            $0.leading.equalTo(progressBackView.snp.leading)
-            $0.width.equalTo(progressBackView.snp.width).multipliedBy(0.63)
+            $0.leading.equalToSuperview()
+            // FIXME: - 애정도 계산 결과 반영
+            $0.width.equalTo(progressBackView.snp.width).multipliedBy(0.5)
             $0.height.equalTo(10)
         }
         
         promiseLabel.snp.makeConstraints {
-            $0.top.equalTo(progressView.snp.bottom).offset(55)
-            $0.centerX.equalToSuperview()
+            $0.top.equalTo(favoriteBackView.snp.bottom).offset(40)
+            $0.leading.equalToSuperview().inset(16)
         }
         
-        sleepBackView.snp.makeConstraints {
+        sleepTimeBackView.snp.makeConstraints {
             $0.top.equalTo(promiseLabel.snp.bottom).offset(16)
-            $0.centerX.equalToSuperview().offset(-78)
-            $0.width.equalTo(140)
+            $0.leading.equalToSuperview().inset(16)
+            $0.width.equalTo(UIScreen.main.bounds.width * 0.44)
+            $0.height.equalTo(82)
+        }
+        
+        wakeTimeBackView.snp.makeConstraints {
+            $0.centerY.equalTo(sleepTimeBackView.snp.centerY)
+            $0.trailing.equalToSuperview().inset(16)
+            $0.width.equalTo(UIScreen.main.bounds.width * 0.44)
             $0.height.equalTo(82)
         }
         
         sleepImage.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(18)
-            $0.leading.equalToSuperview().inset(34)
-            $0.width.height.equalTo(16)
+            $0.centerY.equalToSuperview()
+            $0.leading.equalToSuperview().inset(22)
+            $0.width.height.equalTo(34)
         }
         
         sleepLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(18)
-            $0.trailing.equalToSuperview().inset(34)
+            $0.top.equalToSuperview().inset(20)
+            $0.leading.equalTo(sleepImage.snp.trailing).offset(26)
         }
         
         sleepTimeLabel.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(16)
-            $0.centerX.equalToSuperview()
-        }
-        
-        wakeBackView.snp.makeConstraints {
-            $0.top.equalTo(promiseLabel.snp.bottom).offset(16)
-            $0.centerX.equalToSuperview().offset(78)
-            $0.width.equalTo(140)
-            $0.height.equalTo(82)
+            $0.bottom.equalToSuperview().inset(20)
+            $0.centerX.equalTo(sleepLabel.snp.centerX)
         }
         
         wakeImage.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(18)
-            $0.leading.equalToSuperview().inset(34)
-            $0.width.height.equalTo(16)
+            $0.centerY.equalToSuperview()
+            $0.leading.equalToSuperview().inset(22)
+            $0.width.height.equalTo(34)
         }
         
         wakeLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(18)
-            $0.trailing.equalToSuperview().inset(34)
+            $0.top.equalToSuperview().inset(20)
+            $0.leading.equalTo(wakeImage.snp.trailing).offset(26)
         }
         
         wakeTimeLabel.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(16)
-            $0.centerX.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(20)
+            $0.centerX.equalTo(wakeLabel.snp.centerX)
         }
         
-        mainButton.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview()
-            $0.bottom.equalToSuperview()
-            $0.height.equalTo(103)
+        repeatBackView.snp.makeConstraints {
+            $0.top.equalTo(sleepTimeBackView.snp.bottom).offset(16)
+            $0.leading.trailing.equalToSuperview().inset(16)
+            $0.height.equalTo(64)
+        }
+        
+        repeatLabel.snp.makeConstraints {
+            $0.leading.equalToSuperview().inset(20)
+            $0.centerY.equalToSuperview()
+        }
+        
+        repeatCollectionView.snp.makeConstraints {
+            $0.leading.equalTo(repeatLabel.snp.trailing).offset(8)
+            $0.trailing.equalToSuperview().inset(20)
+            $0.centerY.equalToSuperview()
+            $0.height.equalTo(64)
+        }
+        
+        routineLabel.snp.makeConstraints {
+            $0.top.equalTo(repeatBackView.snp.bottom).offset(40)
+            $0.leading.equalToSuperview().inset(16)
         }
     }
     
@@ -231,11 +297,21 @@ final class MainViewController: BaseViewController {
         navigationController?.navigationBar.prefersLargeTitles = false
         navigationItem.largeTitleDisplayMode = .never
         navigationItem.leftBarButtonItem = menuButton
+        navigationItem.title = "NightMellow"
         
         let appearance = UINavigationBarAppearance()
         appearance.configureWithTransparentBackground()
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.dreamPurple500, .font: UIFont.logo]
+        
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
+    }
+    
+    private func setGradient() {
+        progressView.layoutIfNeeded()
+        progressView.setGradient(start: .gradientPurpleStart, end: .gradientPurpleEnd)
+        progressView.layer.masksToBounds = true
+        progressView.layer.cornerRadius = 4
     }
     
     private func setButtonAction() {

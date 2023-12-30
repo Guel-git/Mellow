@@ -22,8 +22,8 @@ final class MenuButton: UIButton {
     }
     
     private func configUI() {
-        self.frame = CGRect(x: 0, y: 0, width: 44, height: 44)
+        self.frame = CGRect(x: 0, y: 0, width: 26, height: 26)
         self.setImage(ImageLiteral.navigationBarMenuButton, for: .normal)
-        self.tintColor = .fontBlack
+        self.tintColor = .dreamPurple500
     }
 }

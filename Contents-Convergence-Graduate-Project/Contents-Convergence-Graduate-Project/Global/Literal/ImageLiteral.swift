@@ -20,7 +20,7 @@ enum ImageLiteral {
     static var mainButtonChevronImage: UIImage { .load(systemName: "chevron.right") }
     static var startButtonChevronImage: UIImage { .load(systemName: "chevron.up") }
     static var navigationBarBackButton: UIImage { .load(systemName: "chevron.left") }
-    static var navigationBarMenuButton: UIImage { .load(systemName: "line.3.horizontal") }
+    static var navigationBarMenuButton: UIImage { .load(name: "hamburger") }
     static var dotImage: UIImage { .load(systemName: "circle.fill") }
     
     // MARK: - image
@@ -53,12 +53,14 @@ enum ImageLiteral {
     static var sleepFavorite: UIImage { .load(name: "sleepmain") }
     static var reportFavorite: UIImage { .load(name: "reportfavorite") }
     
-    static var heartImage: UIImage { .load(name: "heart-fill") }
-    static var moonImage: UIImage { .load(name: "bedtime") }
-    static var sunImage: UIImage { .load(name: "clear_day") }
+    static var heartImage: UIImage { .load(name: "heartfill") }
+    static var moonImage: UIImage { .load(name: "moon") }
+    static var sunImage: UIImage { .load(name: "sun") }
     
     static var popupImage: UIImage { .load(name: "popup") }
     static var logoImage: UIImage { .load(name: "logo") }
+    
+    static var smileMellowImage: UIImage { .load(name: "smilemellow") }
 }
 
 extension UIImage {

@@ -47,6 +47,9 @@ extension UIColor {
     static var dayYellow: UIColor {
         return UIColor(hex: "FDC13C")
     }
+    static var shadowPurple: UIColor {
+        return UIColor(hex: "B0A9CA").withAlphaComponent(0.2)
+    }
     
     // MARK: - gradient
     

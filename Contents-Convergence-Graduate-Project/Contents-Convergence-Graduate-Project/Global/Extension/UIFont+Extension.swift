@@ -13,6 +13,7 @@ enum AppFontName: String {
     case medium = "Pretendard-Medium"
     case semiBold = "Pretendard-SemiBold"
     case light = "Pretendard-Light"
+    case logo = "CherryBombOne-Regular"
 }
 
 extension UIFont {
@@ -60,5 +61,10 @@ extension UIFont {
     }
     static var r12: UIFont {
         return font(.regular, ofSize: 12)
+    }
+    
+    // MARK: - logo
+    static var logo: UIFont {
+        return font(.logo, ofSize: 22)
     }
 }

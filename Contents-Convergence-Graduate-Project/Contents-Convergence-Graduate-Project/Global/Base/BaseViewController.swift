@@ -29,8 +29,8 @@ class BaseViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        render()
         configUI()
+        render()
         setupNavigationBar()
     }
 

@@ -56,6 +56,11 @@
 		528DCD272B04EF2500DD283A /* ChatEndView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528DCD262B04EF2500DD283A /* ChatEndView.swift */; };
 		528DCD2B2B04F76300DD283A /* ChatButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528DCD2A2B04F76300DD283A /* ChatButton.swift */; };
 		52968BA22B30F91300D20342 /* StartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52968BA12B30F91300D20342 /* StartButton.swift */; };
+		52968BB42B3FFA9F00D20342 /* CherryBombOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 52968BB32B3FFA9F00D20342 /* CherryBombOne-Regular.ttf */; };
+		52968BB62B405D0400D20342 /* RepeatCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52968BB52B405D0400D20342 /* RepeatCollectionViewCell.swift */; };
+		52968BB82B405D9100D20342 /* RepeatCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52968BB72B405D9100D20342 /* RepeatCollectionView.swift */; };
+		52968BBA2B405FE600D20342 /* NSObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52968BB92B405FE600D20342 /* NSObject.swift */; };
+		52968BBC2B4061DD00D20342 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52968BBB2B4061DD00D20342 /* BaseCollectionViewCell.swift */; };
 		52DDFD0B2B0DF8EB007368CC /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DDFD0A2B0DF8EB007368CC /* PopupViewController.swift */; };
 		52DDFD102B0E02E1007368CC /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DDFD0F2B0E02E1007368CC /* NotificationManager.swift */; };
 		52DDFD122B0E7185007368CC /* SettingDayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DDFD112B0E7185007368CC /* SettingDayTableViewCell.swift */; };
@@ -116,6 +121,11 @@
 		528DCD262B04EF2500DD283A /* ChatEndView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatEndView.swift; sourceTree = "<group>"; };
 		528DCD2A2B04F76300DD283A /* ChatButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatButton.swift; sourceTree = "<group>"; };
 		52968BA12B30F91300D20342 /* StartButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartButton.swift; sourceTree = "<group>"; };
+		52968BB32B3FFA9F00D20342 /* CherryBombOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CherryBombOne-Regular.ttf"; sourceTree = "<group>"; };
+		52968BB52B405D0400D20342 /* RepeatCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatCollectionViewCell.swift; sourceTree = "<group>"; };
+		52968BB72B405D9100D20342 /* RepeatCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatCollectionView.swift; sourceTree = "<group>"; };
+		52968BB92B405FE600D20342 /* NSObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSObject.swift; sourceTree = "<group>"; };
+		52968BBB2B4061DD00D20342 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		52DDFD0A2B0DF8EB007368CC /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
 		52DDFD0F2B0E02E1007368CC /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		52DDFD112B0E7185007368CC /* SettingDayTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingDayTableViewCell.swift; sourceTree = "<group>"; };
@@ -144,6 +154,8 @@
 			isa = PBXGroup;
 			children = (
 				523F5C6F2B16314400A46D4F /* MainViewController.swift */,
+				52968BB52B405D0400D20342 /* RepeatCollectionViewCell.swift */,
+				52968BB72B405D9100D20342 /* RepeatCollectionView.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -243,6 +255,7 @@
 				525600E12AEA8DBD00E122A5 /* Pretendard-Regular.otf */,
 				525600E22AEA8DBD00E122A5 /* Pretendard-SemiBold.otf */,
 				525600DE2AEA8DB100E122A5 /* Pretendard-Bold.otf */,
+				52968BB32B3FFA9F00D20342 /* CherryBombOne-Regular.ttf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -444,6 +457,7 @@
 				525600DC2AEA8ACC00E122A5 /* BaseViewController.swift */,
 				525600EB2AEABDB100E122A5 /* BaseTableViewCell.swift */,
 				528DCD202B049AC300DD283A /* BaseUIView.swift */,
+				52968BBB2B4061DD00D20342 /* BaseCollectionViewCell.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -461,6 +475,7 @@
 				523F5C7A2B165DBF00A46D4F /* UIView+Extension.swift */,
 				523F5C7E2B17151B00A46D4F /* Date+Extension.swift */,
 				523F5C8E2B1A4F4900A46D4F /* TimeInterval+Extension.swift */,
+				52968BB92B405FE600D20342 /* NSObject.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -558,6 +573,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				52E873C72AE025E200662723 /* Assets.xcassets in Resources */,
+				52968BB42B3FFA9F00D20342 /* CherryBombOne-Regular.ttf in Resources */,
 				525600E52AEA8DBD00E122A5 /* Pretendard-Regular.otf in Resources */,
 				525600E62AEA8DBD00E122A5 /* Pretendard-SemiBold.otf in Resources */,
 				525600DF2AEA8DB100E122A5 /* Pretendard-Bold.otf in Resources */,
@@ -579,10 +595,12 @@
 				525523C92B0BD1240033D4C6 /* SettingDetailTableViewCell.swift in Sources */,
 				525600D02AE67A0600E122A5 /* UIFont+Extension.swift in Sources */,
 				523F5C952B1A62ED00A46D4F /* SleepingViewController.swift in Sources */,
+				52968BBA2B405FE600D20342 /* NSObject.swift in Sources */,
 				523F5C792B16412F00A46D4F /* RoutineDetailTableViewCell.swift in Sources */,
 				528DCD272B04EF2500DD283A /* ChatEndView.swift in Sources */,
 				52DDFD122B0E7185007368CC /* SettingDayTableViewCell.swift in Sources */,
 				52E873C22AE025E100662723 /* TestViewController.swift in Sources */,
+				52968BBC2B4061DD00D20342 /* BaseCollectionViewCell.swift in Sources */,
 				523F5C7B2B165DBF00A46D4F /* UIView+Extension.swift in Sources */,
 				525600FA2AEADD9300E122A5 /* UIApplication+Extension.swift in Sources */,
 				525600C72AE6786E00E122A5 /* UserDefaultManager.swift in Sources */,
@@ -602,6 +620,7 @@
 				525600DD2AEA8ACC00E122A5 /* BaseViewController.swift in Sources */,
 				525600CE2AE679EE00E122A5 /* UIColor+Extension.swift in Sources */,
 				52DDFD0B2B0DF8EB007368CC /* PopupViewController.swift in Sources */,
+				52968BB82B405D9100D20342 /* RepeatCollectionView.swift in Sources */,
 				525523CB2B0BDD2B0033D4C6 /* SettingRepeatViewController.swift in Sources */,
 				528DCD0E2AF13AEB00DD283A /* String+Extension.swift in Sources */,
 				525600F82AEADCE200E122A5 /* UIButton+Extension.swift in Sources */,
@@ -614,6 +633,7 @@
 				523F5C7F2B17151B00A46D4F /* Date+Extension.swift in Sources */,
 				523F5C922B1A600B00A46D4F /* RoutineDoneViewController.swift in Sources */,
 				528DCD1D2B0492B000DD283A /* ChatViewController.swift in Sources */,
+				52968BB62B405D0400D20342 /* RepeatCollectionViewCell.swift in Sources */,
 				528DCD132AF3C91400DD283A /* ResultViewController.swift in Sources */,
 				52DDFD102B0E02E1007368CC /* NotificationManager.swift in Sources */,
 				523F5C8F2B1A4F4900A46D4F /* TimeInterval+Extension.swift in Sources */,
