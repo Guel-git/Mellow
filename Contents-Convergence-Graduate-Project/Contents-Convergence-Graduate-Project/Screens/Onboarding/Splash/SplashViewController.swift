@@ -7,43 +7,35 @@
 
 import UIKit
 
+import RxSwift
+
 final class SplashViewController: BaseViewController {
     
     // MARK: - property
     
-    private let mainButton: MainButton = {
-        let button = MainButton()
-        button.title = TextLiteral.startText
-        button.isDisabled = false
-        return button
-    }()
+    private let splashView = SplashView()
+    private let disposeBag = DisposeBag()
     
     // MARK: - life cycle
     
+    override func loadView() {
+        view = splashView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setButtonAction()
+        bindView()
     }
     
-    override func render() {
-        [mainButton].forEach {
-            view.addSubview($0)
-        }
-        
-        mainButton.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(16)
-            $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(8)
-            $0.height.equalTo(52)
-        }
-    }
     
-    // MARK: - func
+    // MARK: - private func
     
-    private func setButtonAction() {
-        let action = UIAction { [weak self] _ in
-            self?.navigateToChatViewController()
-        }
-        mainButton.addAction(action, for: .touchUpInside)
+    private func bindView() {
+        splashView.mainButtonTapPublisher
+            .subscribe { [weak self] _ in
+                self?.navigateToChatViewController()
+            }
+            .disposed(by: disposeBag)
     }
     
     private func navigateToChatViewController() {
