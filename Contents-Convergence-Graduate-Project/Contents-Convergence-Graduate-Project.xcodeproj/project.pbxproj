@@ -343,6 +343,22 @@
 			path = StartButton;
 			sourceTree = "<group>";
 		};
+		52B40E502B552521003283C3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				52B40E4E2B5522AB003283C3 /* SplashView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		52B40E512B552528003283C3 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				52DDFD182B0E8539007368CC /* SplashViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		52DDFD092B0DF8DF007368CC /* Popup */ = {
 			isa = PBXGroup;
 			children = (
@@ -398,8 +414,8 @@
 		52DDFD172B0E852D007368CC /* Splash */ = {
 			isa = PBXGroup;
 			children = (
-				52DDFD182B0E8539007368CC /* SplashViewController.swift */,
-				52B40E4E2B5522AB003283C3 /* SplashView.swift */,
+				52B40E502B552521003283C3 /* View */,
+				52B40E512B552528003283C3 /* ViewController */,
 			);
 			path = Splash;
 			sourceTree = "<group>";
