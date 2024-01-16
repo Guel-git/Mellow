@@ -65,6 +65,7 @@
 		52B40E4B2B55227B003283C3 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 52B40E4A2B55227B003283C3 /* RxCocoa */; };
 		52B40E4D2B55227B003283C3 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 52B40E4C2B55227B003283C3 /* RxRelay */; };
 		52B40E4F2B5522AB003283C3 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B40E4E2B5522AB003283C3 /* SplashView.swift */; };
+		52B40E532B564115003283C3 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B40E522B564115003283C3 /* ChatView.swift */; };
 		52DDFD0B2B0DF8EB007368CC /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DDFD0A2B0DF8EB007368CC /* PopupViewController.swift */; };
 		52DDFD102B0E02E1007368CC /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DDFD0F2B0E02E1007368CC /* NotificationManager.swift */; };
 		52DDFD122B0E7185007368CC /* SettingDayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DDFD112B0E7185007368CC /* SettingDayTableViewCell.swift */; };
@@ -131,6 +132,7 @@
 		52968BB92B405FE600D20342 /* NSObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSObject.swift; sourceTree = "<group>"; };
 		52968BBB2B4061DD00D20342 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		52B40E4E2B5522AB003283C3 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		52B40E522B564115003283C3 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		52DDFD0A2B0DF8EB007368CC /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
 		52DDFD0F2B0E02E1007368CC /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		52DDFD112B0E7185007368CC /* SettingDayTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingDayTableViewCell.swift; sourceTree = "<group>"; };
@@ -331,6 +333,7 @@
 				528DCD242B04AB2200DD283A /* ChatCapsuleLabel.swift */,
 				528DCD262B04EF2500DD283A /* ChatEndView.swift */,
 				528DCD2A2B04F76300DD283A /* ChatButton.swift */,
+				52B40E522B564115003283C3 /* ChatView.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -622,6 +625,7 @@
 				528DCD172AF8CCEA00DD283A /* RoutineTableViewCell.swift in Sources */,
 				52968BA22B30F91300D20342 /* StartButton.swift in Sources */,
 				525523C92B0BD1240033D4C6 /* SettingDetailTableViewCell.swift in Sources */,
+				52B40E532B564115003283C3 /* ChatView.swift in Sources */,
 				525600D02AE67A0600E122A5 /* UIFont+Extension.swift in Sources */,
 				523F5C952B1A62ED00A46D4F /* SleepingViewController.swift in Sources */,
 				52968BBA2B405FE600D20342 /* NSObject.swift in Sources */,
