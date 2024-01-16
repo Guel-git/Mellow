@@ -7,6 +7,8 @@
 
 import UIKit
 
+import SnapKit
+
 final class ChatEndView: BaseUIView {
     
     // MARK: - property
@@ -38,6 +40,13 @@ final class ChatEndView: BaseUIView {
         label.setTextWithLineHeight(text: TextLiteral.ChatView.endFourthLabelText, lineHeight: 27)
         return label
     }()
+    private lazy var labelStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [firstLabel, secondLabel, thirdLabel, fourthLabel])
+        stackView.axis = .vertical
+        stackView.alignment = .leading
+        stackView.spacing = 4
+        return stackView
+    }()
     
     // MARK: - life cycle
     
@@ -48,7 +57,7 @@ final class ChatEndView: BaseUIView {
     required init?(coder: NSCoder) { nil }
     
     override func render() {
-        [profileImageView, firstLabel, secondLabel, thirdLabel, fourthLabel].forEach {
+        [profileImageView, labelStackView].forEach {
             self.addSubview($0)
         }
         
@@ -57,24 +66,9 @@ final class ChatEndView: BaseUIView {
             $0.leading.top.equalToSuperview()
         }
         
-        firstLabel.snp.makeConstraints {
-            $0.top.equalToSuperview()
+        labelStackView.snp.makeConstraints {
             $0.leading.equalTo(profileImageView.snp.trailing).offset(5)
-        }
-        
-        secondLabel.snp.makeConstraints {
-            $0.top.equalTo(firstLabel.snp.bottom).offset(4)
-            $0.leading.equalTo(firstLabel.snp.leading)
-        }
-        
-        thirdLabel.snp.makeConstraints {
-            $0.top.equalTo(secondLabel.snp.bottom).offset(4)
-            $0.leading.equalTo(firstLabel.snp.leading)
-        }
-        
-        fourthLabel.snp.makeConstraints {
-            $0.top.equalTo(thirdLabel.snp.bottom).offset(4)
-            $0.leading.equalTo(firstLabel.snp.leading)
+            $0.top.equalTo(profileImageView.snp.top)
         }
     }
 }

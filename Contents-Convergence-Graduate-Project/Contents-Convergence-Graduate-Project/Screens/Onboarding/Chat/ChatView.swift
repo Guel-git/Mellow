@@ -44,7 +44,7 @@ final class ChatView: UIView {
     }()
     private let endView: ChatEndView = {
         let view = ChatEndView()
-        view.isHidden = true
+//        view.isHidden = true
         return view
     }()
     
