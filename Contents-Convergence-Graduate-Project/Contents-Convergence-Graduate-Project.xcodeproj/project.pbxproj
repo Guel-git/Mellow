@@ -66,6 +66,9 @@
 		52B40E4D2B55227B003283C3 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 52B40E4C2B55227B003283C3 /* RxRelay */; };
 		52B40E4F2B5522AB003283C3 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B40E4E2B5522AB003283C3 /* SplashView.swift */; };
 		52B40E532B564115003283C3 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B40E522B564115003283C3 /* ChatView.swift */; };
+		52B40E552B5647DA003283C3 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B40E542B5647DA003283C3 /* ChatViewModel.swift */; };
+		52B40E582B56487A003283C3 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B40E572B56487A003283C3 /* ViewModelType.swift */; };
+		52B40E5A2B5649D2003283C3 /* UIViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B40E592B5649D2003283C3 /* UIViewController+Rx.swift */; };
 		52DDFD0B2B0DF8EB007368CC /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DDFD0A2B0DF8EB007368CC /* PopupViewController.swift */; };
 		52DDFD102B0E02E1007368CC /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DDFD0F2B0E02E1007368CC /* NotificationManager.swift */; };
 		52DDFD122B0E7185007368CC /* SettingDayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DDFD112B0E7185007368CC /* SettingDayTableViewCell.swift */; };
@@ -133,6 +136,9 @@
 		52968BBB2B4061DD00D20342 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		52B40E4E2B5522AB003283C3 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		52B40E522B564115003283C3 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		52B40E542B5647DA003283C3 /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
+		52B40E572B56487A003283C3 /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
+		52B40E592B5649D2003283C3 /* UIViewController+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rx.swift"; sourceTree = "<group>"; };
 		52DDFD0A2B0DF8EB007368CC /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
 		52DDFD0F2B0E02E1007368CC /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		52DDFD112B0E7185007368CC /* SettingDayTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingDayTableViewCell.swift; sourceTree = "<group>"; };
@@ -334,6 +340,7 @@
 				528DCD262B04EF2500DD283A /* ChatEndView.swift */,
 				528DCD2A2B04F76300DD283A /* ChatButton.swift */,
 				52B40E522B564115003283C3 /* ChatView.swift */,
+				52B40E542B5647DA003283C3 /* ChatViewModel.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -360,6 +367,14 @@
 				52DDFD182B0E8539007368CC /* SplashViewController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		52B40E562B564866003283C3 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				52B40E572B56487A003283C3 /* ViewModelType.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 		52DDFD092B0DF8DF007368CC /* Popup */ = {
@@ -467,6 +482,7 @@
 		52E873D22AE026E600662723 /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				52B40E562B564866003283C3 /* Protocol */,
 				525600C52AE6785B00E122A5 /* Singleton */,
 				52DDFD0E2B0E02CC007368CC /* Enum */,
 				525600ED2AEABE4200E122A5 /* UIComponent */,
@@ -504,6 +520,7 @@
 				523F5C7E2B17151B00A46D4F /* Date+Extension.swift */,
 				523F5C8E2B1A4F4900A46D4F /* TimeInterval+Extension.swift */,
 				52968BB92B405FE600D20342 /* NSObject.swift */,
+				52B40E592B5649D2003283C3 /* UIViewController+Rx.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -627,6 +644,7 @@
 				525523C92B0BD1240033D4C6 /* SettingDetailTableViewCell.swift in Sources */,
 				52B40E532B564115003283C3 /* ChatView.swift in Sources */,
 				525600D02AE67A0600E122A5 /* UIFont+Extension.swift in Sources */,
+				52B40E582B56487A003283C3 /* ViewModelType.swift in Sources */,
 				523F5C952B1A62ED00A46D4F /* SleepingViewController.swift in Sources */,
 				52968BBA2B405FE600D20342 /* NSObject.swift in Sources */,
 				523F5C792B16412F00A46D4F /* RoutineDetailTableViewCell.swift in Sources */,
@@ -670,10 +688,12 @@
 				52968BB62B405D0400D20342 /* RepeatCollectionViewCell.swift in Sources */,
 				528DCD132AF3C91400DD283A /* ResultViewController.swift in Sources */,
 				52DDFD102B0E02E1007368CC /* NotificationManager.swift in Sources */,
+				52B40E552B5647DA003283C3 /* ChatViewModel.swift in Sources */,
 				523F5C8F2B1A4F4900A46D4F /* TimeInterval+Extension.swift in Sources */,
 				525600EA2AEA920D00E122A5 /* AnswerTableViewCell.swift in Sources */,
 				52DDFD192B0E8539007368CC /* SplashViewController.swift in Sources */,
 				528DCD152AF3D24A00DD283A /* UILabel+Extension.swift in Sources */,
+				52B40E5A2B5649D2003283C3 /* UIViewController+Rx.swift in Sources */,
 				525600F02AEABE5500E122A5 /* MainButton.swift in Sources */,
 				525600F62AEADC1100E122A5 /* BackButton.swift in Sources */,
 				52E873C02AE025E100662723 /* SceneDelegate.swift in Sources */,

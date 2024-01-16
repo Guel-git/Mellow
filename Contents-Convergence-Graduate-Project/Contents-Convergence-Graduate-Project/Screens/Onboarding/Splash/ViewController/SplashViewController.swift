@@ -39,7 +39,8 @@ final class SplashViewController: BaseViewController {
     }
     
     private func navigateToChatViewController() {
-        let chatViewController = ChatViewController()
+        let viewModel = ChatViewModel()
+        let chatViewController = ChatViewController(viewModel: viewModel)
         navigationController?.pushViewController(chatViewController, animated: true)
     }
 }

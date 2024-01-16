@@ -17,7 +17,7 @@ final class ChatView: UIView {
     private let backButton = BackButton()
     private let startView: ChatStartView = {
         let view = ChatStartView()
-//        view.isHidden = true
+        view.isHidden = true
         return view
     }()
     private let answerLabel: ChatCapsuleLabel = {
@@ -44,7 +44,7 @@ final class ChatView: UIView {
     }()
     private let endView: ChatEndView = {
         let view = ChatEndView()
-//        view.isHidden = true
+        view.isHidden = true
         return view
     }()
     
@@ -74,6 +74,14 @@ final class ChatView: UIView {
         let backButton = UIBarButtonItem(customView: backButton)
         navigationItem.leftBarButtonItem = backButton
         navigationItem.title = TextLiteral.questionViewControllerTitle
+    }
+    
+    func showStartView() {
+        startView.isHidden = false
+    }
+    
+    func showButtonStackView() {
+        buttonStackView.isHidden = false
     }
     
     // MARK: - private func

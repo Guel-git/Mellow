@@ -7,13 +7,24 @@
 
 import UIKit
 
+import RxSwift
+
 final class ChatViewController: BaseViewController {
     
     // MARK: - property
     
     private let chatView = ChatView()
+    private let viewModel: any ViewModelType
+    private let disposeBag = DisposeBag()
     
     // MARK: - life cycle
+    
+    init(viewModel: any ViewModelType) {
+        self.viewModel = viewModel
+        super.init()
+    }
+    
+    required init?(coder: NSCoder) { nil }
     
     override func loadView() {
         view = chatView
@@ -23,7 +34,7 @@ final class ChatViewController: BaseViewController {
         super.viewDidLoad()
 //        setDelay()
 //        setButtonAction()
-        
+        bindViewModel()
     }
     
     // MARK: - override
@@ -39,6 +50,19 @@ final class ChatViewController: BaseViewController {
         guard let navigationController else { return }
         chatView.setupNavigationController(navigationController)
         chatView.setupNavigationItem(navigationItem)
+    }
+    
+    private func bindViewModel() {
+        let output = transformInput()
+        bind(output: output)
+    }
+    
+    private func transformInput() -> ChatViewModel.Output? {
+        guard let viewModel = viewModel as? ChatViewModel else { return nil }
+        let input = ChatViewModel.Input(
+            viewDidLoad: self.rx.viewDidLoad
+        )
+        return viewModel.transform(from: input)
     }
     
 //    private func setButtonAction() {
@@ -86,4 +110,24 @@ final class ChatViewController: BaseViewController {
 //        testViewController.navigationItem.hidesBackButton = true
 //        self.navigationController?.pushViewController(testViewController, animated: true)
 //    }
+}
+
+// MARK: - bind
+
+extension ChatViewController {
+    private func bind(output: ChatViewModel.Output?) {
+        guard let output else { return }
+
+        output.startViewDelayEnd
+            .subscribe { [weak self] _ in
+                self?.chatView.showStartView()
+            }
+            .disposed(by: disposeBag)
+        
+        output.buttonStackViewDelayEnd
+            .subscribe { [weak self] _ in
+                self?.chatView.showButtonStackView()
+            }
+            .disposed(by: disposeBag)
+    }
 }
