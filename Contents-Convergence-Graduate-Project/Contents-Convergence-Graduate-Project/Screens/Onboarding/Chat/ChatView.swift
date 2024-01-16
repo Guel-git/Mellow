@@ -37,7 +37,7 @@ final class ChatView: UIView {
         stackView.isHidden = true
         return stackView
     }()
-    private let fourthButton: ChatButton = {
+    private let nextButton: ChatButton = {
         let button = ChatButton(buttonText: TextLiteral.ChatView.fourthChatButtonText)
         button.isHidden = true
         return button
@@ -49,6 +49,22 @@ final class ChatView: UIView {
     }()
     
     // MARK: - publisher
+    
+    var firstButtonTapPublisher: Observable<Void> {
+        return firstButton.rx.tap.asObservable()
+    }
+    
+    var secondButtonTapPublisher: Observable<Void> {
+        return secondButton.rx.tap.asObservable()
+    }
+    
+    var thirdButtonTapPublisher: Observable<Void> {
+        return thirdButton.rx.tap.asObservable()
+    }
+    
+    var nextButtonTapPublisher: Observable<Void> {
+        return nextButton.rx.tap.asObservable()
+    }
     
     // MARK: - init
     
@@ -84,6 +100,20 @@ final class ChatView: UIView {
         buttonStackView.isHidden = false
     }
     
+    func showSelectedButton(_ text: String) {
+        answerLabel.text = text
+        answerLabel.isHidden = false
+        buttonStackView.isHidden = true
+    }
+    
+    func showEndView() {
+        endView.isHidden = false
+    }
+    
+    func showNextButton() {
+        nextButton.isHidden = false
+    }
+    
     // MARK: - private func
     
 }
@@ -92,7 +122,7 @@ final class ChatView: UIView {
 
 extension ChatView {
     private func setupLayout() {
-        [startView, answerLabel, buttonStackView, endView, fourthButton].forEach {
+        [startView, answerLabel, buttonStackView, endView, nextButton].forEach {
             self.addSubview($0)
         }
         
@@ -121,7 +151,7 @@ extension ChatView {
             $0.height.equalTo(169)
         }
         
-        fourthButton.snp.makeConstraints {
+        nextButton.snp.makeConstraints {
             $0.bottom.equalTo(self.safeAreaLayoutGuide).inset(20)
             $0.centerX.equalToSuperview()
             $0.height.equalTo(51)
