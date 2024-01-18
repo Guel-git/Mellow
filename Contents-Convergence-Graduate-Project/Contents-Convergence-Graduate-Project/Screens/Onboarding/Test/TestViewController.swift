@@ -108,193 +108,86 @@ enum QuestionNum: Int {
 
 final class TestViewController: BaseViewController {
     
-    var questionNum: QuestionNum
-    var selectedAnswer: String = ""
-    var totalAnswer: String
-    
-    // MARK: - property
-
-    private let backButton = BackButton()
-    private let progressBackground: UIView = {
-        let view = UIView()
-        view.backgroundColor = .dreamPurple50
-        view.layer.cornerRadius = 2
-        return view
-    }()
-    private let progressBar: UIView = {
-        let view = UIView()
-        view.layer.cornerRadius = 2
-        return view
-    }()
-    private let questionNumImage: UIImageView = {
-        let imageView = UIImageView()
-        imageView.tintColor = .dreamPurple500
-        return imageView
-    }()
-    private let questionLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .fontBlack
-        label.font = .sb20
-        return label
-    }()
-    private let answerTableView = UITableView()
-    private let mainButton: MainButton = {
-        let button = MainButton()
-        button.isDisabled = true
-        return button
-    }()
+//    var questionNum: QuestionNum
+//    var selectedAnswer: String = ""
+//    var totalAnswer: String
+    private let testView = TestView()
 
     // MARK: - life cycle
     
-    init(questionNum: QuestionNum, totalAnswer: String) {
-        self.questionNum = questionNum
-        self.totalAnswer = totalAnswer
-        super.init()
-    }
+//    init(questionNum: QuestionNum, totalAnswer: String) {
+//        self.questionNum = questionNum
+//        self.totalAnswer = totalAnswer
+//        super.init()
+//    }
+//
+//    required init?(coder: NSCoder) { nil }
     
-    required init?(coder: NSCoder) { nil }
+    override func loadView() {
+        view = testView
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupDelegate()
-        setupAttribute()
-        setButtonAction()
+//        setupAttribute()
+//        setButtonAction()
     }
     
-    override func render() {
-        [progressBackground, questionNumImage, questionLabel, answerTableView, mainButton].forEach {
-            view.addSubview($0)
-        }
-        progressBackground.addSubview(progressBar)
-        
-        progressBackground.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide).offset(14)
-            $0.leading.trailing.equalToSuperview().inset(18)
-            $0.height.equalTo(4)
-        }
-        
-        progressBar.snp.makeConstraints {
-            $0.leading.top.bottom.equalToSuperview()
-            $0.width.equalTo(progressBackground.snp.width).multipliedBy(questionNum.progressRatio)
-        }
-        
-        questionNumImage.snp.makeConstraints {
-            $0.top.equalTo(progressBackground.snp.bottom).offset(32)
-            $0.centerX.equalToSuperview()
-            $0.width.height.equalTo(25)
-        }
-        
-        questionLabel.snp.makeConstraints {
-            $0.top.equalTo(questionNumImage.snp.bottom).offset(6)
-            $0.centerX.equalToSuperview()
-        }
-        
-        mainButton.snp.makeConstraints {
-            $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(8)
-            $0.leading.trailing.equalToSuperview().inset(16)
-            $0.height.equalTo(52)
-        }
-
-        answerTableView.snp.makeConstraints {
-            $0.top.equalTo(questionLabel.snp.bottom).offset(32)
-            $0.leading.trailing.equalToSuperview()
-            $0.bottom.equalTo(mainButton.snp.top).inset(-8)
-        }
-    }
-    
-    // MARK: - func
+    // MARK: - override
     
     override func setupNavigationBar() {
         super.setupNavigationBar()
-        
-        let backButton = makeBarButtonItem(with: backButton)
-        navigationController?.navigationBar.prefersLargeTitles = false
-        navigationItem.largeTitleDisplayMode = .never
-        navigationItem.leftBarButtonItem = questionNum.hasBackButton ? backButton : nil
-        navigationItem.title = TextLiteral.questionViewControllerTitle
-        navigationController?.navigationBar.tintColor = .fontBlack
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.fontBlack, NSAttributedString.Key.font: UIFont.sb16]
-        
-        let appearance = UINavigationBarAppearance()
-        appearance.configureWithTransparentBackground()
-        navigationController?.navigationBar.standardAppearance = appearance
-        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        configureNavigationController()
     }
     
-    private func setupDelegate() {
-        answerTableView.delegate = self
-        answerTableView.dataSource = self
+    // MARK: - private func
+    
+    private func configureNavigationController() {
+        guard let navigationController else { return }
+        testView.setupNavigationController(navigationController)
+        testView.setupNavigationItem(navigationItem)
     }
     
-    private func setupAttribute() {
-        questionNumImage.image = questionNum.numImage
-        questionLabel.text = questionNum.questionText
-        progressBar.layoutIfNeeded()
-        progressBar.setGradient(start: .gradientPurpleStart, end: .gradientPurpleEnd)
-        progressBar.layer.masksToBounds = true
-        progressBar.layer.maskedCorners = questionNum.progressRadius
-        mainButton.title = questionNum.mainButtonTitle
-        
-        answerTableView.register(AnswerTableViewCell.self, forCellReuseIdentifier: AnswerTableViewCell.cellId)
-        answerTableView.rowHeight = 60
-        answerTableView.separatorStyle = .none
-        answerTableView.isScrollEnabled = false
-    }
+//    private func setupAttribute() {
+//        questionNumImage.image = questionNum.numImage
+//        questionLabel.text = questionNum.questionText
+//        progressBar.layoutIfNeeded()
+//        progressBar.setGradient(start: .gradientPurpleStart, end: .gradientPurpleEnd)
+//        progressBar.layer.masksToBounds = true
+//        progressBar.layer.maskedCorners = questionNum.progressRadius
+//        mainButton.title = questionNum.mainButtonTitle
+//    }
     
-    private func setButtonAction() {
-        let action = UIAction { [weak self] _ in
-            self?.navigateToNextQuestion()
-        }
-        mainButton.addAction(action, for: .touchUpInside)
-    }
-    
-    private func navigateToNextQuestion() {
-        totalAnswer += selectedAnswer
-        if questionNum.rawValue == 4 {
-            UserDefaultManager.sleepType = calculateScore().rawValue
-            let resultViewController = ResultViewController(resultType: calculateScore())
-            resultViewController.navigationItem.hidesBackButton = true
-            self.navigationController?.pushViewController(resultViewController, animated: true)
-        } else {
-            let nextNum = questionNum.rawValue + 1
-            let testViewController = TestViewController(questionNum: QuestionNum(rawValue: nextNum)!, totalAnswer: totalAnswer)
-            testViewController.navigationItem.hidesBackButton = true
-            self.navigationController?.pushViewController(testViewController, animated: true)
-        }
-    }
-    
-    private func calculateScore() -> SleepType {
-        var typeDictionary: [SleepType:Int] = [.Best:0, .Zombie:0, .Baby:0, .Nervous:0]
-        for type in typeDictionary.keys {
-            typeDictionary[type] = totalAnswer.filter { $0 == Character(type.rawValue) }.count
-        }
-        if let maxType = typeDictionary.max(by: { $0.value < $1.value }) {
-            return maxType.key
-        }
-        return .Zombie
-    }
-}
-
-// MARK: - extension
-
-extension TestViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return questionNum.answerList.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = answerTableView.dequeueReusableCell(withIdentifier: AnswerTableViewCell.cellId, for: indexPath) as! AnswerTableViewCell
-        
-        cell.cellLabel.text = questionNum.answerList[indexPath.row]
-        cell.selectionStyle = .none
-        
-        return cell
-    }
-}
-
-extension TestViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        mainButton.isDisabled = false
-        selectedAnswer = questionNum.weightScore[indexPath.item]
-    }
+//    private func setButtonAction() {
+//        let action = UIAction { [weak self] _ in
+//            self?.navigateToNextQuestion()
+//        }
+//        mainButton.addAction(action, for: .touchUpInside)
+//    }
+//
+//    private func navigateToNextQuestion() {
+//        totalAnswer += selectedAnswer
+//        if questionNum.rawValue == 4 {
+//            UserDefaultManager.sleepType = calculateScore().rawValue
+//            let resultViewController = ResultViewController(resultType: calculateScore())
+//            resultViewController.navigationItem.hidesBackButton = true
+//            self.navigationController?.pushViewController(resultViewController, animated: true)
+//        } else {
+//            let nextNum = questionNum.rawValue + 1
+//            let testViewController = TestViewController(questionNum: QuestionNum(rawValue: nextNum)!, totalAnswer: totalAnswer)
+//            testViewController.navigationItem.hidesBackButton = true
+//            self.navigationController?.pushViewController(testViewController, animated: true)
+//        }
+//    }
+//
+//    private func calculateScore() -> SleepType {
+//        var typeDictionary: [SleepType:Int] = [.Best:0, .Zombie:0, .Baby:0, .Nervous:0]
+//        for type in typeDictionary.keys {
+//            typeDictionary[type] = totalAnswer.filter { $0 == Character(type.rawValue) }.count
+//        }
+//        if let maxType = typeDictionary.max(by: { $0.value < $1.value }) {
+//            return maxType.key
+//        }
+//        return .Zombie
+//    }
 }
