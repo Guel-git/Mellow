@@ -12,6 +12,8 @@ import RxCocoa
 
 final class TestView: UIView {
     
+    private var answerList = [String]()
+    
     // MARK: - ui components
     
     private let backButton = BackButton()
@@ -74,20 +76,22 @@ final class TestView: UIView {
         navigationItem.title = TextLiteral.questionViewControllerTitle
     }
     
-    func setupAttribute(_ questionNumImage: UIImage, _ questionText: String, _ progressRatio: Double, _ progressRadius: CACornerMask, _ mainButtonText: String) {
+    func setupAttribute(_ questionNumImage: UIImage, _ questionText: String, _ progressRatio: Double, _ progressRadius: CACornerMask, _ mainButtonText: String, _ answerList: [String]) {
         self.questionNumImage.image = questionNumImage
-        questionLabel.text = questionText
+        self.questionLabel.text = questionText
         
-        progressBar.snp.updateConstraints {
+        self.progressBar.snp.updateConstraints {
             $0.width.equalTo(progressBackground.snp.width).multipliedBy(progressRatio)
         }
         
-        progressBar.layoutIfNeeded()
-        progressBar.setGradient(start: .gradientPurpleStart, end: .gradientPurpleEnd)
-        progressBar.layer.masksToBounds = true
-        progressBar.layer.maskedCorners = progressRadius
+        self.progressBar.layoutIfNeeded()
+        self.progressBar.setGradient(start: .gradientPurpleStart, end: .gradientPurpleEnd)
+        self.progressBar.layer.masksToBounds = true
+        self.progressBar.layer.maskedCorners = progressRadius
         
-        mainButton.title = mainButtonText
+        self.mainButton.title = mainButtonText
+        self.answerList = answerList
+        self.answerTableView.reloadData()
     }
     
     // MARK: - private func
@@ -145,15 +149,13 @@ final class TestView: UIView {
 
 extension TestView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //        return questionNum.answerList.count
-        return 4
+        return answerList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = answerTableView.dequeueReusableCell(withIdentifier: AnswerTableViewCell.cellId, for: indexPath) as! AnswerTableViewCell
         
-        //        cell.cellLabel.text = questionNum.answerList[indexPath.row]
-        cell.cellLabel.text = TextLiteral.firstAnswerList[indexPath.row]
+        cell.cellLabel.text = answerList[indexPath.row]
         cell.selectionStyle = .none
         
         return cell

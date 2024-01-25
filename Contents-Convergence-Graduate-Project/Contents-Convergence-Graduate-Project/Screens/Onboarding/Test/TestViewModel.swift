@@ -121,6 +121,7 @@ final class TestViewModel: ViewModelType {
         let progressRatio: Observable<Double>
         let progressRadius: Observable<CACornerMask>
         let mainButtonText: Observable<String>
+        let answerList: Observable<[String]>
     }
     
     // MARK: - property
@@ -158,7 +159,11 @@ final class TestViewModel: ViewModelType {
             .withUnretained(self)
             .compactMap { _ in self.questionNum.mainButtonTitle }
         
-        return Output(questionNumImage: questionNumImage, questionText: questionText, progressRatio: progressRatio, progressRadius: progressRadius, mainButtonText: mainButtonText)
+        let answerList = input.viewDidLoad
+            .withUnretained(self)
+            .compactMap { _ in self.questionNum.answerList }
+        
+        return Output(questionNumImage: questionNumImage, questionText: questionText, progressRatio: progressRatio, progressRadius: progressRadius, mainButtonText: mainButtonText, answerList: answerList)
     }
     
     // MARK: - private func

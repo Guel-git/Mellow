@@ -101,9 +101,10 @@ extension TestViewController {
     private func bind(output: TestViewModel.Output?) {
         guard let output else { return }
         
-        Observable.combineLatest(output.questionNumImage, output.questionText, output.progressRatio, output.progressRadius, output.mainButtonText)
-            .subscribe { [weak self] questionNumImage, questionText, progressRatio, progressRadius, mainButtonText in
-                self?.testView.setupAttribute(questionNumImage, questionText, progressRatio, progressRadius, mainButtonText)
+        Observable.combineLatest(output.questionNumImage, output.questionText, output.progressRatio, output.progressRadius, output.mainButtonText, output.answerList)
+            .subscribe { [weak self] questionNumImage, questionText, progressRatio, progressRadius, mainButtonText, answerList in
+                self?.testView.setupAttribute(questionNumImage, questionText, progressRatio, progressRadius, mainButtonText, answerList)
             }
+            .disposed(by: disposeBag)
     }
 }
