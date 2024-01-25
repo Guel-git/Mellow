@@ -76,8 +76,9 @@ final class ChatViewController: BaseViewController {
     }
     
     private func navigateToTestViewController() {
-//        let testViewController = TestViewController(questionNum: .first, totalAnswer: "")
-//        self.navigationController?.pushViewController(testViewController, animated: true)
+        let viewModel = TestViewModel(questionNum: .first, totalAnswer: String())
+        let testViewController = TestViewController(viewModel: viewModel)
+        self.navigationController?.pushViewController(testViewController, animated: true)
     }
 }
 

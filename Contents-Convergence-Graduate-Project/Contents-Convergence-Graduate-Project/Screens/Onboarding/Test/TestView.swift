@@ -24,6 +24,7 @@ final class TestView: UIView {
     private let progressBar: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 2
+        view.backgroundColor = .gradientPurpleEnd
         return view
     }()
     private let questionNumImage: UIImageView = {
@@ -73,6 +74,22 @@ final class TestView: UIView {
         navigationItem.title = TextLiteral.questionViewControllerTitle
     }
     
+    func setupAttribute(_ questionNumImage: UIImage, _ questionText: String, _ progressRatio: Double, _ progressRadius: CACornerMask, _ mainButtonText: String) {
+        self.questionNumImage.image = questionNumImage
+        questionLabel.text = questionText
+        
+        progressBar.snp.updateConstraints {
+            $0.width.equalTo(progressBackground.snp.width).multipliedBy(progressRatio)
+        }
+        
+        progressBar.layoutIfNeeded()
+        progressBar.setGradient(start: .gradientPurpleStart, end: .gradientPurpleEnd)
+        progressBar.layer.masksToBounds = true
+        progressBar.layer.maskedCorners = progressRadius
+        
+        mainButton.title = mainButtonText
+    }
+    
     // MARK: - private func
     
     private func setupTableView() {
@@ -97,7 +114,6 @@ final class TestView: UIView {
         
         progressBar.snp.makeConstraints {
             $0.leading.top.bottom.equalToSuperview()
-            //            $0.width.equalTo(progressBackground.snp.width).multipliedBy(questionNum.progressRatio)
             $0.width.equalTo(progressBackground.snp.width).multipliedBy(0.25)
         }
         

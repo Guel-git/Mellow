@@ -7,121 +7,23 @@
 
 import UIKit
 
-enum QuestionNum: Int {
-    case first = 1
-    case second = 2
-    case third = 3
-    case fourth = 4
-    
-    var hasBackButton: Bool {
-        switch self {
-        case .first:
-            return false
-        case .second, .third, .fourth:
-            return true
-        }
-    }
-        
-    var progressRatio: Double {
-        switch self {
-        case .first:
-            return 0.25
-        case .second:
-            return 0.5
-        case .third:
-            return 0.75
-        case .fourth:
-            return 1.0
-        }
-    }
-    
-    var progressRadius: CACornerMask {
-        switch self {
-        case .first, .second, .third:
-            return [.layerMinXMinYCorner, .layerMinXMaxYCorner]
-        case .fourth:
-            return [.layerMinXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMinYCorner, .layerMaxXMaxYCorner]
-        }
-    }
-    
-    var numImage: UIImage {
-        switch self {
-        case .first:
-            return ImageLiteral.questionOneImage
-        case .second:
-            return ImageLiteral.questionTwoImage
-        case .third:
-            return ImageLiteral.questionThreeImage
-        case .fourth:
-            return ImageLiteral.questionFourImage
-        }
-    }
-    
-    var questionText: String {
-        switch self {
-        case .first:
-            return TextLiteral.questionOne
-        case .second:
-            return TextLiteral.questionTwo
-        case .third:
-            return TextLiteral.questionThree
-        case .fourth:
-            return TextLiteral.questionFour
-        }
-    }
-    
-    var answerList: [String] {
-        switch self {
-        case .first:
-            return TextLiteral.firstAnswerList
-        case .second:
-            return TextLiteral.secondAnswerList
-        case .third:
-            return TextLiteral.thirdAnswerList
-        case .fourth:
-            return TextLiteral.fourthAnswerList
-        }
-    }
-    
-    var mainButtonTitle: String {
-        switch self {
-        case .first, .second, .third:
-            return TextLiteral.nextButtonTitle
-        case .fourth:
-            return TextLiteral.endTestButtonTitle
-        }
-    }
-    
-    var weightScore: [String] {
-        switch self {
-        case .first:
-            return ["221", "00", "112", "33"]
-        case .second:
-            return ["00", "033", "211", "22"]
-        case .third:
-            return ["00", "11", "221", "33"]
-        case .fourth:
-            return ["00", "33", "22", "11"]
-        }
-    }
-}
+import RxSwift
 
 final class TestViewController: BaseViewController {
     
-//    var questionNum: QuestionNum
 //    var selectedAnswer: String = ""
-//    var totalAnswer: String
     private let testView = TestView()
+    private let viewModel: any ViewModelType
+    private let disposeBag = DisposeBag()
 
     // MARK: - life cycle
     
-//    init(questionNum: QuestionNum, totalAnswer: String) {
-//        self.questionNum = questionNum
-//        self.totalAnswer = totalAnswer
-//        super.init()
-//    }
-//
-//    required init?(coder: NSCoder) { nil }
+    init(viewModel: any ViewModelType) {
+        self.viewModel = viewModel
+        super.init()
+    }
+
+    required init?(coder: NSCoder) { nil }
     
     override func loadView() {
         view = testView
@@ -129,7 +31,7 @@ final class TestViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        setupAttribute()
+        bindViewModel()
 //        setButtonAction()
     }
     
@@ -148,15 +50,18 @@ final class TestViewController: BaseViewController {
         testView.setupNavigationItem(navigationItem)
     }
     
-//    private func setupAttribute() {
-//        questionNumImage.image = questionNum.numImage
-//        questionLabel.text = questionNum.questionText
-//        progressBar.layoutIfNeeded()
-//        progressBar.setGradient(start: .gradientPurpleStart, end: .gradientPurpleEnd)
-//        progressBar.layer.masksToBounds = true
-//        progressBar.layer.maskedCorners = questionNum.progressRadius
-//        mainButton.title = questionNum.mainButtonTitle
-//    }
+    private func bindViewModel() {
+        let output = transformInput()
+        bind(output: output)
+    }
+    
+    private func transformInput() -> TestViewModel.Output? {
+        guard let viewModel = viewModel as? TestViewModel else { return nil }
+        let input = TestViewModel.Input(
+            viewDidLoad: self.rx.viewDidLoad
+        )
+        return viewModel.transform(from: input)
+    }
     
 //    private func setButtonAction() {
 //        let action = UIAction { [weak self] _ in
@@ -190,4 +95,15 @@ final class TestViewController: BaseViewController {
 //        }
 //        return .Zombie
 //    }
+}
+
+extension TestViewController {
+    private func bind(output: TestViewModel.Output?) {
+        guard let output else { return }
+        
+        Observable.combineLatest(output.questionNumImage, output.questionText, output.progressRatio, output.progressRadius, output.mainButtonText)
+            .subscribe { [weak self] questionNumImage, questionText, progressRatio, progressRadius, mainButtonText in
+                self?.testView.setupAttribute(questionNumImage, questionText, progressRatio, progressRadius, mainButtonText)
+            }
+    }
 }

@@ -70,6 +70,7 @@
 		52B40E582B56487A003283C3 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B40E572B56487A003283C3 /* ViewModelType.swift */; };
 		52B40E5A2B5649D2003283C3 /* UIViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B40E592B5649D2003283C3 /* UIViewController+Rx.swift */; };
 		52B40E612B59229A003283C3 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B40E602B59229A003283C3 /* TestView.swift */; };
+		52B40E632B62794F003283C3 /* TestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B40E622B62794F003283C3 /* TestViewModel.swift */; };
 		52DDFD0B2B0DF8EB007368CC /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DDFD0A2B0DF8EB007368CC /* PopupViewController.swift */; };
 		52DDFD102B0E02E1007368CC /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DDFD0F2B0E02E1007368CC /* NotificationManager.swift */; };
 		52DDFD122B0E7185007368CC /* SettingDayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DDFD112B0E7185007368CC /* SettingDayTableViewCell.swift */; };
@@ -141,6 +142,7 @@
 		52B40E572B56487A003283C3 /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 		52B40E592B5649D2003283C3 /* UIViewController+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rx.swift"; sourceTree = "<group>"; };
 		52B40E602B59229A003283C3 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
+		52B40E622B62794F003283C3 /* TestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewModel.swift; sourceTree = "<group>"; };
 		52DDFD0A2B0DF8EB007368CC /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
 		52DDFD0F2B0E02E1007368CC /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		52DDFD112B0E7185007368CC /* SettingDayTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingDayTableViewCell.swift; sourceTree = "<group>"; };
@@ -294,6 +296,7 @@
 				52E873C12AE025E100662723 /* TestViewController.swift */,
 				525600E92AEA920D00E122A5 /* AnswerTableViewCell.swift */,
 				52B40E602B59229A003283C3 /* TestView.swift */,
+				52B40E622B62794F003283C3 /* TestViewModel.swift */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -695,6 +698,7 @@
 				525600C92AE6787E00E122A5 /* UserDefault.swift in Sources */,
 				525600EC2AEABDB100E122A5 /* BaseTableViewCell.swift in Sources */,
 				523F5C732B16324900A46D4F /* RoutineStartViewController.swift in Sources */,
+				52B40E632B62794F003283C3 /* TestViewModel.swift in Sources */,
 				525600DB2AEA89A200E122A5 /* ImageLiteral.swift in Sources */,
 				528DCD2B2B04F76300DD283A /* ChatButton.swift in Sources */,
 				528DCD252B04AB2200DD283A /* ChatCapsuleLabel.swift in Sources */,
