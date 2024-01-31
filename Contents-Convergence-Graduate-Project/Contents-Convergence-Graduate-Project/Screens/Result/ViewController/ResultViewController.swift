@@ -7,18 +7,21 @@
 
 import UIKit
 
+import RxSwift
+
 final class ResultViewController: BaseViewController {
     
-    let resultType: SleepType
     private let resultView = ResultView()
+    private let viewModel: any ViewModelType
+    private let disposeBag = DisposeBag()
     
     // MARK: - life cycle
     
-    init(resultType: SleepType) {
-        self.resultType = resultType
+    init(viewModel: any ViewModelType) {
+        self.viewModel = viewModel
         super.init()
     }
-    
+
     required init?(coder: NSCoder) { nil }
     
     override func loadView() {
@@ -28,6 +31,7 @@ final class ResultViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 //        setButtonAction()
+        bindViewModel()
     }
     
     override func setupNavigationBar() {
@@ -43,17 +47,18 @@ final class ResultViewController: BaseViewController {
         resultView.setupNavigationItem(navigationItem)
     }
     
-//    override func configUI() {
-//        titleLabel.text = resultType.typeText
-//        emojiImage.image = resultType.typeImage
-//        angelNameLabel.text = resultType.angelText + TextLiteral.ResultView.afterAngelText
-//        angelNameLabel.applyFont(resultType.angelText, .sb20)
-//        angelNameLabel.textAlignment = .center
-//        favoriteLabel.setTextWithLineHeight(text: resultType.favoriteText, lineHeight: 27)
-//        favoriteLabel.textAlignment = .center
-//        contentLabel.setTextWithLineHeight(text: resultType.contentText, lineHeight: 24)
-//        super.configUI()
-//    }
+    private func bindViewModel() {
+        let output = transformInput()
+        bind(output: output)
+    }
+    
+    private func transformInput() -> ResultViewModel.Output? {
+        guard let viewModel = viewModel as? ResultViewModel else { return nil }
+        let input = ResultViewModel.Input(
+            viewDidLoad: self.rx.viewDidLoad
+        )
+        return viewModel.transform(from: input)
+    }
     
 //    private func setButtonAction() {
 //        let action = UIAction { [weak self] _ in
@@ -67,4 +72,18 @@ final class ResultViewController: BaseViewController {
 //        settingViewController.navigationItem.hidesBackButton = true
 //        self.navigationController?.pushViewController(settingViewController, animated: true)
 //    }
+}
+
+// MARK: - bind
+
+extension ResultViewController {
+    private func bind(output: ResultViewModel.Output?) {
+        guard let output else { return }
+        
+        Observable.combineLatest(output.titleText, output.emojiImage, output.angelText, output.favoriteText, output.contentText, output.routineTableViewHeight)
+            .subscribe { [weak self] titleText, emojiImage, angelText, favoriteText, contentText, routineTableViewHeight in
+                self?.resultView.setAttribute(titleText, emojiImage, angelText, favoriteText, contentText, routineTableViewHeight)
+            }
+            .disposed(by: disposeBag)
+    }
 }

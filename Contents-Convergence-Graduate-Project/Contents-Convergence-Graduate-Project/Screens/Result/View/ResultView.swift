@@ -106,6 +106,21 @@ final class ResultView: UIView {
         navigationItem.title = TextLiteral.questionViewControllerTitle
     }
     
+    func setAttribute(_ titleText: String, _ emojiImage: UIImage, _ angelText: String, _ favoriteText: String, _ contentText: String, _ routineTableViewHeight: Int) {
+        self.titleLabel.text = titleText
+        self.emojiImage.image = emojiImage
+        self.angelNameLabel.text = angelText + TextLiteral.ResultView.afterAngelText
+        self.angelNameLabel.applyFont(angelText, .sb20)
+        self.angelNameLabel.textAlignment = .center
+        self.favoriteLabel.setTextWithLineHeight(text: favoriteText, lineHeight: 27)
+        self.favoriteLabel.textAlignment = .center
+        self.contentLabel.setTextWithLineHeight(text: contentText, lineHeight: 24)
+        
+        self.routineTableView.snp.updateConstraints {
+            $0.height.equalTo(routineTableViewHeight)
+        }
+    }
+    
     // MARK: - private func
     
     private func setupLayout() {
@@ -181,7 +196,6 @@ final class ResultView: UIView {
         routineTableView.snp.makeConstraints {
             $0.top.equalTo(routineLabel.snp.bottom).offset(8)
             $0.leading.trailing.equalToSuperview()
-//            $0.height.equalTo(resultType.routineTableViewHeight)
             $0.height.equalTo(SleepType.Baby.routineDetailViewHeight)
             $0.bottom.equalTo(-16)
         }

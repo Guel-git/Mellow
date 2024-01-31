@@ -68,6 +68,8 @@ final class TestViewController: BaseViewController {
     }
 }
 
+// MARK: - bind
+
 extension TestViewController {
     private func bind(output: TestViewModel.Output?) {
         guard let output else { return }
