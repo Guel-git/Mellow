@@ -9,4 +9,15 @@ import UIKit
 
 final class ResultViewModel: ViewModelType {
     
+    struct Input {
+        
+    }
+ 
+    struct Output {
+        
+    }
+    
+    func transform(from input: Input) -> Output {
+        return Output()
+    }
 }
