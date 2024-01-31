@@ -52,6 +52,10 @@ final class TestView: UIView {
     
     var answerItemTapPublisher = PublishSubject<Int>()
     
+    var mainButtonTapPublisher: Observable<Void> {
+        return mainButton.rx.tap.asObservable()
+    }
+    
     // MARK: - init
     
     override init(frame: CGRect) {

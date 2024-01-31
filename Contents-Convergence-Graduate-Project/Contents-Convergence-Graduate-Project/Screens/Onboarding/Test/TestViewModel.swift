@@ -114,6 +114,7 @@ final class TestViewModel: ViewModelType {
     struct Input {
         let viewDidLoad: Observable<Void>
         let answerItemTapped: Observable<Int>
+        let mainButtonTapped: Observable<Void>
     }
     
     struct Output {
@@ -124,6 +125,7 @@ final class TestViewModel: ViewModelType {
         let mainButtonText: Observable<String>
         let answerList: Observable<[String]>
         let answerItemSelectionDidEnd: Observable<Bool>
+        let answeringDidEnd: Observable<UIViewController>
     }
     
     // MARK: - property
@@ -175,12 +177,38 @@ final class TestViewModel: ViewModelType {
         let answerItemSelectionDidEnd = input.answerItemTapped
             .map { _ in true }
         
-        return Output(questionNumImage: questionNumImage, questionText: questionText, progressRatio: progressRatio, progressRadius: progressRadius, mainButtonText: mainButtonText, answerList: answerList, answerItemSelectionDidEnd: answerItemSelectionDidEnd)
+        let answeringDidEnd = input.mainButtonTapped
+            .withUnretained(self)
+            .map { _ in self.navigateToNextQuestion() }
+        
+        return Output(questionNumImage: questionNumImage, questionText: questionText, progressRatio: progressRatio, progressRadius: progressRadius, mainButtonText: mainButtonText, answerList: answerList, answerItemSelectionDidEnd: answerItemSelectionDidEnd, answeringDidEnd: answeringDidEnd)
     }
     
     // MARK: - private func
     
     private func updateSelectedAnswer(_ item: Int) {
         selectedAnswer = questionNum.weightScore[item]
+    }
+    
+    private func navigateToNextQuestion() -> UIViewController {
+        totalAnswer += selectedAnswer
+        if questionNum.rawValue == 4 {
+            UserDefaultManager.sleepType = calculateScore().rawValue
+        }
+        let viewModel = questionNum.rawValue == 4 ? nil : TestViewModel(questionNum: QuestionNum(rawValue: questionNum.rawValue + 1)!, totalAnswer: totalAnswer)
+        let viewController = questionNum.rawValue == 4 ? ResultViewController(resultType: calculateScore()) : TestViewController(viewModel: viewModel!)
+        viewController.navigationItem.hidesBackButton = true
+        return viewController
+    }
+    
+    private func calculateScore() -> SleepType {
+        var typeDictionary: [SleepType:Int] = [.Best:0, .Zombie:0, .Baby:0, .Nervous:0]
+        for type in typeDictionary.keys {
+            typeDictionary[type] = totalAnswer.filter { $0 == Character(type.rawValue) }.count
+        }
+        if let maxType = typeDictionary.max(by: { $0.value < $1.value }) {
+            return maxType.key
+        }
+        return .Zombie
     }
 }

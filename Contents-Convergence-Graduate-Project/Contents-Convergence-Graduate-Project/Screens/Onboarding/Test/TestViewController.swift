@@ -11,7 +11,6 @@ import RxSwift
 
 final class TestViewController: BaseViewController {
     
-//    var selectedAnswer: String = ""
     private let testView = TestView()
     private let viewModel: any ViewModelType
     private let disposeBag = DisposeBag()
@@ -32,7 +31,6 @@ final class TestViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         bindViewModel()
-//        setButtonAction()
     }
     
     // MARK: - override
@@ -59,43 +57,15 @@ final class TestViewController: BaseViewController {
         guard let viewModel = viewModel as? TestViewModel else { return nil }
         let input = TestViewModel.Input(
             viewDidLoad: self.rx.viewDidLoad,
-            answerItemTapped: testView.answerItemTapPublisher
+            answerItemTapped: testView.answerItemTapPublisher,
+            mainButtonTapped: testView.mainButtonTapPublisher
         )
         return viewModel.transform(from: input)
     }
     
-//    private func setButtonAction() {
-//        let action = UIAction { [weak self] _ in
-//            self?.navigateToNextQuestion()
-//        }
-//        mainButton.addAction(action, for: .touchUpInside)
-//    }
-//
-//    private func navigateToNextQuestion() {
-//        totalAnswer += selectedAnswer
-//        if questionNum.rawValue == 4 {
-//            UserDefaultManager.sleepType = calculateScore().rawValue
-//            let resultViewController = ResultViewController(resultType: calculateScore())
-//            resultViewController.navigationItem.hidesBackButton = true
-//            self.navigationController?.pushViewController(resultViewController, animated: true)
-//        } else {
-//            let nextNum = questionNum.rawValue + 1
-//            let testViewController = TestViewController(questionNum: QuestionNum(rawValue: nextNum)!, totalAnswer: totalAnswer)
-//            testViewController.navigationItem.hidesBackButton = true
-//            self.navigationController?.pushViewController(testViewController, animated: true)
-//        }
-//    }
-//
-//    private func calculateScore() -> SleepType {
-//        var typeDictionary: [SleepType:Int] = [.Best:0, .Zombie:0, .Baby:0, .Nervous:0]
-//        for type in typeDictionary.keys {
-//            typeDictionary[type] = totalAnswer.filter { $0 == Character(type.rawValue) }.count
-//        }
-//        if let maxType = typeDictionary.max(by: { $0.value < $1.value }) {
-//            return maxType.key
-//        }
-//        return .Zombie
-//    }
+    private func navigateToTestViewController(viewController: UIViewController) {
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
 }
 
 extension TestViewController {
@@ -111,6 +81,12 @@ extension TestViewController {
         output.answerItemSelectionDidEnd
             .subscribe { [weak self] isEnabled in
                 self?.testView.activateMainButton(isEnabled)
+            }
+            .disposed(by: disposeBag)
+        
+        output.answeringDidEnd
+            .subscribe { [weak self] viewController in
+                self?.navigateToTestViewController(viewController: viewController)
             }
             .disposed(by: disposeBag)
     }

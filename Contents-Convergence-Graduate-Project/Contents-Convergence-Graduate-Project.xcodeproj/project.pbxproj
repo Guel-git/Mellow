@@ -332,7 +332,7 @@
 		528DCD112AF3C90800DD283A /* Result */ = {
 			isa = PBXGroup;
 			children = (
-				52DDFD162B0E8511007368CC /* Result */,
+				52C93EB72B6A3CD2006C513F /* Result */,
 			);
 			path = Result;
 			sourceTree = "<group>";
@@ -415,6 +415,15 @@
 			path = UIComponent;
 			sourceTree = "<group>";
 		};
+		52C93EB72B6A3CD2006C513F /* Result */ = {
+			isa = PBXGroup;
+			children = (
+				528DCD122AF3C91400DD283A /* ResultViewController.swift */,
+				528DCD162AF8CCEA00DD283A /* RoutineTableViewCell.swift */,
+			);
+			path = Result;
+			sourceTree = "<group>";
+		};
 		52DDFD092B0DF8DF007368CC /* Popup */ = {
 			isa = PBXGroup;
 			children = (
@@ -456,15 +465,6 @@
 				525523CA2B0BDD2B0033D4C6 /* SettingRepeatViewController.swift */,
 			);
 			path = SettingRepeat;
-			sourceTree = "<group>";
-		};
-		52DDFD162B0E8511007368CC /* Result */ = {
-			isa = PBXGroup;
-			children = (
-				528DCD122AF3C91400DD283A /* ResultViewController.swift */,
-				528DCD162AF8CCEA00DD283A /* RoutineTableViewCell.swift */,
-			);
-			path = Result;
 			sourceTree = "<group>";
 		};
 		52DDFD172B0E852D007368CC /* Splash */ = {
