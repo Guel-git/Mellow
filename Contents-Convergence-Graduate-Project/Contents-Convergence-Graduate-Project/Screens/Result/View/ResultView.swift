@@ -9,6 +9,11 @@ import UIKit
 
 final class ResultView: UIView {
     
+    private var beforeTextArray = [String]()
+    private var afterTextArray = [String]()
+    private var beforeImageArray = [UIImage]()
+    private var afterImageArray = [UIImage]()
+    
     // MARK: - ui components
     
     private let backButton = BackButton()
@@ -84,7 +89,7 @@ final class ResultView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.setupLayout()
-        self.setRoutineTableView()
+        self.setupRoutineTableView()
     }
     
     required init?(coder: NSCoder) { nil }
@@ -106,7 +111,7 @@ final class ResultView: UIView {
         navigationItem.title = TextLiteral.questionViewControllerTitle
     }
     
-    func setAttribute(_ titleText: String, _ emojiImage: UIImage, _ angelText: String, _ favoriteText: String, _ contentText: String, _ routineTableViewHeight: Int) {
+    func setupAttribute(_ titleText: String, _ emojiImage: UIImage, _ angelText: String, _ favoriteText: String, _ contentText: String) {
         self.titleLabel.text = titleText
         self.emojiImage.image = emojiImage
         self.angelNameLabel.text = angelText + TextLiteral.ResultView.afterAngelText
@@ -115,10 +120,17 @@ final class ResultView: UIView {
         self.favoriteLabel.setTextWithLineHeight(text: favoriteText, lineHeight: 27)
         self.favoriteLabel.textAlignment = .center
         self.contentLabel.setTextWithLineHeight(text: contentText, lineHeight: 24)
-        
+    }
+    
+    func setupTableViewAttribute(_ routineTableViewHeight: Int, _ routineBeforeImage: [UIImage], _ routineAfterImage: [UIImage], _ routineBeforeText: [String], _ routineAfterText: [String]) {
         self.routineTableView.snp.updateConstraints {
             $0.height.equalTo(routineTableViewHeight)
         }
+        self.beforeTextArray = routineBeforeText
+        self.afterTextArray = routineAfterText
+        self.beforeImageArray = routineBeforeImage
+        self.afterImageArray = routineAfterImage
+        self.routineTableView.reloadData()
     }
     
     // MARK: - private func
@@ -201,7 +213,7 @@ final class ResultView: UIView {
         }
     }
     
-    private func setRoutineTableView() {
+    private func setupRoutineTableView() {
         routineTableView.delegate = self
         routineTableView.dataSource = self
         
@@ -245,23 +257,13 @@ extension ResultView: UITableViewDelegate {
 
 extension ResultView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        switch section {
-//        case 0:
-//            return resultType.routineBeforeArray.count
-//        case 1:
-//            return TextLiteral.ResultView.duringRoutineArray.count
-//        case 2:
-//            return resultType.routineAfterArray.count
-//        default:
-//            return 0
-//        }
         switch section {
         case 0:
-            return SleepType.Baby.routineBeforeArray.count
+            return beforeTextArray.count
         case 1:
             return TextLiteral.ResultView.duringRoutineArray.count
         case 2:
-            return SleepType.Baby.routineAfterArray.count
+            return afterTextArray.count
         default:
             return 0
         }
@@ -270,33 +272,19 @@ extension ResultView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = routineTableView.dequeueReusableCell(withIdentifier: RoutineTableViewCell.cellId, for: indexPath) as! RoutineTableViewCell
         cell.selectionStyle = .none
-//        switch indexPath.section {
-//        case 0:
-//            cell.cellLabel.text = resultType.routineBeforeArray[indexPath.item]
-//            cell.cellEmoji.image = resultType.routineBeforeImage[indexPath.item]
-//        case 1:
-//            cell.cellLabel.text = TextLiteral.ResultView.duringRoutineArray[indexPath.item]
-//            cell.cellEmoji.image = ImageLiteral.duringRoutineImage[indexPath.item]
-//        case 2:
-//            cell.cellLabel.text = resultType.routineAfterArray[indexPath.item]
-//            cell.cellEmoji.image = resultType.routineAfterImage[indexPath.item]
-//        default:
-//            cell.cellLabel.text = resultType.routineBeforeArray[indexPath.item]
-//            cell.cellEmoji.image = resultType.routineBeforeImage[indexPath.item]
-//        }
         switch indexPath.section {
         case 0:
-            cell.cellLabel.text = SleepType.Baby.routineBeforeArray[indexPath.item]
-            cell.cellEmoji.image = SleepType.Baby.routineBeforeImage[indexPath.item]
+            cell.cellLabel.text = beforeTextArray[indexPath.item]
+            cell.cellEmoji.image = beforeImageArray[indexPath.item]
         case 1:
             cell.cellLabel.text = TextLiteral.ResultView.duringRoutineArray[indexPath.item]
             cell.cellEmoji.image = ImageLiteral.duringRoutineImage[indexPath.item]
         case 2:
-            cell.cellLabel.text = SleepType.Baby.routineAfterArray[indexPath.item]
-            cell.cellEmoji.image = SleepType.Baby.routineAfterImage[indexPath.item]
+            cell.cellLabel.text = afterTextArray[indexPath.item]
+            cell.cellEmoji.image = afterImageArray[indexPath.item]
         default:
-            cell.cellLabel.text = SleepType.Baby.routineBeforeArray[indexPath.item]
-            cell.cellEmoji.image = SleepType.Baby.routineBeforeImage[indexPath.item]
+            cell.cellLabel.text = beforeTextArray[indexPath.item]
+            cell.cellEmoji.image = beforeImageArray[indexPath.item]
         }
         return cell
     }

@@ -22,6 +22,10 @@ final class ResultViewModel: ViewModelType {
         let favoriteText: Observable<String>
         let contentText: Observable<String>
         let routineTableViewHeight: Observable<Int>
+        let routineBeforeImage: Observable<[UIImage]>
+        let routineAfterImage: Observable<[UIImage]>
+        let routineBeforeText: Observable<[String]>
+        let routineAfterText: Observable<[String]>
     }
     
     // MARK: - property
@@ -53,6 +57,18 @@ final class ResultViewModel: ViewModelType {
         let routineTableViewHeight = input.viewDidLoad
             .map { _ in self.resultType.routineTableViewHeight }
         
-        return Output(titleText: titleText, emojiImage: emojiImage, angelText: angelText, favoriteText: favoriteText, contentText: contentText, routineTableViewHeight: routineTableViewHeight)
+        let routineBeforeImage = input.viewDidLoad
+            .map { _ in self.resultType.routineBeforeImage }
+        
+        let routineAfterImage = input.viewDidLoad
+            .map { _ in self.resultType.routineAfterImage }
+        
+        let routineBeforeText = input.viewDidLoad
+            .map { _ in self.resultType.routineBeforeArray }
+        
+        let routineAfterText = input.viewDidLoad
+            .map { _ in self.resultType.routineAfterArray }
+        
+        return Output(titleText: titleText, emojiImage: emojiImage, angelText: angelText, favoriteText: favoriteText, contentText: contentText, routineTableViewHeight: routineTableViewHeight, routineBeforeImage: routineBeforeImage, routineAfterImage: routineAfterImage, routineBeforeText: routineBeforeText, routineAfterText: routineAfterText)
     }
 }

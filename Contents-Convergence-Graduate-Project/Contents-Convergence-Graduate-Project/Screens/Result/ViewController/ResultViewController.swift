@@ -30,7 +30,6 @@ final class ResultViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        setButtonAction()
         bindViewModel()
     }
     
@@ -80,9 +79,15 @@ extension ResultViewController {
     private func bind(output: ResultViewModel.Output?) {
         guard let output else { return }
         
-        Observable.combineLatest(output.titleText, output.emojiImage, output.angelText, output.favoriteText, output.contentText, output.routineTableViewHeight)
-            .subscribe { [weak self] titleText, emojiImage, angelText, favoriteText, contentText, routineTableViewHeight in
-                self?.resultView.setAttribute(titleText, emojiImage, angelText, favoriteText, contentText, routineTableViewHeight)
+        Observable.combineLatest(output.titleText, output.emojiImage, output.angelText, output.favoriteText, output.contentText)
+            .subscribe { [weak self] titleText, emojiImage, angelText, favoriteText, contentText in
+                self?.resultView.setupAttribute(titleText, emojiImage, angelText, favoriteText, contentText)
+            }
+            .disposed(by: disposeBag)
+        
+        Observable.combineLatest(output.routineTableViewHeight, output.routineBeforeImage, output.routineAfterImage, output.routineBeforeText, output.routineAfterText)
+            .subscribe { [weak self] routineTableViewHeight, routineBeforeImage, routineAfterImage, routineBeforeText, routineAfterText in
+                self?.resultView.setupTableViewAttribute(routineTableViewHeight, routineBeforeImage, routineAfterImage, routineBeforeText, routineAfterText)
             }
             .disposed(by: disposeBag)
     }
