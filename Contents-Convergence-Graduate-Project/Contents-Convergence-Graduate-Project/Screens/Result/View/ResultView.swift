@@ -7,6 +7,9 @@
 
 import UIKit
 
+import RxSwift
+import RxCocoa
+
 final class ResultView: UIView {
     
     private var beforeTextArray = [String]()
@@ -83,6 +86,10 @@ final class ResultView: UIView {
     }()
     
     // MARK: - publisher
+    
+    var mainButtonTapPublisher: Observable<Void> {
+        return mainButton.rx.tap.asObservable()
+    }
     
     // MARK: - init
     

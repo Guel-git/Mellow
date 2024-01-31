@@ -197,7 +197,6 @@ final class TestViewModel: ViewModelType {
         }
         let viewModel: any ViewModelType = questionNum.rawValue == 4 ? ResultViewModel(resultType: calculateScore()) : TestViewModel(questionNum: QuestionNum(rawValue: questionNum.rawValue + 1)!, totalAnswer: totalAnswer)
         let viewController = questionNum.rawValue == 4 ? ResultViewController(viewModel: viewModel) : TestViewController(viewModel: viewModel)
-        viewController.navigationItem.hidesBackButton = true
         return viewController
     }
     

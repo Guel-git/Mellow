@@ -31,6 +31,7 @@ final class ResultViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         bindViewModel()
+        bindView()
     }
     
     override func setupNavigationBar() {
@@ -59,18 +60,18 @@ final class ResultViewController: BaseViewController {
         return viewModel.transform(from: input)
     }
     
-//    private func setButtonAction() {
-//        let action = UIAction { [weak self] _ in
-//            self?.navigateToSettingViewController()
-//        }
-//        mainButton.addAction(action, for: .touchUpInside)
-//    }
-//
-//    private func navigateToSettingViewController() {
-//        let settingViewController = SettingViewController()
-//        settingViewController.navigationItem.hidesBackButton = true
-//        self.navigationController?.pushViewController(settingViewController, animated: true)
-//    }
+    private func bindView() {
+        resultView.mainButtonTapPublisher
+            .subscribe { [weak self] _ in
+                self?.navigateToSettingViewController()
+            }
+            .disposed(by: disposeBag)
+    }
+
+    private func navigateToSettingViewController() {
+        let settingViewController = SettingViewController()
+        self.navigationController?.pushViewController(settingViewController, animated: true)
+    }
 }
 
 // MARK: - bind
