@@ -7,6 +7,7 @@
 
 import UIKit
 
+import SnapKit
 import RxSwift
 import RxCocoa
 
@@ -80,11 +81,13 @@ final class TestView: UIView {
         self.questionNumImage.image = questionNumImage
         self.questionLabel.text = questionText
         
-        self.progressBar.snp.updateConstraints {
+        self.progressBar.layoutIfNeeded()
+        self.progressBar.snp.makeConstraints {
+            $0.top.equalTo(progressBackground.snp.top)
+            $0.leading.equalToSuperview().inset(18)
+            $0.height.equalTo(4)
             $0.width.equalTo(progressBackground.snp.width).multipliedBy(progressRatio)
         }
-        
-        self.progressBar.layoutIfNeeded()
         self.progressBar.setGradient(start: .gradientPurpleStart, end: .gradientPurpleEnd)
         self.progressBar.layer.masksToBounds = true
         self.progressBar.layer.maskedCorners = progressRadius
@@ -105,20 +108,14 @@ final class TestView: UIView {
     }
     
     private func setupLayout() {
-        [progressBackground, questionNumImage, questionLabel, answerTableView, mainButton].forEach {
+        [progressBackground, progressBar, questionNumImage, questionLabel, answerTableView, mainButton].forEach {
             self.addSubview($0)
         }
-        progressBackground.addSubview(progressBar)
         
         progressBackground.snp.makeConstraints {
             $0.top.equalTo(self.safeAreaLayoutGuide).offset(14)
             $0.leading.trailing.equalToSuperview().inset(18)
             $0.height.equalTo(4)
-        }
-        
-        progressBar.snp.makeConstraints {
-            $0.leading.top.bottom.equalToSuperview()
-            $0.width.equalTo(progressBackground.snp.width).multipliedBy(0.25)
         }
         
         questionNumImage.snp.makeConstraints {
@@ -162,11 +159,11 @@ extension TestView: UITableViewDataSource {
     }
 }
 
-//extension TestView: UITableViewDelegate {
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        mainButton.isDisabled = false
+extension TestView: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        mainButton.isDisabled = false
 //        let weightScore = ["221", "00", "112", "33"]
-////        selectedAnswer = questionNum.weightScore[indexPath.item]
-////        selectedAnswer = weightScore[indexPath.item]
-//    }
-//}
+//        selectedAnswer = questionNum.weightScore[indexPath.item]
+//        selectedAnswer = weightScore[indexPath.item]
+    }
+}
