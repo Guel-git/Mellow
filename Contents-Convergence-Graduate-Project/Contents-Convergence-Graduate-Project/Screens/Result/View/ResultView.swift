@@ -84,6 +84,7 @@ final class ResultView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.setupLayout()
+        self.setRoutineTableView()
     }
     
     required init?(coder: NSCoder) { nil }
@@ -184,5 +185,105 @@ final class ResultView: UIView {
             $0.height.equalTo(SleepType.Baby.routineDetailViewHeight)
             $0.bottom.equalTo(-16)
         }
+    }
+    
+    private func setRoutineTableView() {
+        routineTableView.delegate = self
+        routineTableView.dataSource = self
+        
+        routineTableView.register(RoutineTableViewCell.self, forCellReuseIdentifier: RoutineTableViewCell.cellId)
+        routineTableView.rowHeight = 60
+        routineTableView.separatorStyle = .none
+        routineTableView.isScrollEnabled = false
+        routineTableView.sectionHeaderTopPadding = 8
+    }
+}
+
+extension ResultView: UITableViewDelegate {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 3
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: 17))
+        let header = UILabel()
+        switch section {
+        case 0:
+            header.text = TextLiteral.ResultView.routineHeaderBefore
+        case 1:
+            header.text = TextLiteral.ResultView.routineHeaderDuring
+        case 2:
+            header.text = TextLiteral.ResultView.routineHeaderAfter
+        default:
+            header.text = TextLiteral.ResultView.routineHeaderBefore
+        }
+        header.textColor = .fontBlack
+        header.font = .m14
+        header.frame = CGRect(x: 26, y: 0, width: tableView.bounds.size.width, height: 17)
+        headerView.addSubview(header)
+        return headerView
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 17
+    }
+}
+
+extension ResultView: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        switch section {
+//        case 0:
+//            return resultType.routineBeforeArray.count
+//        case 1:
+//            return TextLiteral.ResultView.duringRoutineArray.count
+//        case 2:
+//            return resultType.routineAfterArray.count
+//        default:
+//            return 0
+//        }
+        switch section {
+        case 0:
+            return SleepType.Baby.routineBeforeArray.count
+        case 1:
+            return TextLiteral.ResultView.duringRoutineArray.count
+        case 2:
+            return SleepType.Baby.routineAfterArray.count
+        default:
+            return 0
+        }
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = routineTableView.dequeueReusableCell(withIdentifier: RoutineTableViewCell.cellId, for: indexPath) as! RoutineTableViewCell
+        cell.selectionStyle = .none
+//        switch indexPath.section {
+//        case 0:
+//            cell.cellLabel.text = resultType.routineBeforeArray[indexPath.item]
+//            cell.cellEmoji.image = resultType.routineBeforeImage[indexPath.item]
+//        case 1:
+//            cell.cellLabel.text = TextLiteral.ResultView.duringRoutineArray[indexPath.item]
+//            cell.cellEmoji.image = ImageLiteral.duringRoutineImage[indexPath.item]
+//        case 2:
+//            cell.cellLabel.text = resultType.routineAfterArray[indexPath.item]
+//            cell.cellEmoji.image = resultType.routineAfterImage[indexPath.item]
+//        default:
+//            cell.cellLabel.text = resultType.routineBeforeArray[indexPath.item]
+//            cell.cellEmoji.image = resultType.routineBeforeImage[indexPath.item]
+//        }
+        switch indexPath.section {
+        case 0:
+            cell.cellLabel.text = SleepType.Baby.routineBeforeArray[indexPath.item]
+            cell.cellEmoji.image = SleepType.Baby.routineBeforeImage[indexPath.item]
+        case 1:
+            cell.cellLabel.text = TextLiteral.ResultView.duringRoutineArray[indexPath.item]
+            cell.cellEmoji.image = ImageLiteral.duringRoutineImage[indexPath.item]
+        case 2:
+            cell.cellLabel.text = SleepType.Baby.routineAfterArray[indexPath.item]
+            cell.cellEmoji.image = SleepType.Baby.routineAfterImage[indexPath.item]
+        default:
+            cell.cellLabel.text = SleepType.Baby.routineBeforeArray[indexPath.item]
+            cell.cellEmoji.image = SleepType.Baby.routineBeforeImage[indexPath.item]
+        }
+        return cell
     }
 }
