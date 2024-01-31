@@ -50,6 +50,8 @@ final class TestView: UIView {
     
     // MARK: - publisher
     
+    var answerItemTapPublisher = PublishSubject<Int>()
+    
     // MARK: - init
     
     override init(frame: CGRect) {
@@ -97,10 +99,15 @@ final class TestView: UIView {
         self.answerTableView.reloadData()
     }
     
+    func activateMainButton(_ isEnabled: Bool) {
+        mainButton.isDisabled = !isEnabled
+    }
+    
     // MARK: - private func
     
     private func setupTableView() {
         answerTableView.dataSource = self
+        answerTableView.delegate = self
         answerTableView.register(AnswerTableViewCell.self, forCellReuseIdentifier: AnswerTableViewCell.cellId)
         answerTableView.rowHeight = 60
         answerTableView.separatorStyle = .none
@@ -161,9 +168,6 @@ extension TestView: UITableViewDataSource {
 
 extension TestView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        mainButton.isDisabled = false
-//        let weightScore = ["221", "00", "112", "33"]
-//        selectedAnswer = questionNum.weightScore[indexPath.item]
-//        selectedAnswer = weightScore[indexPath.item]
+        answerItemTapPublisher.onNext(indexPath.item)
     }
 }

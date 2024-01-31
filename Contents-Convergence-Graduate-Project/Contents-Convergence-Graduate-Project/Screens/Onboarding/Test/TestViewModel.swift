@@ -113,6 +113,7 @@ final class TestViewModel: ViewModelType {
     
     struct Input {
         let viewDidLoad: Observable<Void>
+        let answerItemTapped: Observable<Int>
     }
     
     struct Output {
@@ -122,12 +123,14 @@ final class TestViewModel: ViewModelType {
         let progressRadius: Observable<CACornerMask>
         let mainButtonText: Observable<String>
         let answerList: Observable<[String]>
+        let answerItemSelectionDidEnd: Observable<Bool>
     }
     
     // MARK: - property
     
     var questionNum: QuestionNum
     var totalAnswer: String
+    var selectedAnswer = String()
     
     // MARK: - init
     
@@ -163,8 +166,21 @@ final class TestViewModel: ViewModelType {
             .withUnretained(self)
             .compactMap { _ in self.questionNum.answerList }
         
-        return Output(questionNumImage: questionNumImage, questionText: questionText, progressRatio: progressRatio, progressRadius: progressRadius, mainButtonText: mainButtonText, answerList: answerList)
+        _ = input.answerItemTapped
+            .withUnretained(self)
+            .subscribe { _, item in
+                self.updateSelectedAnswer(item)
+            }
+        
+        let answerItemSelectionDidEnd = input.answerItemTapped
+            .map { _ in true }
+        
+        return Output(questionNumImage: questionNumImage, questionText: questionText, progressRatio: progressRatio, progressRadius: progressRadius, mainButtonText: mainButtonText, answerList: answerList, answerItemSelectionDidEnd: answerItemSelectionDidEnd)
     }
     
     // MARK: - private func
+    
+    private func updateSelectedAnswer(_ item: Int) {
+        selectedAnswer = questionNum.weightScore[item]
+    }
 }

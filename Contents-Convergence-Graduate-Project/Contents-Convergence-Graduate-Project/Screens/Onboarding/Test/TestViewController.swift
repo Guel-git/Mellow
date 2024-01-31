@@ -58,7 +58,8 @@ final class TestViewController: BaseViewController {
     private func transformInput() -> TestViewModel.Output? {
         guard let viewModel = viewModel as? TestViewModel else { return nil }
         let input = TestViewModel.Input(
-            viewDidLoad: self.rx.viewDidLoad
+            viewDidLoad: self.rx.viewDidLoad,
+            answerItemTapped: testView.answerItemTapPublisher
         )
         return viewModel.transform(from: input)
     }
@@ -104,6 +105,12 @@ extension TestViewController {
         Observable.combineLatest(output.questionNumImage, output.questionText, output.progressRatio, output.progressRadius, output.mainButtonText, output.answerList)
             .subscribe { [weak self] questionNumImage, questionText, progressRatio, progressRadius, mainButtonText, answerList in
                 self?.testView.setupAttribute(questionNumImage, questionText, progressRatio, progressRadius, mainButtonText, answerList)
+            }
+            .disposed(by: disposeBag)
+        
+        output.answerItemSelectionDidEnd
+            .subscribe { [weak self] isEnabled in
+                self?.testView.activateMainButton(isEnabled)
             }
             .disposed(by: disposeBag)
     }
