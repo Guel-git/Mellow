@@ -71,6 +71,8 @@
 		52B40E5A2B5649D2003283C3 /* UIViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B40E592B5649D2003283C3 /* UIViewController+Rx.swift */; };
 		52B40E612B59229A003283C3 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B40E602B59229A003283C3 /* TestView.swift */; };
 		52B40E632B62794F003283C3 /* TestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B40E622B62794F003283C3 /* TestViewModel.swift */; };
+		52C93EBE2B6A3F77006C513F /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C93EBD2B6A3F77006C513F /* ResultView.swift */; };
+		52C93EC22B6A3F91006C513F /* ResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C93EC12B6A3F91006C513F /* ResultViewModel.swift */; };
 		52DDFD0B2B0DF8EB007368CC /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DDFD0A2B0DF8EB007368CC /* PopupViewController.swift */; };
 		52DDFD102B0E02E1007368CC /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DDFD0F2B0E02E1007368CC /* NotificationManager.swift */; };
 		52DDFD122B0E7185007368CC /* SettingDayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DDFD112B0E7185007368CC /* SettingDayTableViewCell.swift */; };
@@ -143,6 +145,8 @@
 		52B40E592B5649D2003283C3 /* UIViewController+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rx.swift"; sourceTree = "<group>"; };
 		52B40E602B59229A003283C3 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		52B40E622B62794F003283C3 /* TestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewModel.swift; sourceTree = "<group>"; };
+		52C93EBD2B6A3F77006C513F /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
+		52C93EC12B6A3F91006C513F /* ResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewModel.swift; sourceTree = "<group>"; };
 		52DDFD0A2B0DF8EB007368CC /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
 		52DDFD0F2B0E02E1007368CC /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		52DDFD112B0E7185007368CC /* SettingDayTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingDayTableViewCell.swift; sourceTree = "<group>"; };
@@ -293,10 +297,9 @@
 		525600E82AEA91F400E122A5 /* Test */ = {
 			isa = PBXGroup;
 			children = (
-				52E873C12AE025E100662723 /* TestViewController.swift */,
-				525600E92AEA920D00E122A5 /* AnswerTableViewCell.swift */,
-				52B40E602B59229A003283C3 /* TestView.swift */,
-				52B40E622B62794F003283C3 /* TestViewModel.swift */,
+				52C93EBA2B6A3F3E006C513F /* View */,
+				52C93EBB2B6A3F48006C513F /* ViewModel */,
+				52C93EBC2B6A3F53006C513F /* ViewController */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -332,7 +335,9 @@
 		528DCD112AF3C90800DD283A /* Result */ = {
 			isa = PBXGroup;
 			children = (
-				52C93EB72B6A3CD2006C513F /* Result */,
+				52C93EB72B6A3CD2006C513F /* View */,
+				52C93EC02B6A3F85006C513F /* ViewModel */,
+				52C93EBF2B6A3F7D006C513F /* ViewController */,
 			);
 			path = Result;
 			sourceTree = "<group>";
@@ -415,13 +420,54 @@
 			path = UIComponent;
 			sourceTree = "<group>";
 		};
-		52C93EB72B6A3CD2006C513F /* Result */ = {
+		52C93EB72B6A3CD2006C513F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				528DCD162AF8CCEA00DD283A /* RoutineTableViewCell.swift */,
+				52C93EBD2B6A3F77006C513F /* ResultView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		52C93EBA2B6A3F3E006C513F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				52B40E602B59229A003283C3 /* TestView.swift */,
+				525600E92AEA920D00E122A5 /* AnswerTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		52C93EBB2B6A3F48006C513F /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				52B40E622B62794F003283C3 /* TestViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		52C93EBC2B6A3F53006C513F /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				52E873C12AE025E100662723 /* TestViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		52C93EBF2B6A3F7D006C513F /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
 				528DCD122AF3C91400DD283A /* ResultViewController.swift */,
-				528DCD162AF8CCEA00DD283A /* RoutineTableViewCell.swift */,
 			);
-			path = Result;
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		52C93EC02B6A3F85006C513F /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				52C93EC12B6A3F91006C513F /* ResultViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		52DDFD092B0DF8DF007368CC /* Popup */ = {
@@ -677,6 +723,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				525523C02B0B86CA0033D4C6 /* SettingViewController.swift in Sources */,
+				52C93EC22B6A3F91006C513F /* ResultViewModel.swift in Sources */,
 				528DCD172AF8CCEA00DD283A /* RoutineTableViewCell.swift in Sources */,
 				52968BA22B30F91300D20342 /* StartButton.swift in Sources */,
 				525523C92B0BD1240033D4C6 /* SettingDetailTableViewCell.swift in Sources */,
@@ -711,6 +758,7 @@
 				525600DD2AEA8ACC00E122A5 /* BaseViewController.swift in Sources */,
 				525600CE2AE679EE00E122A5 /* UIColor+Extension.swift in Sources */,
 				52DDFD0B2B0DF8EB007368CC /* PopupViewController.swift in Sources */,
+				52C93EBE2B6A3F77006C513F /* ResultView.swift in Sources */,
 				52968BB82B405D9100D20342 /* RepeatCollectionView.swift in Sources */,
 				525523CB2B0BDD2B0033D4C6 /* SettingRepeatViewController.swift in Sources */,
 				52B40E612B59229A003283C3 /* TestView.swift in Sources */,
