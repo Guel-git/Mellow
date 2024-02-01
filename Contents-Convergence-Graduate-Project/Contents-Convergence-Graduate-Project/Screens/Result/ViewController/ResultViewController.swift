@@ -69,7 +69,8 @@ final class ResultViewController: BaseViewController {
     }
 
     private func navigateToSettingViewController() {
-        let settingViewController = SettingViewController()
+        let viewModel = SettingViewModel()
+        let settingViewController = SettingViewController(viewModel: viewModel)
         self.navigationController?.pushViewController(settingViewController, animated: true)
     }
 }

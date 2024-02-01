@@ -74,6 +74,7 @@
 		52C93EBE2B6A3F77006C513F /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C93EBD2B6A3F77006C513F /* ResultView.swift */; };
 		52C93EC22B6A3F91006C513F /* ResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C93EC12B6A3F91006C513F /* ResultViewModel.swift */; };
 		52C93EC72B6B6374006C513F /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C93EC62B6B6374006C513F /* SettingView.swift */; };
+		52C93EC92B6B6B45006C513F /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C93EC82B6B6B45006C513F /* SettingViewModel.swift */; };
 		52DDFD0B2B0DF8EB007368CC /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DDFD0A2B0DF8EB007368CC /* PopupViewController.swift */; };
 		52DDFD102B0E02E1007368CC /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DDFD0F2B0E02E1007368CC /* NotificationManager.swift */; };
 		52DDFD122B0E7185007368CC /* SettingDayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DDFD112B0E7185007368CC /* SettingDayTableViewCell.swift */; };
@@ -149,6 +150,7 @@
 		52C93EBD2B6A3F77006C513F /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
 		52C93EC12B6A3F91006C513F /* ResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewModel.swift; sourceTree = "<group>"; };
 		52C93EC62B6B6374006C513F /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		52C93EC82B6B6B45006C513F /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		52DDFD0A2B0DF8EB007368CC /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
 		52DDFD0F2B0E02E1007368CC /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		52DDFD112B0E7185007368CC /* SettingDayTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingDayTableViewCell.swift; sourceTree = "<group>"; };
@@ -484,6 +486,7 @@
 		52C93EC42B6B6337006C513F /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				52C93EC82B6B6B45006C513F /* SettingViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -516,8 +519,8 @@
 			isa = PBXGroup;
 			children = (
 				52C93EC32B6B6327006C513F /* View */,
-				52C93EC52B6B633E006C513F /* ViewController */,
 				52C93EC42B6B6337006C513F /* ViewModel */,
+				52C93EC52B6B633E006C513F /* ViewController */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -804,6 +807,7 @@
 				52968BB62B405D0400D20342 /* RepeatCollectionViewCell.swift in Sources */,
 				528DCD132AF3C91400DD283A /* ResultViewController.swift in Sources */,
 				52DDFD102B0E02E1007368CC /* NotificationManager.swift in Sources */,
+				52C93EC92B6B6B45006C513F /* SettingViewModel.swift in Sources */,
 				52B40E552B5647DA003283C3 /* ChatViewModel.swift in Sources */,
 				523F5C8F2B1A4F4900A46D4F /* TimeInterval+Extension.swift in Sources */,
 				525600EA2AEA920D00E122A5 /* AnswerTableViewCell.swift in Sources */,

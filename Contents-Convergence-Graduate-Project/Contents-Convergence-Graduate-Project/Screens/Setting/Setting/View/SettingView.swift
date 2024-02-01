@@ -42,6 +42,10 @@ final class SettingView: UIView {
         return mainButton.rx.tap.asObservable()
     }
     
+    var pickerTimeChangePublisher: Observable<Date> {
+        return sleepTimePicker.rx.date.asObservable()
+    }
+    
     var tableViewTapPublisher = PublishSubject<Int>()
     
     // MARK: - life cycle

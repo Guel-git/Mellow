@@ -11,8 +11,8 @@ import RxSwift
 
 final class SettingViewController: BaseViewController {
     
-//    private var resultArray = TextLiteral.SettingView.initialResultArray
     private let settingView = SettingView()
+    private let viewModel: any ViewModelType
     private let disposeBag = DisposeBag()
     
     // MARK: - property
@@ -22,12 +22,20 @@ final class SettingViewController: BaseViewController {
     
     // MARK: - life cycle
     
+    init(viewModel: any ViewModelType) {
+        self.viewModel = viewModel
+        super.init()
+    }
+
+    required init?(coder: NSCoder) { nil }
+    
     override func loadView() {
         view = settingView
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        bindViewModel()
         bindView()
     }
     
@@ -46,13 +54,21 @@ final class SettingViewController: BaseViewController {
         settingView.setupNavigationItem(navigationItem)
     }
     
+    private func bindViewModel() {
+        let output = transformInput()
+        bind(output: output)
+    }
+    
+    private func transformInput() -> SettingViewModel.Output? {
+        guard let viewModel = viewModel as? SettingViewModel else { return nil }
+        let input = SettingViewModel.Input(
+            pickerTimeChanged: settingView.pickerTimeChangePublisher,
+            mainButtonTapped: settingView.mainButtonTapPublisher
+        )
+        return viewModel.transform(from: input)
+    }
+    
     private func bindView() {
-        settingView.mainButtonTapPublisher
-            .subscribe { [weak self] _ in
-                self?.navigateToPopupViewController()
-            }
-            .disposed(by: disposeBag)
-        
         settingView.tableViewTapPublisher
             .subscribe { [weak self] item in
                 self?.navigateToDetailViewController(item)
@@ -75,8 +91,6 @@ final class SettingViewController: BaseViewController {
 //    }
 
     private func navigateToPopupViewController() {
-//        UserDefaultManager.sleepHour = parseSleepHour()
-//        UserDefaultManager.sleepTime = sleepTimePicker.date.dateToTimeString
         let popupViewController = PopupViewController()
         navigationController?.pushViewController(popupViewController, animated: true)
     }
@@ -86,10 +100,18 @@ final class SettingViewController: BaseViewController {
         viewController.modalPresentationStyle = .pageSheet
         self.present(viewController, animated: true)
     }
-
-//    private func parseSleepHour() -> Int {
-//        let hour = resultArray[0].dropLast(2)
-//        return Int(String(hour))!
-//    }
 }
 
+// MARK: - bind
+
+extension SettingViewController {
+    private func bind(output: SettingViewModel.Output?) {
+        guard let output else { return }
+        
+        output.endSetting
+            .subscribe { [weak self] _ in
+                self?.navigateToPopupViewController()
+            }
+            .disposed(by: disposeBag)
+    }
+}
