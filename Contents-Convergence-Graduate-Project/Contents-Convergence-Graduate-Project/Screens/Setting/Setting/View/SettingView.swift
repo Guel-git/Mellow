@@ -42,6 +42,8 @@ final class SettingView: UIView {
         return mainButton.rx.tap.asObservable()
     }
     
+    var tableViewTapPublisher = PublishSubject<Int>()
+    
     // MARK: - life cycle
     
     override init(frame: CGRect) {
@@ -118,14 +120,7 @@ extension SettingView: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        if indexPath.item == 0 {
-//            settingTimeViewController.modalPresentationStyle = .pageSheet
-//            self.present(settingTimeViewController, animated: true)
-//        } else {
-//            settingRepeatViewController.modalPresentationStyle = .pageSheet
-//            self.present(settingRepeatViewController, animated: true)
-//        }
-        print(indexPath.item)
+        tableViewTapPublisher.onNext(indexPath.item)
     }
 }
 

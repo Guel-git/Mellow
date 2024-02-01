@@ -52,6 +52,12 @@ final class SettingViewController: BaseViewController {
                 self?.navigateToPopupViewController()
             }
             .disposed(by: disposeBag)
+        
+        settingView.tableViewTapPublisher
+            .subscribe { [weak self] item in
+                self?.navigateToDetailViewController(item)
+            }
+            .disposed(by: disposeBag)
     }
     
 //    private func bindSleepTime() {
@@ -74,7 +80,13 @@ final class SettingViewController: BaseViewController {
         let popupViewController = PopupViewController()
         navigationController?.pushViewController(popupViewController, animated: true)
     }
-//
+    
+    private func navigateToDetailViewController(_ item: Int) {
+        let viewController = item == 0 ? settingTimeViewController : settingRepeatViewController
+        viewController.modalPresentationStyle = .pageSheet
+        self.present(viewController, animated: true)
+    }
+
 //    private func parseSleepHour() -> Int {
 //        let hour = resultArray[0].dropLast(2)
 //        return Int(String(hour))!
