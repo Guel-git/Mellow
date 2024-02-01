@@ -130,7 +130,7 @@ extension SettingHourView: UITableViewDataSource {
         let cell = settingHourTableView.dequeueReusableCell(withIdentifier: SettingDetailTableViewCell.cellId, for: indexPath) as! SettingDetailTableViewCell
         cell.selectionStyle = .none
         cell.cellLabel.text = TextLiteral.SettingView.timeTableViewDictionary[indexPath.item]
-        cell.isSelected = indexPath.item == selectedIndex ? true : false
+        cell.isSelected = indexPath.item == selectedIndex
         return cell
     }
 }
