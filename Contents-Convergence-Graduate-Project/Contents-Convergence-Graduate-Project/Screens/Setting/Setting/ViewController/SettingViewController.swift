@@ -39,7 +39,7 @@ final class SettingViewController: BaseViewController {
         bindView()
     }
     
-    // MARK: - func
+    // MARK: - override
     
     override func setupNavigationBar() {
         super.setupNavigationBar()

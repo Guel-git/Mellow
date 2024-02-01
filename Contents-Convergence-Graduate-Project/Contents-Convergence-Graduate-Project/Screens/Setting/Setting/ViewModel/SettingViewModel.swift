@@ -18,8 +18,6 @@ final class SettingViewModel: ViewModelType {
     
     struct Output {
         let endSetting: Observable<Void>
-        let sleepHour: Observable<String>
-        let repeatDay: Observable<String>
     }
     
     // MARK: - property
