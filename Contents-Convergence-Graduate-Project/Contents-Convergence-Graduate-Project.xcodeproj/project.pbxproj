@@ -73,6 +73,7 @@
 		52B40E632B62794F003283C3 /* TestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B40E622B62794F003283C3 /* TestViewModel.swift */; };
 		52C93EBE2B6A3F77006C513F /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C93EBD2B6A3F77006C513F /* ResultView.swift */; };
 		52C93EC22B6A3F91006C513F /* ResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C93EC12B6A3F91006C513F /* ResultViewModel.swift */; };
+		52C93EC72B6B6374006C513F /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C93EC62B6B6374006C513F /* SettingView.swift */; };
 		52DDFD0B2B0DF8EB007368CC /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DDFD0A2B0DF8EB007368CC /* PopupViewController.swift */; };
 		52DDFD102B0E02E1007368CC /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DDFD0F2B0E02E1007368CC /* NotificationManager.swift */; };
 		52DDFD122B0E7185007368CC /* SettingDayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DDFD112B0E7185007368CC /* SettingDayTableViewCell.swift */; };
@@ -147,6 +148,7 @@
 		52B40E622B62794F003283C3 /* TestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewModel.swift; sourceTree = "<group>"; };
 		52C93EBD2B6A3F77006C513F /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
 		52C93EC12B6A3F91006C513F /* ResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewModel.swift; sourceTree = "<group>"; };
+		52C93EC62B6B6374006C513F /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		52DDFD0A2B0DF8EB007368CC /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
 		52DDFD0F2B0E02E1007368CC /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		52DDFD112B0E7185007368CC /* SettingDayTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingDayTableViewCell.swift; sourceTree = "<group>"; };
@@ -470,6 +472,30 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		52C93EC32B6B6327006C513F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				52C93EC62B6B6374006C513F /* SettingView.swift */,
+				525523C12B0BA0E50033D4C6 /* SettingTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		52C93EC42B6B6337006C513F /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		52C93EC52B6B633E006C513F /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				525523BF2B0B86CA0033D4C6 /* SettingViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		52DDFD092B0DF8DF007368CC /* Popup */ = {
 			isa = PBXGroup;
 			children = (
@@ -489,8 +515,9 @@
 		52DDFD132B0E84BB007368CC /* Setting */ = {
 			isa = PBXGroup;
 			children = (
-				525523BF2B0B86CA0033D4C6 /* SettingViewController.swift */,
-				525523C12B0BA0E50033D4C6 /* SettingTableViewCell.swift */,
+				52C93EC32B6B6327006C513F /* View */,
+				52C93EC52B6B633E006C513F /* ViewController */,
+				52C93EC42B6B6337006C513F /* ViewModel */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -759,6 +786,7 @@
 				525600CE2AE679EE00E122A5 /* UIColor+Extension.swift in Sources */,
 				52DDFD0B2B0DF8EB007368CC /* PopupViewController.swift in Sources */,
 				52C93EBE2B6A3F77006C513F /* ResultView.swift in Sources */,
+				52C93EC72B6B6374006C513F /* SettingView.swift in Sources */,
 				52968BB82B405D9100D20342 /* RepeatCollectionView.swift in Sources */,
 				525523CB2B0BDD2B0033D4C6 /* SettingRepeatViewController.swift in Sources */,
 				52B40E612B59229A003283C3 /* TestView.swift in Sources */,
