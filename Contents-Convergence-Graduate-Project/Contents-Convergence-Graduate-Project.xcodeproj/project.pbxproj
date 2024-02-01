@@ -78,6 +78,7 @@
 		52C93ED12B6B8B36006C513F /* SettingHourView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C93ED02B6B8B36006C513F /* SettingHourView.swift */; };
 		52C93ED32B6B9258006C513F /* SettingHourViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C93ED22B6B9258006C513F /* SettingHourViewModel.swift */; };
 		52C93ED52B6BA981006C513F /* SettingRepeatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C93ED42B6BA981006C513F /* SettingRepeatView.swift */; };
+		52C93ED72B6BBAEF006C513F /* SettingRepeatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C93ED62B6BBAEF006C513F /* SettingRepeatViewModel.swift */; };
 		52DDFD0B2B0DF8EB007368CC /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DDFD0A2B0DF8EB007368CC /* PopupViewController.swift */; };
 		52DDFD102B0E02E1007368CC /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DDFD0F2B0E02E1007368CC /* NotificationManager.swift */; };
 		52DDFD122B0E7185007368CC /* SettingDayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DDFD112B0E7185007368CC /* SettingDayTableViewCell.swift */; };
@@ -157,6 +158,7 @@
 		52C93ED02B6B8B36006C513F /* SettingHourView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingHourView.swift; sourceTree = "<group>"; };
 		52C93ED22B6B9258006C513F /* SettingHourViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingHourViewModel.swift; sourceTree = "<group>"; };
 		52C93ED42B6BA981006C513F /* SettingRepeatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingRepeatView.swift; sourceTree = "<group>"; };
+		52C93ED62B6BBAEF006C513F /* SettingRepeatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingRepeatViewModel.swift; sourceTree = "<group>"; };
 		52DDFD0A2B0DF8EB007368CC /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
 		52DDFD0F2B0E02E1007368CC /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		52DDFD112B0E7185007368CC /* SettingDayTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingDayTableViewCell.swift; sourceTree = "<group>"; };
@@ -517,6 +519,7 @@
 		52C93ECB2B6B8212006C513F /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				52C93ED62B6BBAEF006C513F /* SettingRepeatViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -822,6 +825,7 @@
 				523F5C792B16412F00A46D4F /* RoutineDetailTableViewCell.swift in Sources */,
 				528DCD272B04EF2500DD283A /* ChatEndView.swift in Sources */,
 				52DDFD122B0E7185007368CC /* SettingDayTableViewCell.swift in Sources */,
+				52C93ED72B6BBAEF006C513F /* SettingRepeatViewModel.swift in Sources */,
 				52E873C22AE025E100662723 /* TestViewController.swift in Sources */,
 				52968BBC2B4061DD00D20342 /* BaseCollectionViewCell.swift in Sources */,
 				52B40E4F2B5522AB003283C3 /* SplashView.swift in Sources */,

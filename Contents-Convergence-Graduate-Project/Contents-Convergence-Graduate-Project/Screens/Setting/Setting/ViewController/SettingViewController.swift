@@ -18,7 +18,7 @@ final class SettingViewController: BaseViewController {
     // MARK: - property
     
     private let settingHourViewController = SettingHourViewController(viewModel: SettingHourViewModel())
-    private let settingRepeatViewController = SettingRepeatViewController()
+    private let settingRepeatViewController = SettingRepeatViewController(viewModel: SettingRepeatViewModel())
     
     // MARK: - life cycle
     

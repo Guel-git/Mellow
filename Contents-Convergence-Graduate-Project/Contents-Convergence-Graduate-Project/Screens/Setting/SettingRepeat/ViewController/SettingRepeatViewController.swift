@@ -7,23 +7,27 @@
 
 import UIKit
 
+import RxSwift
+
 final class SettingRepeatViewController: BaseViewController {
     
-//    private var selectedIndex = 0 {
-//        didSet {
-//            settingRepeatTableView.reloadData()
-//            settingDayTableView.isHidden = selectedIndex == 0
-//            if selectedIndex == 0 { selectedIndexArray = [] }
-//        }
-//    }
 //    private var selectedIndexArray: [Int] = [] {
 //        didSet { settingDayTableView.reloadData() }
 //    }
 //    var bindRepeatRoutine: ((String) -> ())?
     
     private let settingRepeatView = SettingRepeatView()
+    private let viewModel: any ViewModelType
+    private let disposeBag = DisposeBag()
     
     // MARK: - life cycle
+    
+    init(viewModel: any ViewModelType) {
+        self.viewModel = viewModel
+        super.init()
+    }
+
+    required init?(coder: NSCoder) { nil }
     
     override func loadView() {
         view = settingRepeatView
@@ -32,19 +36,38 @@ final class SettingRepeatViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 //        setButtonAction()
+        bindViewModel()
+        bindView()
     }
 
-    // MARK: - func
+    // MARK: - private func
+    
+    private func bindViewModel() {
+        let output = transformInput()
+        bind(output: output)
+    }
+    
+    private func transformInput() -> SettingRepeatViewModel.Output? {
+        guard let viewModel = viewModel as? SettingRepeatViewModel else { return nil }
+        let input = SettingRepeatViewModel.Input(
+            repeatTableViewItemTapped: settingRepeatView.repeatTableViewTabPublisher
+        )
+        return viewModel.transform(from: input)
+    }
+    
+    private func bindView() {
+        settingRepeatView.cancelButtonPublisher
+            .subscribe { [weak self] _ in
+                self?.dismiss(animated: true)
+            }
+            .disposed(by: disposeBag)
+    }
     
 //    private func setButtonAction() {
 //        let confirmAction = UIAction { [weak self] _ in
 //            self?.changeRepeatRoutine()
 //        }
-//        let cancelAction = UIAction { [weak self] _ in
-//            self?.dismiss(animated: true)
-//        }
 //        mainButton.addAction(confirmAction, for: .touchUpInside)
-//        cancelButton.addAction(cancelAction, for: .touchUpInside)
 //    }
     
 //    private func changeRepeatRoutine() {
@@ -70,4 +93,24 @@ final class SettingRepeatViewController: BaseViewController {
 //        bindRepeatRoutine?(indexToString)
 //        self.dismiss(animated: true)
 //    }
+}
+
+// MARK: - bind
+
+extension SettingRepeatViewController {
+    private func bind(output: SettingRepeatViewModel.Output?) {
+        guard let output = output else { return }
+        
+        output.dayTableViewIsHidden
+            .subscribe { [weak self] isHidden in
+                self?.settingRepeatView.setupDayTableViewVisibility(isHidden)
+            }
+            .disposed(by: disposeBag)
+        
+        output.repeatTableViewItemIsSelected
+            .subscribe { [weak self] selectedItemArray in
+                self?.settingRepeatView.setupRepeatTableViewItemSelected(selectedItemArray)
+            }
+            .disposed(by: disposeBag)
+    }
 }

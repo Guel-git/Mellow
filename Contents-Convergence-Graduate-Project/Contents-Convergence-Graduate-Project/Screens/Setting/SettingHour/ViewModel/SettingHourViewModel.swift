@@ -28,7 +28,7 @@ final class SettingHourViewModel: ViewModelType {
         
         _ = input.tableViewItemTapped
             .withUnretained(self)
-            .subscribe { _, index in
+            .map { _, index in
                 self.saveSelectedIndex(index)
             }
         

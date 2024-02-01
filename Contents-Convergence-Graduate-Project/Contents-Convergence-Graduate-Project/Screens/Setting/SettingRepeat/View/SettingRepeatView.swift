@@ -13,6 +13,9 @@ import RxCocoa
 
 final class SettingRepeatView: UIView {
     
+    private var selectedIndex = 0
+    private var repeatTableViewItemSelected = [true, false]
+    
     // MARK: - ui components
     
     private let cancelButton = CancelButton()
@@ -34,6 +37,12 @@ final class SettingRepeatView: UIView {
     
     // MARK: - publisher
     
+    var cancelButtonPublisher: Observable<Void> {
+        return cancelButton.rx.tap.asObservable()
+    }
+    
+    var repeatTableViewTabPublisher = PublishSubject<Int>()
+    
     // MARK: - life cycle
     
     override init(frame: CGRect) {
@@ -46,6 +55,15 @@ final class SettingRepeatView: UIView {
     required init?(coder: NSCoder) { nil }
     
     // MARK: - public func
+    
+    func setupDayTableViewVisibility(_ isHidden: Bool) {
+        dayTableView.isHidden = isHidden
+    }
+    
+    func setupRepeatTableViewItemSelected(_ selectedItemArray: [Bool]) {
+        repeatTableViewItemSelected = selectedItemArray
+        repeatTableView.reloadData()
+    }
     
     // MARK: - private func
     
@@ -133,6 +151,9 @@ extension SettingRepeatView: UITableViewDelegate {
 //                selectedIndexArray.append(indexPath.item)
 //            }
 //        }
+        if tableView == repeatTableView {
+            repeatTableViewTabPublisher.onNext(indexPath.item)
+        }
     }
 }
 
@@ -146,7 +167,7 @@ extension SettingRepeatView: UITableViewDataSource {
             let cell = repeatTableView.dequeueReusableCell(withIdentifier: SettingDetailTableViewCell.cellId, for: indexPath) as! SettingDetailTableViewCell
             cell.selectionStyle = .none
             cell.cellLabel.text = TextLiteral.SettingView.repeatTableViewArray[indexPath.item]
-//            cell.isSelected = indexPath.item == selectedIndex
+            cell.isSelected = repeatTableViewItemSelected[indexPath.item]
             return cell
         } else {
             let cell = dayTableView.dequeueReusableCell(withIdentifier: SettingDayTableViewCell.cellId, for: indexPath) as! SettingDayTableViewCell

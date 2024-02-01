@@ -170,7 +170,7 @@ final class TestViewModel: ViewModelType {
         
         _ = input.answerItemTapped
             .withUnretained(self)
-            .subscribe { _, item in
+            .map { _, item in
                 self.updateSelectedAnswer(item)
             }
         

@@ -34,7 +34,7 @@ final class SettingViewModel: ViewModelType {
         
         _ = input.pickerTimeChanged
             .withUnretained(self)
-            .subscribe { _, date in
+            .map { _, date in
                 self.saveSleepTime(date)
             }
         
@@ -44,7 +44,7 @@ final class SettingViewModel: ViewModelType {
         
         _ = input.sleepHourChanged
             .withUnretained(self)
-            .subscribe {_, sleepHour in
+            .map {_, sleepHour in
                 self.saveSleepHour(sleepHour)
             }
         
