@@ -11,10 +11,6 @@ import RxSwift
 
 final class SettingHourViewController: BaseViewController {
     
-//    private var selectedIndex: Int = 0 {
-//        didSet { settingTimeTableView.reloadData() }
-//    }
-//    var bindSleepTime: ((String) -> ())?
     private let settingHourView = SettingHourView()
     private let viewModel: any ViewModelType
     private let disposeBag = DisposeBag()
@@ -36,7 +32,6 @@ final class SettingHourViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        setButtonAction()
         bindViewModel()
         bindView()
     }
@@ -69,19 +64,6 @@ final class SettingHourViewController: BaseViewController {
         sleepHourChangePublisher.onNext(sleepTime)
         self.dismiss(animated: true)
     }
-    
-//    private func setButtonAction() {
-//        let confirmAction = UIAction { [weak self] _ in
-//            self?.changeSleepTime()
-//        }
-//        mainButton.addAction(confirmAction, for: .touchUpInside)
-//    }
-//
-//    private func changeSleepTime() {
-//        guard let timeString = TextLiteral.SettingView.timeTableViewDictionary[selectedIndex] else { return }
-//        bindSleepTime?(timeString)
-//        self.dismiss(animated: true)
-//    }
 }
 
 // MARK: - bind

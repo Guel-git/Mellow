@@ -7,6 +7,8 @@
 
 import UIKit
 
+import SnapKit
+
 final class SettingDayTableViewCell: BaseTableViewCell {
     
     static let cellId = "cellId"

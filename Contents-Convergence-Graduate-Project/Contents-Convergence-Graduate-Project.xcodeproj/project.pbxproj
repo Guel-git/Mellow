@@ -77,6 +77,7 @@
 		52C93EC92B6B6B45006C513F /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C93EC82B6B6B45006C513F /* SettingViewModel.swift */; };
 		52C93ED12B6B8B36006C513F /* SettingHourView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C93ED02B6B8B36006C513F /* SettingHourView.swift */; };
 		52C93ED32B6B9258006C513F /* SettingHourViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C93ED22B6B9258006C513F /* SettingHourViewModel.swift */; };
+		52C93ED52B6BA981006C513F /* SettingRepeatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C93ED42B6BA981006C513F /* SettingRepeatView.swift */; };
 		52DDFD0B2B0DF8EB007368CC /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DDFD0A2B0DF8EB007368CC /* PopupViewController.swift */; };
 		52DDFD102B0E02E1007368CC /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DDFD0F2B0E02E1007368CC /* NotificationManager.swift */; };
 		52DDFD122B0E7185007368CC /* SettingDayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DDFD112B0E7185007368CC /* SettingDayTableViewCell.swift */; };
@@ -155,6 +156,7 @@
 		52C93EC82B6B6B45006C513F /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		52C93ED02B6B8B36006C513F /* SettingHourView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingHourView.swift; sourceTree = "<group>"; };
 		52C93ED22B6B9258006C513F /* SettingHourViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingHourViewModel.swift; sourceTree = "<group>"; };
+		52C93ED42B6BA981006C513F /* SettingRepeatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingRepeatView.swift; sourceTree = "<group>"; };
 		52DDFD0A2B0DF8EB007368CC /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
 		52DDFD0F2B0E02E1007368CC /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		52DDFD112B0E7185007368CC /* SettingDayTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingDayTableViewCell.swift; sourceTree = "<group>"; };
@@ -507,6 +509,7 @@
 			isa = PBXGroup;
 			children = (
 				52DDFD112B0E7185007368CC /* SettingDayTableViewCell.swift */,
+				52C93ED42B6BA981006C513F /* SettingRepeatView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -850,6 +853,7 @@
 				528DCD0E2AF13AEB00DD283A /* String+Extension.swift in Sources */,
 				525600F82AEADCE200E122A5 /* UIButton+Extension.swift in Sources */,
 				523F5C7D2B1705EA00A46D4F /* SleepType.swift in Sources */,
+				52C93ED52B6BA981006C513F /* SettingRepeatView.swift in Sources */,
 				52C93ED12B6B8B36006C513F /* SettingHourView.swift in Sources */,
 				525523C42B0BC2D90033D4C6 /* SettingHourViewController.swift in Sources */,
 				52E873BE2AE025E100662723 /* AppDelegate.swift in Sources */,
