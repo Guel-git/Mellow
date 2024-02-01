@@ -14,6 +14,7 @@ final class SettingViewModel: ViewModelType {
     struct Input {
         let pickerTimeChanged: Observable<Date>
         let mainButtonTapped: Observable<Void>
+        let sleepHourChanged: Observable<String>
     }
     
     struct Output {
@@ -23,8 +24,8 @@ final class SettingViewModel: ViewModelType {
     // MARK: - property
     
     private var resultArray = TextLiteral.SettingView.initialResultArray
-    private var sleepTime = "23:00"
-    private var sleepHour = "8시간"
+    private var sleepTime: String?
+    private var sleepHour: String?
     private var repeatDay = "없음"
     
     // MARK: - public func
@@ -40,10 +41,12 @@ final class SettingViewModel: ViewModelType {
         let endSetting = input.mainButtonTapped
             .withUnretained(self)
             .map { _ in self.saveOnDevice() }
-                
-//        let sleepHour = self.sleepHour viewWillAppear
         
-//        let repeatDay = self.repeatDay
+        _ = input.sleepHourChanged
+            .withUnretained(self)
+            .subscribe {_, sleepHour in
+                self.saveSleepHour(sleepHour)
+            }
         
         return Output(endSetting: endSetting)
     }
@@ -54,13 +57,21 @@ final class SettingViewModel: ViewModelType {
         sleepTime = date.dateToTimeString
     }
     
+    private func saveSleepHour(_ sleepHour: String) {
+        self.sleepHour = sleepHour
+    }
+    
     private func saveOnDevice() {
+        UserDefaultManager.sleepTime = sleepTime ?? "23:00"
         UserDefaultManager.sleepHour = parseSleepHour()
-        UserDefaultManager.sleepTime = sleepTime
     }
     
     private func parseSleepHour() -> Int {
-        let hour = sleepHour.dropLast(2)
-        return Int(String(hour))!
+        if let sleepHour = sleepHour {
+            let hour = sleepHour.dropLast(2)
+            return Int(String(hour))!
+        } else {
+            return 8
+        }
     }
 }

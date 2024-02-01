@@ -17,7 +17,7 @@ final class SettingViewController: BaseViewController {
     
     // MARK: - property
     
-    private let settingTimeViewController = SettingTimeViewController()
+    private let settingHourViewController = SettingHourViewController(viewModel: SettingHourViewModel())
     private let settingRepeatViewController = SettingRepeatViewController()
     
     // MARK: - life cycle
@@ -63,7 +63,8 @@ final class SettingViewController: BaseViewController {
         guard let viewModel = viewModel as? SettingViewModel else { return nil }
         let input = SettingViewModel.Input(
             pickerTimeChanged: settingView.pickerTimeChangePublisher,
-            mainButtonTapped: settingView.mainButtonTapPublisher
+            mainButtonTapped: settingView.mainButtonTapPublisher,
+            sleepHourChanged: settingHourViewController.sleepHourChangePublisher
         )
         return viewModel.transform(from: input)
     }
@@ -74,15 +75,14 @@ final class SettingViewController: BaseViewController {
                 self?.navigateToDetailViewController(item)
             }
             .disposed(by: disposeBag)
+        
+        settingHourViewController.sleepHourChangePublisher
+            .subscribe { [weak self] sleepTime in
+                self?.settingView.reflectSleepHour(sleepTime)
+            }
+            .disposed(by: disposeBag)
     }
-    
-//    private func bindSleepTime() {
-//        settingTimeViewController.bindSleepTime = { [weak self] timeString in
-//            self?.resultArray[0] = timeString
-//            self?.settingTableView.reloadData()
-//        }
-//    }
-//
+
 //    private func bindRepeatRoutine() {
 //        settingRepeatViewController.bindRepeatRoutine = { [weak self] repeatString in
 //            self?.resultArray[1] = repeatString
@@ -96,7 +96,7 @@ final class SettingViewController: BaseViewController {
     }
     
     private func navigateToDetailViewController(_ item: Int) {
-        let viewController = item == 0 ? settingTimeViewController : settingRepeatViewController
+        let viewController = item == 0 ? settingHourViewController : settingRepeatViewController
         viewController.modalPresentationStyle = .pageSheet
         self.present(viewController, animated: true)
     }

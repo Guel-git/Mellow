@@ -12,6 +12,10 @@ import RxCocoa
 
 final class SettingView: UIView {
     
+    private var sleepArray = TextLiteral.SettingView.initialResultArray {
+        didSet { settingTableView.reloadData() }
+    }
+    
     // MARK: - ui components
     
     private let sleepTimePicker: UIDatePicker = {
@@ -71,6 +75,10 @@ final class SettingView: UIView {
         navigationItem.hidesBackButton = true
         
         navigationItem.title = TextLiteral.SettingView.navigationTitleText
+    }
+    
+    func reflectSleepHour(_ sleepHour: String) {
+        sleepArray[0] = sleepHour
     }
     
     // MARK: - private func
@@ -137,8 +145,7 @@ extension SettingView: UITableViewDataSource {
         let cell = settingTableView.dequeueReusableCell(withIdentifier: SettingTableViewCell.cellId, for: indexPath) as! SettingTableViewCell
         cell.selectionStyle = .none
         cell.cellLabel.text = TextLiteral.SettingView.tableViewArray[indexPath.item]
-//        cell.cellResult.text = resultArray[indexPath.item]
-        cell.cellResult.text = TextLiteral.SettingView.initialResultArray[indexPath.item]
+        cell.cellResult.text = sleepArray[indexPath.item]
         return cell
     }
 }

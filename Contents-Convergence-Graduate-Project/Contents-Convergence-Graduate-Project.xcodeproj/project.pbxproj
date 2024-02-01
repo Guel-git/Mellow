@@ -21,7 +21,7 @@
 		523F5C982B1A65AD00A46D4F /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523F5C972B1A65AD00A46D4F /* ReportViewController.swift */; };
 		525523C02B0B86CA0033D4C6 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525523BF2B0B86CA0033D4C6 /* SettingViewController.swift */; };
 		525523C22B0BA0E50033D4C6 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525523C12B0BA0E50033D4C6 /* SettingTableViewCell.swift */; };
-		525523C42B0BC2D90033D4C6 /* SettingTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525523C32B0BC2D90033D4C6 /* SettingTimeViewController.swift */; };
+		525523C42B0BC2D90033D4C6 /* SettingHourViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525523C32B0BC2D90033D4C6 /* SettingHourViewController.swift */; };
 		525523C72B0BCD2A0033D4C6 /* CancelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525523C62B0BCD2A0033D4C6 /* CancelButton.swift */; };
 		525523C92B0BD1240033D4C6 /* SettingDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525523C82B0BD1240033D4C6 /* SettingDetailTableViewCell.swift */; };
 		525523CB2B0BDD2B0033D4C6 /* SettingRepeatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525523CA2B0BDD2B0033D4C6 /* SettingRepeatViewController.swift */; };
@@ -75,8 +75,8 @@
 		52C93EC22B6A3F91006C513F /* ResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C93EC12B6A3F91006C513F /* ResultViewModel.swift */; };
 		52C93EC72B6B6374006C513F /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C93EC62B6B6374006C513F /* SettingView.swift */; };
 		52C93EC92B6B6B45006C513F /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C93EC82B6B6B45006C513F /* SettingViewModel.swift */; };
-		52C93ED12B6B8B36006C513F /* SettingTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C93ED02B6B8B36006C513F /* SettingTimeView.swift */; };
-		52C93ED32B6B9258006C513F /* SettingTimeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C93ED22B6B9258006C513F /* SettingTimeViewModel.swift */; };
+		52C93ED12B6B8B36006C513F /* SettingHourView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C93ED02B6B8B36006C513F /* SettingHourView.swift */; };
+		52C93ED32B6B9258006C513F /* SettingHourViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C93ED22B6B9258006C513F /* SettingHourViewModel.swift */; };
 		52DDFD0B2B0DF8EB007368CC /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DDFD0A2B0DF8EB007368CC /* PopupViewController.swift */; };
 		52DDFD102B0E02E1007368CC /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DDFD0F2B0E02E1007368CC /* NotificationManager.swift */; };
 		52DDFD122B0E7185007368CC /* SettingDayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DDFD112B0E7185007368CC /* SettingDayTableViewCell.swift */; };
@@ -102,7 +102,7 @@
 		523F5C972B1A65AD00A46D4F /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
 		525523BF2B0B86CA0033D4C6 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		525523C12B0BA0E50033D4C6 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
-		525523C32B0BC2D90033D4C6 /* SettingTimeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTimeViewController.swift; sourceTree = "<group>"; };
+		525523C32B0BC2D90033D4C6 /* SettingHourViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingHourViewController.swift; sourceTree = "<group>"; };
 		525523C62B0BCD2A0033D4C6 /* CancelButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelButton.swift; sourceTree = "<group>"; };
 		525523C82B0BD1240033D4C6 /* SettingDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingDetailTableViewCell.swift; sourceTree = "<group>"; };
 		525523CA2B0BDD2B0033D4C6 /* SettingRepeatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingRepeatViewController.swift; sourceTree = "<group>"; };
@@ -153,8 +153,8 @@
 		52C93EC12B6A3F91006C513F /* ResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewModel.swift; sourceTree = "<group>"; };
 		52C93EC62B6B6374006C513F /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		52C93EC82B6B6B45006C513F /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
-		52C93ED02B6B8B36006C513F /* SettingTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTimeView.swift; sourceTree = "<group>"; };
-		52C93ED22B6B9258006C513F /* SettingTimeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTimeViewModel.swift; sourceTree = "<group>"; };
+		52C93ED02B6B8B36006C513F /* SettingHourView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingHourView.swift; sourceTree = "<group>"; };
+		52C93ED22B6B9258006C513F /* SettingHourViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingHourViewModel.swift; sourceTree = "<group>"; };
 		52DDFD0A2B0DF8EB007368CC /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
 		52DDFD0F2B0E02E1007368CC /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		52DDFD112B0E7185007368CC /* SettingDayTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingDayTableViewCell.swift; sourceTree = "<group>"; };
@@ -255,7 +255,7 @@
 			isa = PBXGroup;
 			children = (
 				52DDFD132B0E84BB007368CC /* Setting */,
-				52DDFD142B0E84CA007368CC /* SettingTime */,
+				52DDFD142B0E84CA007368CC /* SettingHour */,
 				52DDFD152B0E84D1007368CC /* SettingRepeat */,
 			);
 			path = Setting;
@@ -530,7 +530,7 @@
 			isa = PBXGroup;
 			children = (
 				525523C82B0BD1240033D4C6 /* SettingDetailTableViewCell.swift */,
-				52C93ED02B6B8B36006C513F /* SettingTimeView.swift */,
+				52C93ED02B6B8B36006C513F /* SettingHourView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -538,7 +538,7 @@
 		52C93ECE2B6B8243006C513F /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				52C93ED22B6B9258006C513F /* SettingTimeViewModel.swift */,
+				52C93ED22B6B9258006C513F /* SettingHourViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -546,7 +546,7 @@
 		52C93ECF2B6B824A006C513F /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				525523C32B0BC2D90033D4C6 /* SettingTimeViewController.swift */,
+				525523C32B0BC2D90033D4C6 /* SettingHourViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -577,14 +577,14 @@
 			path = Setting;
 			sourceTree = "<group>";
 		};
-		52DDFD142B0E84CA007368CC /* SettingTime */ = {
+		52DDFD142B0E84CA007368CC /* SettingHour */ = {
 			isa = PBXGroup;
 			children = (
 				52C93ECD2B6B8236006C513F /* View */,
 				52C93ECE2B6B8243006C513F /* ViewModel */,
 				52C93ECF2B6B824A006C513F /* ViewController */,
 			);
-			path = SettingTime;
+			path = SettingHour;
 			sourceTree = "<group>";
 		};
 		52DDFD152B0E84D1007368CC /* SettingRepeat */ = {
@@ -850,8 +850,8 @@
 				528DCD0E2AF13AEB00DD283A /* String+Extension.swift in Sources */,
 				525600F82AEADCE200E122A5 /* UIButton+Extension.swift in Sources */,
 				523F5C7D2B1705EA00A46D4F /* SleepType.swift in Sources */,
-				52C93ED12B6B8B36006C513F /* SettingTimeView.swift in Sources */,
-				525523C42B0BC2D90033D4C6 /* SettingTimeViewController.swift in Sources */,
+				52C93ED12B6B8B36006C513F /* SettingHourView.swift in Sources */,
+				525523C42B0BC2D90033D4C6 /* SettingHourViewController.swift in Sources */,
 				52E873BE2AE025E100662723 /* AppDelegate.swift in Sources */,
 				523F5C702B16314400A46D4F /* MainViewController.swift in Sources */,
 				528DCD1F2B04965100DD283A /* ChatStartView.swift in Sources */,
@@ -863,7 +863,7 @@
 				528DCD132AF3C91400DD283A /* ResultViewController.swift in Sources */,
 				52DDFD102B0E02E1007368CC /* NotificationManager.swift in Sources */,
 				52C93EC92B6B6B45006C513F /* SettingViewModel.swift in Sources */,
-				52C93ED32B6B9258006C513F /* SettingTimeViewModel.swift in Sources */,
+				52C93ED32B6B9258006C513F /* SettingHourViewModel.swift in Sources */,
 				52B40E552B5647DA003283C3 /* ChatViewModel.swift in Sources */,
 				523F5C8F2B1A4F4900A46D4F /* TimeInterval+Extension.swift in Sources */,
 				525600EA2AEA920D00E122A5 /* AnswerTableViewCell.swift in Sources */,

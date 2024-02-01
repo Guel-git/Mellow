@@ -1,5 +1,5 @@
 //
-//  SettingTimeView.swift
+//  SettingHourView.swift
 //  Contents-Convergence-Graduate-Project
 //
 //  Created by 김유나 on 2024/02/01.
@@ -10,7 +10,11 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-final class SettingTimeView: UIView {
+final class SettingHourView: UIView {
+    
+    private var selectedIndex = 0 {
+        didSet { settingHourTableView.reloadData() }
+    }
     
     // MARK: - ui components
     
@@ -22,7 +26,7 @@ final class SettingTimeView: UIView {
         label.font = .sb16
         return label
     }()
-    private let settingTimeTableView = UITableView()
+    private let settingHourTableView = UITableView()
     private let mainButton: MainButton = {
         let button = MainButton()
         button.title = TextLiteral.confirmText
@@ -34,6 +38,12 @@ final class SettingTimeView: UIView {
     
     var cancelButtonTapPublisher: Observable<Void> {
         return cancelButton.rx.tap.asObservable()
+    }
+    
+    var tableViewTapPublisher = PublishSubject<Int>()
+    
+    var mainButtonTapPublisher: Observable<Void> {
+        return mainButton.rx.tap.asObservable()
     }
     
     // MARK: - life cycle
@@ -51,7 +61,7 @@ final class SettingTimeView: UIView {
     // MARK: - private func
     
     private func setupLayout() {
-        [cancelButton, titleLabel, settingTimeTableView, mainButton].forEach {
+        [cancelButton, titleLabel, settingHourTableView, mainButton].forEach {
             self.addSubview($0)
         }
         
@@ -67,7 +77,7 @@ final class SettingTimeView: UIView {
             $0.centerX.equalToSuperview()
         }
         
-        settingTimeTableView.snp.makeConstraints {
+        settingHourTableView.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(28)
             $0.leading.trailing.equalToSuperview().inset(16)
             $0.height.equalTo(204)
@@ -81,21 +91,21 @@ final class SettingTimeView: UIView {
     }
     
     private func setupTableView() {
-        settingTimeTableView.delegate = self
-        settingTimeTableView.dataSource = self
+        settingHourTableView.delegate = self
+        settingHourTableView.dataSource = self
         
-        settingTimeTableView.register(SettingDetailTableViewCell.self, forCellReuseIdentifier: SettingDetailTableViewCell.cellId)
-        settingTimeTableView.rowHeight = 51
-        settingTimeTableView.separatorStyle = .singleLine
-        settingTimeTableView.separatorColor = .systemMain
-        settingTimeTableView.isScrollEnabled = false
+        settingHourTableView.register(SettingDetailTableViewCell.self, forCellReuseIdentifier: SettingDetailTableViewCell.cellId)
+        settingHourTableView.rowHeight = 51
+        settingHourTableView.separatorStyle = .singleLine
+        settingHourTableView.separatorColor = .systemMain
+        settingHourTableView.isScrollEnabled = false
     }
     
 }
 
 // MARK: - extension
 
-extension SettingTimeView: UITableViewDelegate {
+extension SettingHourView: UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -105,21 +115,21 @@ extension SettingTimeView: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        selectedIndex = indexPath.item
-        print(indexPath.item)
+        selectedIndex = indexPath.item
+        tableViewTapPublisher.onNext(indexPath.item)
     }
 }
 
-extension SettingTimeView: UITableViewDataSource {
+extension SettingHourView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return TextLiteral.SettingView.timeTableViewDictionary.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = settingTimeTableView.dequeueReusableCell(withIdentifier: SettingDetailTableViewCell.cellId, for: indexPath) as! SettingDetailTableViewCell
+        let cell = settingHourTableView.dequeueReusableCell(withIdentifier: SettingDetailTableViewCell.cellId, for: indexPath) as! SettingDetailTableViewCell
         cell.selectionStyle = .none
         cell.cellLabel.text = TextLiteral.SettingView.timeTableViewDictionary[indexPath.item]
-//        cell.isSelected = indexPath.item == selectedIndex ? true : false
+        cell.isSelected = indexPath.item == selectedIndex ? true : false
         return cell
     }
 }
