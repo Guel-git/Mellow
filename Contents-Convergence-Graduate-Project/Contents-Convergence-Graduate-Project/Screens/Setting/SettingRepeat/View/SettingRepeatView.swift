@@ -13,8 +13,8 @@ import RxCocoa
 
 final class SettingRepeatView: UIView {
     
-    private var selectedIndex = 0
     private var repeatTableViewItemSelected = [true, false]
+    private var dayTableViewItemsSelected = Array(repeating: false, count: 7)
     
     // MARK: - ui components
     
@@ -43,6 +43,8 @@ final class SettingRepeatView: UIView {
     
     var repeatTableViewTabPublisher = PublishSubject<Int>()
     
+    var dayTableViewTabPublisher = PublishSubject<Int>()
+    
     // MARK: - life cycle
     
     override init(frame: CGRect) {
@@ -63,6 +65,11 @@ final class SettingRepeatView: UIView {
     func setupRepeatTableViewItemSelected(_ selectedItemArray: [Bool]) {
         repeatTableViewItemSelected = selectedItemArray
         repeatTableView.reloadData()
+    }
+    
+    func setupDayTableViewItemsSelected(_ selectedItemsArray: [Bool]) {
+        dayTableViewItemsSelected = selectedItemsArray
+        dayTableView.reloadData()
     }
     
     // MARK: - private func
@@ -142,18 +149,7 @@ extension SettingRepeatView: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        if tableView == repeatTableView {
-//            selectedIndex = indexPath.item
-//        } else {
-//            if selectedIndexArray.contains(indexPath.item) {
-//                selectedIndexArray = selectedIndexArray.filter { $0 != indexPath.item }
-//            } else {
-//                selectedIndexArray.append(indexPath.item)
-//            }
-//        }
-        if tableView == repeatTableView {
-            repeatTableViewTabPublisher.onNext(indexPath.item)
-        }
+        tableView == repeatTableView ? repeatTableViewTabPublisher.onNext(indexPath.item) : dayTableViewTabPublisher.onNext(indexPath.item)
     }
 }
 
@@ -172,8 +168,8 @@ extension SettingRepeatView: UITableViewDataSource {
         } else {
             let cell = dayTableView.dequeueReusableCell(withIdentifier: SettingDayTableViewCell.cellId, for: indexPath) as! SettingDayTableViewCell
             cell.selectionStyle = .none
-            cell.cellLabel.text = (TextLiteral.SettingView.repeatTableViewDictionary[indexPath.item] ?? "") + TextLiteral.SettingView.repeatDayText
-//            cell.isSelected = selectedIndexArray.contains(indexPath.item)
+            cell.cellLabel.text = (TextLiteral.SettingView.repeatTableViewDictionary[indexPath.item] ?? String()) + TextLiteral.SettingView.repeatDayText
+            cell.isSelected = dayTableViewItemsSelected[indexPath.item]
             return cell
         }
     }

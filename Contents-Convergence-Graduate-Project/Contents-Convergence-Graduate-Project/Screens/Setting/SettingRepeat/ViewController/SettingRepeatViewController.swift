@@ -11,9 +11,6 @@ import RxSwift
 
 final class SettingRepeatViewController: BaseViewController {
     
-//    private var selectedIndexArray: [Int] = [] {
-//        didSet { settingDayTableView.reloadData() }
-//    }
 //    var bindRepeatRoutine: ((String) -> ())?
     
     private let settingRepeatView = SettingRepeatView()
@@ -50,7 +47,8 @@ final class SettingRepeatViewController: BaseViewController {
     private func transformInput() -> SettingRepeatViewModel.Output? {
         guard let viewModel = viewModel as? SettingRepeatViewModel else { return nil }
         let input = SettingRepeatViewModel.Input(
-            repeatTableViewItemTapped: settingRepeatView.repeatTableViewTabPublisher
+            repeatTableViewItemTapped: settingRepeatView.repeatTableViewTabPublisher,
+            dayTableViewItemTapped: settingRepeatView.dayTableViewTabPublisher
         )
         return viewModel.transform(from: input)
     }
@@ -110,6 +108,12 @@ extension SettingRepeatViewController {
         output.repeatTableViewItemIsSelected
             .subscribe { [weak self] selectedItemArray in
                 self?.settingRepeatView.setupRepeatTableViewItemSelected(selectedItemArray)
+            }
+            .disposed(by: disposeBag)
+        
+        output.dayTableViewItemsSelected
+            .subscribe { [weak self] selectedItemsArray in
+                self?.settingRepeatView.setupDayTableViewItemsSelected(selectedItemsArray)
             }
             .disposed(by: disposeBag)
     }
