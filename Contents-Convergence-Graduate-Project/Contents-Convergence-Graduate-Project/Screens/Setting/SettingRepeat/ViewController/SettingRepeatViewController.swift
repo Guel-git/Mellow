@@ -11,11 +11,11 @@ import RxSwift
 
 final class SettingRepeatViewController: BaseViewController {
     
-//    var bindRepeatRoutine: ((String) -> ())?
-    
     private let settingRepeatView = SettingRepeatView()
     private let viewModel: any ViewModelType
     private let disposeBag = DisposeBag()
+    
+    var sleepRepeatChangePublisher = PublishSubject<String>()
     
     // MARK: - life cycle
     
@@ -32,7 +32,6 @@ final class SettingRepeatViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        setButtonAction()
         bindViewModel()
         bindView()
     }
@@ -48,49 +47,24 @@ final class SettingRepeatViewController: BaseViewController {
         guard let viewModel = viewModel as? SettingRepeatViewModel else { return nil }
         let input = SettingRepeatViewModel.Input(
             repeatTableViewItemTapped: settingRepeatView.repeatTableViewTabPublisher,
-            dayTableViewItemTapped: settingRepeatView.dayTableViewTabPublisher
+            dayTableViewItemTapped: settingRepeatView.dayTableViewTabPublisher,
+            mainButtonTapped: settingRepeatView.mainButtonTapPublisher
         )
         return viewModel.transform(from: input)
     }
     
     private func bindView() {
-        settingRepeatView.cancelButtonPublisher
+        settingRepeatView.cancelButtonTapPublisher
             .subscribe { [weak self] _ in
                 self?.dismiss(animated: true)
             }
             .disposed(by: disposeBag)
     }
     
-//    private func setButtonAction() {
-//        let confirmAction = UIAction { [weak self] _ in
-//            self?.changeRepeatRoutine()
-//        }
-//        mainButton.addAction(confirmAction, for: .touchUpInside)
-//    }
-    
-//    private func changeRepeatRoutine() {
-//        let weekday = [0, 1, 2, 3, 4]
-//        let weekend = [5, 6]
-//        var indexToString = ""
-//        if selectedIndexArray.isEmpty {
-//            indexToString = TextLiteral.SettingView.initialRepeatText
-//        } else if selectedIndexArray.count == 7 {
-//            indexToString = TextLiteral.SettingView.everyDayText
-//        } else if weekday == selectedIndexArray.sorted() {
-//            indexToString = TextLiteral.SettingView.everyWeekdayText
-//        } else if weekend == selectedIndexArray.sorted() {
-//            indexToString = TextLiteral.SettingView.everyWeekendText
-//        } else {
-//            for i in 0..<7 {
-//                if selectedIndexArray.contains(i) {
-//                    indexToString += (TextLiteral.SettingView.repeatTableViewDictionary[i] ?? "") + TextLiteral.SettingView.commaText
-//                }
-//            }
-//            indexToString.removeSubrange(indexToString.index(indexToString.endIndex, offsetBy: -2)..<indexToString.endIndex)
-//        }
-//        bindRepeatRoutine?(indexToString)
-//        self.dismiss(animated: true)
-//    }
+    private func reflectSleepRepeat(_ sleepRepeat: String) {
+        sleepRepeatChangePublisher.onNext(sleepRepeat)
+        self.dismiss(animated: true)
+    }
 }
 
 // MARK: - bind
@@ -114,6 +88,12 @@ extension SettingRepeatViewController {
         output.dayTableViewItemsSelected
             .subscribe { [weak self] selectedItemsArray in
                 self?.settingRepeatView.setupDayTableViewItemsSelected(selectedItemsArray)
+            }
+            .disposed(by: disposeBag)
+        
+        output.sleepRepeatString
+            .subscribe { [weak self] sleepRepeat in
+                self?.reflectSleepRepeat(sleepRepeat)
             }
             .disposed(by: disposeBag)
     }

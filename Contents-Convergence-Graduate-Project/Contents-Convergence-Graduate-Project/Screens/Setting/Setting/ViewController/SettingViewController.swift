@@ -77,18 +77,17 @@ final class SettingViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         settingHourViewController.sleepHourChangePublisher
-            .subscribe { [weak self] sleepTime in
-                self?.settingView.reflectSleepHour(sleepTime)
+            .subscribe { [weak self] sleepHour in
+                self?.settingView.reflectSleepHour(sleepHour)
+            }
+            .disposed(by: disposeBag)
+        
+        settingRepeatViewController.sleepRepeatChangePublisher
+            .subscribe { [weak self] sleepRepeat in
+                self?.settingView.reflectSleepRepeat(sleepRepeat)
             }
             .disposed(by: disposeBag)
     }
-
-//    private func bindRepeatRoutine() {
-//        settingRepeatViewController.bindRepeatRoutine = { [weak self] repeatString in
-//            self?.resultArray[1] = repeatString
-//            self?.settingTableView.reloadData()
-//        }
-//    }
 
     private func navigateToPopupViewController() {
         let popupViewController = PopupViewController()

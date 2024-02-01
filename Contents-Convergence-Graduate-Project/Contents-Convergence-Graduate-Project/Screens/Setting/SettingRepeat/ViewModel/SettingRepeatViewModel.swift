@@ -14,12 +14,14 @@ final class SettingRepeatViewModel: ViewModelType {
     struct Input {
         let repeatTableViewItemTapped: Observable<Int>
         let dayTableViewItemTapped: Observable<Int>
+        let mainButtonTapped: Observable<Void>
     }
     
     struct Output {
         let dayTableViewIsHidden: Observable<Bool>
         let repeatTableViewItemIsSelected: Observable<[Bool]>
         let dayTableViewItemsSelected: Observable<[Bool]>
+        let sleepRepeatString: Observable<String>
     }
     
     private var selectedDays = [Int]()
@@ -46,7 +48,13 @@ final class SettingRepeatViewModel: ViewModelType {
                 self.selectedItemsArray(item)
             }
         
-        return Output(dayTableViewIsHidden: dayTableViewIsHidden, repeatTableViewItemIsSelected: repeatTableViewItemIsSelected, dayTableViewItemsSelected: dayTableViewItemsSelected)
+        let sleepRepeatString = input.mainButtonTapped
+            .withUnretained(self)
+            .map { _ in
+                self.changeSleepRepeat()
+            }
+        
+        return Output(dayTableViewIsHidden: dayTableViewIsHidden, repeatTableViewItemIsSelected: repeatTableViewItemIsSelected, dayTableViewItemsSelected: dayTableViewItemsSelected, sleepRepeatString: sleepRepeatString)
     }
     
     // MARK: - private func
@@ -73,4 +81,27 @@ final class SettingRepeatViewModel: ViewModelType {
         }
         return selectedItems
     }
+    
+    private func changeSleepRepeat() -> String {
+        let weekday = [0, 1, 2, 3, 4]
+        let weekend = [5, 6]
+        var sleepRepeatString = String()
+        if selectedDays.isEmpty {
+            sleepRepeatString = TextLiteral.SettingView.initialRepeatText
+        } else if selectedDays.count == 7 {
+            sleepRepeatString = TextLiteral.SettingView.everyDayText
+        } else if weekday == selectedDays.sorted() {
+            sleepRepeatString = TextLiteral.SettingView.everyWeekdayText
+        } else if weekend == selectedDays.sorted() {
+            sleepRepeatString = TextLiteral.SettingView.everyWeekendText
+        } else {
+            for i in 0..<7 {
+                if selectedDays.contains(i) {
+                    sleepRepeatString += (TextLiteral.SettingView.repeatTableViewDictionary[i] ?? String()) + TextLiteral.SettingView.commaText
+                }
+            }
+            sleepRepeatString.removeSubrange(sleepRepeatString.index(sleepRepeatString.endIndex, offsetBy: -2)..<sleepRepeatString.endIndex)
+        }
+        return sleepRepeatString
+        }
 }

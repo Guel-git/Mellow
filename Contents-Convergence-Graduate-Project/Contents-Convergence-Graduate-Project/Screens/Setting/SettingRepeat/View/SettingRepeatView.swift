@@ -37,8 +37,12 @@ final class SettingRepeatView: UIView {
     
     // MARK: - publisher
     
-    var cancelButtonPublisher: Observable<Void> {
+    var cancelButtonTapPublisher: Observable<Void> {
         return cancelButton.rx.tap.asObservable()
+    }
+    
+    var mainButtonTapPublisher: Observable<Void> {
+        return mainButton.rx.tap.asObservable()
     }
     
     var repeatTableViewTabPublisher = PublishSubject<Int>()

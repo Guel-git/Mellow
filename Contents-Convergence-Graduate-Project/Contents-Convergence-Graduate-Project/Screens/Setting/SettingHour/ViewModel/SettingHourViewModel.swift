@@ -28,7 +28,7 @@ final class SettingHourViewModel: ViewModelType {
         
         _ = input.tableViewItemTapped
             .withUnretained(self)
-            .map { _, index in
+            .subscribe { _, index in
                 self.saveSelectedIndex(index)
             }
         
@@ -48,7 +48,5 @@ final class SettingHourViewModel: ViewModelType {
     private func changeSleepHour() -> String {
         let hourString = TextLiteral.SettingView.timeTableViewDictionary[self.selectedIndex]
         return hourString ?? TextLiteral.hourText
-//        bindSleepTime?(timeString)
-//        self.dismiss(animated: true)
     }
 }

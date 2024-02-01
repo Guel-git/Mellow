@@ -60,8 +60,8 @@ final class SettingHourViewController: BaseViewController {
             .disposed(by: disposeBag)
     }
     
-    private func reflectSleepTime(_ sleepTime: String) {
-        sleepHourChangePublisher.onNext(sleepTime)
+    private func reflectSleepHour(_ sleepHour: String) {
+        sleepHourChangePublisher.onNext(sleepHour)
         self.dismiss(animated: true)
     }
 }
@@ -73,8 +73,8 @@ extension SettingHourViewController {
         guard let output = output else { return }
         
         output.sleepHourString
-            .subscribe { [weak self] sleepTime in
-                self?.reflectSleepTime(sleepTime)
+            .subscribe { [weak self] sleepHour in
+                self?.reflectSleepHour(sleepHour)
             }
             .disposed(by: disposeBag)
     }

@@ -82,6 +82,10 @@ final class SettingView: UIView {
         sleepArray[0] = sleepHour
     }
     
+    func reflectSleepRepeat(_ sleepRepeat: String) {
+        sleepArray[1] = sleepRepeat
+    }
+    
     // MARK: - private func
     
     private func setupLayout() {
