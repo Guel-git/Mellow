@@ -251,8 +251,8 @@
 			isa = PBXGroup;
 			children = (
 				52DDFD132B0E84BB007368CC /* Setting */,
-				52DDFD152B0E84D1007368CC /* SettingRepeat */,
 				52DDFD142B0E84CA007368CC /* SettingTime */,
+				52DDFD152B0E84D1007368CC /* SettingRepeat */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -499,6 +499,52 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		52C93ECA2B6B8209006C513F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				52DDFD112B0E7185007368CC /* SettingDayTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		52C93ECB2B6B8212006C513F /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		52C93ECC2B6B8218006C513F /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				525523CA2B0BDD2B0033D4C6 /* SettingRepeatViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		52C93ECD2B6B8236006C513F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				525523C82B0BD1240033D4C6 /* SettingDetailTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		52C93ECE2B6B8243006C513F /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		52C93ECF2B6B824A006C513F /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				525523C32B0BC2D90033D4C6 /* SettingTimeViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		52DDFD092B0DF8DF007368CC /* Popup */ = {
 			isa = PBXGroup;
 			children = (
@@ -528,8 +574,9 @@
 		52DDFD142B0E84CA007368CC /* SettingTime */ = {
 			isa = PBXGroup;
 			children = (
-				525523C32B0BC2D90033D4C6 /* SettingTimeViewController.swift */,
-				525523C82B0BD1240033D4C6 /* SettingDetailTableViewCell.swift */,
+				52C93ECD2B6B8236006C513F /* View */,
+				52C93ECE2B6B8243006C513F /* ViewModel */,
+				52C93ECF2B6B824A006C513F /* ViewController */,
 			);
 			path = SettingTime;
 			sourceTree = "<group>";
@@ -537,8 +584,9 @@
 		52DDFD152B0E84D1007368CC /* SettingRepeat */ = {
 			isa = PBXGroup;
 			children = (
-				52DDFD112B0E7185007368CC /* SettingDayTableViewCell.swift */,
-				525523CA2B0BDD2B0033D4C6 /* SettingRepeatViewController.swift */,
+				52C93ECA2B6B8209006C513F /* View */,
+				52C93ECB2B6B8212006C513F /* ViewModel */,
+				52C93ECC2B6B8218006C513F /* ViewController */,
 			);
 			path = SettingRepeat;
 			sourceTree = "<group>";
