@@ -1,1 +1,2 @@
-# Contents-Convergence-Graduate-Project
+# Mellow
+이화여자대학교 융합콘텐츠학과 졸업프로젝트 (2023.09 - )
