@@ -32,6 +32,10 @@ final class SettingTimeView: UIView {
     
     // MARK: - publisher
     
+    var cancelButtonTapPublisher: Observable<Void> {
+        return cancelButton.rx.tap.asObservable()
+    }
+    
     // MARK: - life cycle
     
     override init(frame: CGRect) {

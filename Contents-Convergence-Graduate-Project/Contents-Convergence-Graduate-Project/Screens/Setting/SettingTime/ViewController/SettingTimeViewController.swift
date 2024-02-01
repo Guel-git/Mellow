@@ -7,6 +7,8 @@
 
 import UIKit
 
+import RxSwift
+
 final class SettingTimeViewController: BaseViewController {
     
 //    private var selectedIndex: Int = 0 {
@@ -14,6 +16,7 @@ final class SettingTimeViewController: BaseViewController {
 //    }
 //    var bindSleepTime: ((String) -> ())?
     private let settingTimeView = SettingTimeView()
+    private let disposeBag = DisposeBag()
     
     // MARK: - life cycle
     
@@ -24,19 +27,24 @@ final class SettingTimeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 //        setButtonAction()
+        bindView()
     }
 
-    // MARK: - func
+    // MARK: - private func
+    
+    private func bindView() {
+        settingTimeView.cancelButtonTapPublisher
+            .subscribe { [weak self] _ in
+                self?.dismiss(animated: true)
+            }
+            .disposed(by: disposeBag)
+    }
     
 //    private func setButtonAction() {
 //        let confirmAction = UIAction { [weak self] _ in
 //            self?.changeSleepTime()
 //        }
-//        let cancelAction = UIAction { [weak self] _ in
-//            self?.dismiss(animated: true)
-//        }
 //        mainButton.addAction(confirmAction, for: .touchUpInside)
-//        cancelButton.addAction(cancelAction, for: .touchUpInside)
 //    }
 //
 //    private func changeSleepTime() {
