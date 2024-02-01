@@ -38,6 +38,10 @@ final class SettingView: UIView {
     
     // MARK: - publisher
     
+    var mainButtonTapPublisher: Observable<Void> {
+        return mainButton.rx.tap.asObservable()
+    }
+    
     // MARK: - life cycle
     
     override init(frame: CGRect) {

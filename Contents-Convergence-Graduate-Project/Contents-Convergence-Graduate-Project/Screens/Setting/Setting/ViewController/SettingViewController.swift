@@ -7,10 +7,13 @@
 
 import UIKit
 
+import RxSwift
+
 final class SettingViewController: BaseViewController {
     
 //    private var resultArray = TextLiteral.SettingView.initialResultArray
     private let settingView = SettingView()
+    private let disposeBag = DisposeBag()
     
     // MARK: - property
     
@@ -25,6 +28,7 @@ final class SettingViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        bindView()
     }
     
     // MARK: - func
@@ -42,6 +46,14 @@ final class SettingViewController: BaseViewController {
         settingView.setupNavigationItem(navigationItem)
     }
     
+    private func bindView() {
+        settingView.mainButtonTapPublisher
+            .subscribe { [weak self] _ in
+                self?.navigateToPopupViewController()
+            }
+            .disposed(by: disposeBag)
+    }
+    
 //    private func bindSleepTime() {
 //        settingTimeViewController.bindSleepTime = { [weak self] timeString in
 //            self?.resultArray[0] = timeString
@@ -55,20 +67,13 @@ final class SettingViewController: BaseViewController {
 //            self?.settingTableView.reloadData()
 //        }
 //    }
-    
-//    private func setButtonAction() {
-//        let action = UIAction { [weak self] _ in
-//            self?.navigateToPopupViewController()
-//        }
-//        mainButton.addAction(action, for: .touchUpInside)
-//    }
-//
-//    private func navigateToPopupViewController() {
+
+    private func navigateToPopupViewController() {
 //        UserDefaultManager.sleepHour = parseSleepHour()
 //        UserDefaultManager.sleepTime = sleepTimePicker.date.dateToTimeString
-//        let popupViewController = PopupViewController()
-//        navigationController?.pushViewController(popupViewController, animated: true)
-//    }
+        let popupViewController = PopupViewController()
+        navigationController?.pushViewController(popupViewController, animated: true)
+    }
 //
 //    private func parseSleepHour() -> Int {
 //        let hour = resultArray[0].dropLast(2)
