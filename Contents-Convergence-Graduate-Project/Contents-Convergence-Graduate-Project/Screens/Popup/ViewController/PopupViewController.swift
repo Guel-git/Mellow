@@ -7,11 +7,15 @@
 
 import UIKit
 
+import RxSwift
+
 final class PopupViewController: BaseViewController {
     
     // MARK: - property
     
     private let popupView = PopupView()
+    
+    private let disposeBag = DisposeBag()
     
     // MARK: - life cycle
     
@@ -22,7 +26,7 @@ final class PopupViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 //        getAuthorization()
-//        setButtonAction()
+        bindView()
     }
     
     override func setupNavigationBar() {
@@ -38,23 +42,24 @@ final class PopupViewController: BaseViewController {
         popupView.setupNavigationItem(navigationItem)
     }
     
+    private func bindView() {
+        popupView.mainButtonTapPublisher
+            .subscribe { [weak self] _ in
+                self?.navigateToMainViewController()
+            }
+            .disposed(by: disposeBag)
+    }
+    
+    private func navigateToMainViewController() {
+        let mainViewController = MainViewController()
+        navigationController?.pushViewController(mainViewController, animated: true)
+    }
+    
     // MARK: - func
     
 //    private func getAuthorization() {
 //        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
 //            NotificationManager.shared.requestPermission()
 //        }
-//    }
-    
-//    private func setButtonAction() {
-//        let action = UIAction { [weak self] _ in
-//            self?.navigateToMainViewController()
-//        }
-//        mainButton.addAction(action, for: .touchUpInside)
-//    }
-    
-//    private func navigateToMainViewController() {
-//        let mainViewController = MainViewController()
-//        navigationController?.pushViewController(mainViewController, animated: true)
 //    }
 }
