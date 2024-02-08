@@ -129,6 +129,7 @@ final class MainViewController: BaseViewController {
         label.font = .sb20
         return label
     }()
+    private let routineView = RoutineView()
     private let mainButton: StartButton = {
         let button = StartButton()
         button.title = "잠들기 준비"
@@ -149,7 +150,7 @@ final class MainViewController: BaseViewController {
     }
     
     override func render() {
-        [favoriteBackView, promiseLabel, sleepTimeBackView, wakeTimeBackView, repeatBackView, routineLabel].forEach {
+        [favoriteBackView, promiseLabel, sleepTimeBackView, wakeTimeBackView, repeatBackView, routineLabel, routineView].forEach {
             view.addSubview($0)
         }
         [favoriteImage, favoriteLabel, favoriteTalkLabel, heartImage, heartLabel, progressBackView].forEach {
@@ -285,6 +286,12 @@ final class MainViewController: BaseViewController {
         routineLabel.snp.makeConstraints {
             $0.top.equalTo(repeatBackView.snp.bottom).offset(40)
             $0.leading.equalToSuperview().inset(16)
+        }
+        
+        routineView.snp.makeConstraints {
+            $0.top.equalTo(routineLabel.snp.bottom).offset(16)
+            $0.leading.trailing.equalToSuperview().inset(16)
+            $0.height.equalTo(83)
         }
     }
     
