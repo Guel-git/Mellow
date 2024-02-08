@@ -59,15 +59,15 @@ final class ChatViewModel: ViewModelType {
         
         let firstButtonText = input.firstButtonTapped
             .withUnretained(self)
-            .compactMap { _ in self.buttonTextArray[0] }
+            .map { _ in self.buttonTextArray[0] }
         
         let secondButtonText = input.secondButtonTapped
             .withUnretained(self)
-            .compactMap { _ in self.buttonTextArray[1] }
+            .map { _ in self.buttonTextArray[1] }
         
         let thirdButtonText = input.thirdButtonTapped
             .withUnretained(self)
-            .compactMap { _ in self.buttonTextArray[2] }
+            .map { _ in self.buttonTextArray[2] }
         
         let selectedButtonText = Observable.merge(
             firstButtonText, secondButtonText, thirdButtonText

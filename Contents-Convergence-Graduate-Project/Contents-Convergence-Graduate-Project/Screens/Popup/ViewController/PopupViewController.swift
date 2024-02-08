@@ -14,10 +14,17 @@ final class PopupViewController: BaseViewController {
     // MARK: - property
     
     private let popupView = PopupView()
-    
+    private let viewModel: any ViewModelType
     private let disposeBag = DisposeBag()
     
     // MARK: - life cycle
+    
+    init(viewModel: any ViewModelType) {
+        self.viewModel = viewModel
+        super.init()
+    }
+    
+    required init?(coder: NSCoder) { nil }
     
     override func loadView() {
         view = popupView
@@ -25,7 +32,7 @@ final class PopupViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        getAuthorization()
+        bindViewModel()
         bindView()
     }
     
@@ -42,6 +49,18 @@ final class PopupViewController: BaseViewController {
         popupView.setupNavigationItem(navigationItem)
     }
     
+    private func bindViewModel() {
+        _ = transformInput()
+    }
+    
+    private func transformInput() -> PopupViewModel.Output? {
+        guard let viewModel = viewModel as? PopupViewModel else { return nil }
+        let input = PopupViewModel.Input(
+            viewDidLoad: self.rx.viewDidLoad
+        )
+        return viewModel.transform(from: input)
+    }
+    
     private func bindView() {
         popupView.mainButtonTapPublisher
             .subscribe { [weak self] _ in
@@ -54,12 +73,4 @@ final class PopupViewController: BaseViewController {
         let mainViewController = MainViewController()
         navigationController?.pushViewController(mainViewController, animated: true)
     }
-    
-    // MARK: - func
-    
-//    private func getAuthorization() {
-//        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
-//            NotificationManager.shared.requestPermission()
-//        }
-//    }
 }

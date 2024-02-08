@@ -45,6 +45,7 @@
 		525600F82AEADCE200E122A5 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525600F72AEADCE200E122A5 /* UIButton+Extension.swift */; };
 		525600FA2AEADD9300E122A5 /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525600F92AEADD9300E122A5 /* UIApplication+Extension.swift */; };
 		5275B5242B74F25000FAC920 /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5275B5232B74F25000FAC920 /* PopupView.swift */; };
+		5275B5272B74F86F00FAC920 /* PopupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5275B5262B74F86F00FAC920 /* PopupViewModel.swift */; };
 		528DCD0E2AF13AEB00DD283A /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528DCD0D2AF13AEB00DD283A /* String+Extension.swift */; };
 		528DCD102AF36CF000DD283A /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528DCD0F2AF36CF000DD283A /* UIViewController+Extension.swift */; };
 		528DCD132AF3C91400DD283A /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528DCD122AF3C91400DD283A /* ResultViewController.swift */; };
@@ -128,6 +129,7 @@
 		525600F72AEADCE200E122A5 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		525600F92AEADD9300E122A5 /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
 		5275B5232B74F25000FAC920 /* PopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
+		5275B5262B74F86F00FAC920 /* PopupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewModel.swift; sourceTree = "<group>"; };
 		528DCD0C2AF1338D00DD283A /* Contents-Convergence-Graduate-Project.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Contents-Convergence-Graduate-Project.entitlements"; sourceTree = "<group>"; };
 		528DCD0D2AF13AEB00DD283A /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		528DCD0F2AF36CF000DD283A /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
@@ -362,6 +364,14 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		5275B5252B74F86200FAC920 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				5275B5262B74F86F00FAC920 /* PopupViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		528DCD112AF3C90800DD283A /* Result */ = {
 			isa = PBXGroup;
 			children = (
@@ -578,6 +588,7 @@
 		52DDFD092B0DF8DF007368CC /* Popup */ = {
 			isa = PBXGroup;
 			children = (
+				5275B5252B74F86200FAC920 /* ViewModel */,
 				5275B5202B74F21F00FAC920 /* View */,
 				5275B5222B74F22B00FAC920 /* ViewController */,
 			);
@@ -860,6 +871,7 @@
 				528DCD2B2B04F76300DD283A /* ChatButton.swift in Sources */,
 				528DCD252B04AB2200DD283A /* ChatCapsuleLabel.swift in Sources */,
 				523F5C822B1724CC00A46D4F /* RoutineProgressViewController.swift in Sources */,
+				5275B5272B74F86F00FAC920 /* PopupViewModel.swift in Sources */,
 				523F5C982B1A65AD00A46D4F /* ReportViewController.swift in Sources */,
 				528DCD102AF36CF000DD283A /* UIViewController+Extension.swift in Sources */,
 				525523C72B0BCD2A0033D4C6 /* CancelButton.swift in Sources */,

@@ -90,7 +90,8 @@ final class SettingViewController: BaseViewController {
     }
 
     private func navigateToPopupViewController() {
-        let popupViewController = PopupViewController()
+        let viewModel = PopupViewModel()
+        let popupViewController = PopupViewController(viewModel: viewModel)
         navigationController?.pushViewController(popupViewController, animated: true)
     }
     

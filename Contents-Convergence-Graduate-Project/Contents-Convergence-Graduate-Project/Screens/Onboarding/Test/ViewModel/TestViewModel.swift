@@ -146,27 +146,27 @@ final class TestViewModel: ViewModelType {
     func transform(from input: Input) -> Output {
         let questionNumImage = input.viewDidLoad
             .withUnretained(self)
-            .compactMap { _ in self.questionNum.numImage }
+            .map { _ in self.questionNum.numImage }
         
         let questionText = input.viewDidLoad
             .withUnretained(self)
-            .compactMap { _ in self.questionNum.questionText }
+            .map { _ in self.questionNum.questionText }
         
         let progressRatio = input.viewDidLoad
             .withUnretained(self)
-            .compactMap { _ in self.questionNum.progressRatio }
+            .map { _ in self.questionNum.progressRatio }
         
         let progressRadius = input.viewDidLoad
             .withUnretained(self)
-            .compactMap { _ in self.questionNum.progressRadius }
+            .map { _ in self.questionNum.progressRadius }
         
         let mainButtonText = input.viewDidLoad
             .withUnretained(self)
-            .compactMap { _ in self.questionNum.mainButtonTitle }
+            .map { _ in self.questionNum.mainButtonTitle }
         
         let answerList = input.viewDidLoad
             .withUnretained(self)
-            .compactMap { _ in self.questionNum.answerList }
+            .map { _ in self.questionNum.answerList }
         
         _ = input.answerItemTapped
             .withUnretained(self)
